@@ -1,0 +1,153 @@
+@import "../../../config-scss/rem-calc.scss";
+
+:host {
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: var(--white);
+    border-radius: 5px;
+    // border: dashed red;
+  }
+
+  .card__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    // border: dashed rgb(0, 140, 255);
+  }
+  .playercard-superior {
+    width: 185px;
+    height: 265px;
+    margin-top: auto;
+    position: absolute;
+  }
+
+  .playercard-position-and-overral {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    font-size: 30px;
+  }
+
+  .images-details-icons {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin-top: 45px;
+  }
+  #nation {
+    margin-top: -10px;
+  }
+  .playercard-image-icon {
+    background-size: cover;
+
+    width: 50px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 25px;
+    padding: auto;
+  }
+
+  .card__title {
+    font-size: 24px;
+  }
+
+  .card__content {
+    position: absolute;
+    width: 162px;
+    height: 85px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    font-size: 18px;
+    flex-wrap: wrap;
+
+    margin-top: 153px;
+    padding: 0;
+  }
+
+  #card__content__name {
+    position: absolute;
+    color: rgba(0, 0, 0, 0.9);
+    margin-top: rem-calc(35);
+    // margin-left: rem-calc(220);
+    text-transform: uppercase;
+    font-size: 21px;
+    line-height: rem-calc(33.6);
+    font-weight: 500;
+    text-shadow: 1px 1px 1px rgb(255 255 255 / 30%);
+  }
+
+  #photo__card {
+    position: absolute;
+    height: rem-calc(140);
+    width: rem-calc(140);
+    margin-bottom: rem-calc(138);
+    margin-left: rem-calc(75);
+  }
+
+  #card-gold {
+  }
+
+  #overral {
+    position: absolute;
+    font-size: 25px;
+  }
+  .btn {
+  }
+}
+
+//different types of cards gold
+.card-fifa-16{
+  .playercard-superior {
+    width: 145px;
+    height: 265px;
+  }
+
+  .card__content {
+    position: absolute;
+    width: 162px;
+    height: 85px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    font-size: 20px;
+    flex-wrap: wrap;
+
+    margin-top: 153px;
+    padding: 0;
+  }
+}
+
+.card-fifa-18 {
+
+  #card__content__name {
+    margin-top: rem-calc(28);
+    margin-left: rem-calc(35);
+  }
+
+   .card__content {
+    margin-left: 40px;
+  }
+  .playercard-superior {
+    width: 205px;
+    height: 265px;
+  }
+
+  #photo__card {
+    margin-bottom: rem-calc(158);
+  
+  }
+
+
+}

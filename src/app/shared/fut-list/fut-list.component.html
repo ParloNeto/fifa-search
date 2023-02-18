@@ -1,0 +1,26 @@
+<app-fut-search (emmitSearch)="getSearch($event)"></app-fut-search>
+
+<section class="list">
+<ng-template ngFor let-cards [ngForOf] ="cards">
+  <a [routerLink]="['details', cards.id]" class="card">
+    <section class="card__info">
+      <h2>
+        {{ cards.firstName }} {{ cards.lastName }}
+      </h2>
+
+      <ul>
+        <li>{{ cards.nationality }}</li>
+        <li>{{ cards.position }}</li>
+        <li>{{ cards.club }}</li>
+      </ul>
+    </section>
+
+    <section class="card__image">
+      <img class="card__image__player-photo" [src]="cards.photo" alt="{{cards.firstName}} photo">
+       <!-- <img src="assets/images/card-fifa-17.png" alt="Messi" /> -->
+    </section>
+  </a>
+</ng-template>
+</section>
+
+<img src="assets/images/error.png" alt="Erro ao carregar Cards" width="50%" *ngIf="apiError">
