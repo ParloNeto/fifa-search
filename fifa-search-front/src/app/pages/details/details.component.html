@@ -28,7 +28,7 @@
 
             </div>
 
-            <p>{{ card.attributes[0].overral }} </p>
+            <p>{{ card.attributes[0].overall }} </p>
             <p [ngStyle]="{ 'font-size': '15px' }">{{ card.position }}</p>
           </div>
         </div>
@@ -49,7 +49,7 @@
           [src]="cardGoldMapping[card.type.toLowerCase()]"
         /> -->
         <!-- <img id="card-gold" *ngIf="cardTypeMapping[card?.type.toLowerCase()]" [src]="card?.attributes[0].overall >= 75 ? cardGoldMapping[card?.type.toLowerCase()] : cardSilverMapping[card?.type.toLowerCase()]"> -->
-        <img id="card-gold" *ngIf="cardTypeMapping[card?.type.toLowerCase()]" [src]="card?.attributes[0].overral >= 75 ? cardTypeMapping[card?.type.toLowerCase()].gold : (card?.attributes[0].overral >= 65 ? cardTypeMapping[card?.type.toLowerCase()].silver : cardTypeMapping[card?.type.toLowerCase()].bronze)" />
+        <img id="card-gold" *ngIf="cardTypeMapping[card?.type.toLowerCase()]" [src]="card?.attributes[0].overall >= 75 ? cardTypeMapping[card?.type.toLowerCase()].gold : (card?.attributes[0].overall >= 65 ? cardTypeMapping[card?.type.toLowerCase()].silver : cardTypeMapping[card?.type.toLowerCase()].bronze)" />
 
    
         <!-- <img

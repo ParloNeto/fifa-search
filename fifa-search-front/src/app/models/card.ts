@@ -1,4 +1,4 @@
-import { Attribute } from "@angular/core";
+import { AttributeCard } from "./attributeCard";
 
 export interface Card {
     id: number;
@@ -10,5 +10,5 @@ export interface Card {
     club: string;
     position: string;
     photo: string;
-    attributes: Attribute[];
+    attributes: AttributeCard[];
   }

@@ -1,0 +1,17 @@
+@import '../../../config-scss/rem-calc.scss';
+
+:host{
+    .addPlayer{
+        display: flex;
+        justify-content: end;
+        margin-left: rem-calc(30);
+        button{
+            position: absolute;
+            top: rem-calc(10);
+            padding: rem-calc(20);
+            border-radius: rem-calc(10);
+            background-color: aqua;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 //Components
 import { FutHeaderComponent } from './fut-header/fut-header.component';
 import { FutSearchComponent } from './fut-search/fut-search.component';
 import { FutListComponent } from './fut-list/fut-list.component';
 import { RouterModule } from '@angular/router';
-import { SendCardComponent } from './send-card/send-card.component';
+import { FutAddCardComponent } from './fut-add-card/fut-add-card.component';
+import { DetailsAddCardComponent } from './fut-add-card/details-add-card/details-add-card.component';
+
 
 
 
@@ -15,17 +18,21 @@ import { SendCardComponent } from './send-card/send-card.component';
         FutHeaderComponent,
         FutSearchComponent,
         FutListComponent,
-        SendCardComponent
+        FutAddCardComponent,
+        DetailsAddCardComponent
        
     ],
     exports: [
         FutHeaderComponent,
         FutSearchComponent,
-        FutListComponent
+        FutListComponent,
+        FutAddCardComponent,
+        DetailsAddCardComponent
     ],
     imports: [
         CommonModule,
-        RouterModule
+        RouterModule,
+        ReactiveFormsModule
     ]
 })
 export class SharedModule { }

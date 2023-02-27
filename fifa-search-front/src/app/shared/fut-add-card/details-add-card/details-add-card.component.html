@@ -1,0 +1,35 @@
+<div class="card">
+    <div class="card-background">
+        <form [formGroup]="infoCardsForm" (ngSubmit)="submitForm()">
+            <label for="firstName">Nome: 
+                <input type="text" formControlName="firstName">
+            </label>
+          
+            <label for="lastName">Sobrenome: 
+                <input type="text" formControlName="lastName">
+            </label>
+
+            <label for="nickName">Apelido: 
+                <input type="text" formControlName="nickName">
+            </label>
+
+            <label for="nationality">Nacionalidade: 
+                <input type="text" formControlName="nationality">
+            </label>
+
+            <label for="club">Clube: 
+                <input type="text" formControlName="club">
+            </label>
+
+            <label for="position">Posição: 
+                <input type="text" formControlName="position">
+            </label>
+
+            <label for="nickName">Foto (URL): 
+                <input type="text" formControlName="photo">
+            </label>
+           
+            <button [disabled]="infoCardsForm.invalid">Enviar</button>
+        </form>
+    </div>
+</div>

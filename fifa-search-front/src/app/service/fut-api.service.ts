@@ -23,10 +23,11 @@ export class FutApiService {
     return this.http.get<Card[]>(url);
 }
 
-public addCard(card: Card): Observable<Card[]>{
-  return this.http.post<Card[]>(this.apiUrl, card);
+public addCard(card: Card): Observable<Card> {
+  return this.http.post<Card>(this.apiUrl, card).pipe(
+    tap(() => console.log(`Card added: ${card}`)),
+  );
 }
-
 // getCardAttributes(card: Card): Attribute[] {
 //   return card.attributes;
 // }

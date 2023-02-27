@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { DetailsAddCardComponent } from '../shared/fut-add-card/details-add-card/details-add-card.component';
 
 //Components
 import { DetailsComponent } from './details/details.component';
@@ -14,7 +15,12 @@ const routes: Routes = [
     path: 'details/:id',
     component: DetailsComponent
   
-    }
+    },
+    {
+      path: 'addcard',
+      component:  DetailsAddCardComponent
+    
+      }
 ];
 
 @NgModule({
