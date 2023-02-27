@@ -1,13 +1,15 @@
 package com.br.paulo.futsearch.domain;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+@Document(collection = "card")
 public class Card implements Serializable {
     @Id
-    private Long id;
+    private String id;
     private String type;
     private String firstName;
     private String lastName;
@@ -16,12 +18,11 @@ public class Card implements Serializable {
     private String club;
     private String position;
     private String photo;
-    AttributeCard attributes;
 
     public Card() {
     }
 
-    public Card(Long id, String type, String firstName, String lastName, String nickName, String nationality,
+    public Card(String id, String type, String firstName, String lastName, String nickName, String nationality,
                 String club, String position, String photo, AttributeCard attributes) {
         this.id = id;
         this.type = type;
@@ -32,14 +33,13 @@ public class Card implements Serializable {
         this.club = club;
         this.position = position;
         this.photo = photo;
-        this.attributes = attributes;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -105,14 +105,6 @@ public class Card implements Serializable {
 
     public void setPhoto(String photo) {
         this.photo = photo;
-    }
-
-    public AttributeCard getAttributes() {
-        return attributes;
-    }
-
-    public void setAttributes(AttributeCard attributes) {
-        this.attributes = attributes;
     }
 
     @Override
