@@ -21,6 +21,7 @@ public class CardDTO implements Serializable {
 
     public CardDTO(Card obj) {
         id = obj.getId();
+        type = obj.getType();
         firstName = obj.getFirstName();
         lastName = obj.getLastName();
         nickName = obj.getNickName();

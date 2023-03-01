@@ -23,7 +23,7 @@ public class Card implements Serializable {
     }
 
     public Card(String id, String type, String firstName, String lastName, String nickName, String nationality,
-                String club, String position, String photo, AttributeCard attributes) {
+                String club, String position, String photo) {
         this.id = id;
         this.type = type;
         this.firstName = firstName;

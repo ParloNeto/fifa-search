@@ -17,12 +17,6 @@ public class Instantiation implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        cardRepository.deleteAll();
 
-        Card messi = new Card(null, "fifa-17", "Lionel", "Messi", null, "argentina", "PSG", "RW", "photo", null);
-        Card cristiano = new Card(null, "fifa-17", "Cristiano", "Ronaldo", null, "portugal", "Real Madrid", "ST", "photo", null);
-        Card neymar = new Card(null, "fifa-17", "Neymar", "JR", null, "brazil", "PSG", "LW", "photo", null);
-
-        cardRepository.saveAll(Arrays.asList(messi, neymar, cristiano));
     }
 }
