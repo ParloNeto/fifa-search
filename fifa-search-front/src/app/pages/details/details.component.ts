@@ -8,9 +8,10 @@ import { FutApiService } from 'src/app/service/fut-api.service';
   templateUrl: './details.component.html',
   styleUrls: ['./details.component.scss'],
 })
+
 export class DetailsComponent implements OnInit {
 
-  private urlCard: string = 'http://localhost:3000/card';
+  private urlCard: string = '/cards';
   public card: any;
   public isLoading: boolean = false;
   public apiError: boolean = false;

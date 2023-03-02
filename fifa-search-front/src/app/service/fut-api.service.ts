@@ -8,7 +8,7 @@ import { Card } from '../models/card';
 })
 export class FutApiService {
 
-  private apiUrl = 'http://localhost:3000/card';
+  private apiUrl = '/cards';
 
   constructor(
     private http: HttpClient

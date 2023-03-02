@@ -1,7 +1,7 @@
 import { AttributeCard } from "./attributeCard";
 
 export interface Card {
-    id: number;
+    id: string;
     type: string;
     firstName: string;
     lastName: string;
@@ -10,5 +10,5 @@ export interface Card {
     club: string;
     position: string;
     photo: string;
-    attributes: AttributeCard[];
+    attributeCard: AttributeCard;
   }
