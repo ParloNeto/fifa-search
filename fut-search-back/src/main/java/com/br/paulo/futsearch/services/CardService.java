@@ -49,10 +49,11 @@ public class CardService {
         newObj.setClub(obj.getClub());
         newObj.setPosition(obj.getPosition());
         newObj.setPhoto(obj.getPhoto());
+        newObj.setAttributeCard(obj.getAttributeCard());
     }
 
     public Card fromDTO(CardDTO objDto) {
         return new Card(objDto.getId(), objDto.getType(), objDto.getFirstName(), objDto.getLastName(), objDto.getNickName(),
-                objDto.getNationality(), objDto.getClub(), objDto.getPosition(), objDto.getPhoto());
+                objDto.getNationality(), objDto.getClub(), objDto.getPosition(), objDto.getPhoto(), objDto.getAttributeCard());
     }
 }

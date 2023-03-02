@@ -1,5 +1,6 @@
 package com.br.paulo.futsearch.dto;
 
+import com.br.paulo.futsearch.domain.AttributeCard;
 import com.br.paulo.futsearch.domain.Card;
 
 import java.io.Serializable;
@@ -16,6 +17,8 @@ public class CardDTO implements Serializable {
     private String position;
     private String photo;
 
+    private AttributeCard attributeCard;
+
     public CardDTO() {
     }
 
@@ -29,6 +32,7 @@ public class CardDTO implements Serializable {
         club = obj.getClub();
         position = obj.getPosition();
         photo = obj.getPhoto();
+        attributeCard = obj.getAttributeCard();
     }
 
     public String getId() {
@@ -101,5 +105,13 @@ public class CardDTO implements Serializable {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public AttributeCard getAttributeCard() {
+        return attributeCard;
+    }
+
+    public void setAttributeCard(AttributeCard attributeCard) {
+        this.attributeCard = attributeCard;
     }
 }

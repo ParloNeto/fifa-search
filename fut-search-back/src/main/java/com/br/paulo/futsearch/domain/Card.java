@@ -19,11 +19,13 @@ public class Card implements Serializable {
     private String position;
     private String photo;
 
+    private AttributeCard attributeCard;
+
     public Card() {
     }
 
     public Card(String id, String type, String firstName, String lastName, String nickName, String nationality,
-                String club, String position, String photo) {
+                String club, String position, String photo, AttributeCard attributeCard) {
         this.id = id;
         this.type = type;
         this.firstName = firstName;
@@ -33,6 +35,7 @@ public class Card implements Serializable {
         this.club = club;
         this.position = position;
         this.photo = photo;
+        this.attributeCard = attributeCard;
     }
 
     public String getId() {
@@ -105,6 +108,14 @@ public class Card implements Serializable {
 
     public void setPhoto(String photo) {
         this.photo = photo;
+    }
+
+    public AttributeCard getAttributeCard() {
+        return attributeCard;
+    }
+
+    public void setAttributeCard(AttributeCard attributeCard) {
+        this.attributeCard = attributeCard;
     }
 
     @Override

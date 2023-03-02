@@ -1,6 +1,10 @@
 package com.br.paulo.futsearch.domain;
 
-public class AttributeCard {
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.io.Serializable;
+
+public class AttributeCard implements Serializable {
 
     private int overall;
     private int pace;
@@ -14,6 +18,7 @@ public class AttributeCard {
     }
 
     public AttributeCard(int overall, int pace, int shooting, int passing, int dribbling, int defending, int physicality) {
+
         this.overall = overall;
         this.pace = pace;
         this.shooting = shooting;
