@@ -29,6 +29,28 @@ public class CardService {
        return repository.insert(obj);
     }
 
+    public void delete(String id){
+        findById(id);
+        repository.deleteById(id);
+    }
+
+    public Card update(Card obj) {
+        Card newObj = findById(obj.getId());
+        updateData(newObj, obj);
+        return repository.save(newObj);
+    }
+
+    private void updateData(Card newObj, Card obj) {
+        newObj.setType(obj.getType());
+        newObj.setFirstName(obj.getFirstName());
+        newObj.setLastName(obj.getLastName());
+        newObj.setNickName(obj.getNickName());
+        newObj.setNationality(obj.getNationality());
+        newObj.setClub(obj.getClub());
+        newObj.setPosition(obj.getPosition());
+        newObj.setPhoto(obj.getPhoto());
+    }
+
     public Card fromDTO(CardDTO objDto) {
         return new Card(objDto.getId(), objDto.getType(), objDto.getFirstName(), objDto.getLastName(), objDto.getNickName(),
                 objDto.getNationality(), objDto.getClub(), objDto.getPosition(), objDto.getPhoto());

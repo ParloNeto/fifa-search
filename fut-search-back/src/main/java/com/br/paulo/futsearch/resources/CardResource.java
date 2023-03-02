@@ -29,9 +29,7 @@ public class CardResource {
         ).collect(Collectors.toList());
         return ResponseEntity.ok().body(listDto);
     }
-
-    @RequestMapping(value = "/{id}")
-    @GetMapping
+    @GetMapping("/{id}")
     public ResponseEntity<CardDTO> findAll(@PathVariable String id){
         Card obj = service.findById(id);
         return ResponseEntity.ok().body(new CardDTO(obj));
@@ -44,6 +42,23 @@ public class CardResource {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable String id) {
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Void> update(@RequestBody CardDTO cardDTO, @PathVariable String id) {
+        Card obj = service.fromDTO(cardDTO);
+        obj.setId(id);
+        obj = service.update(obj);
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.noContent().build();
+    }
+
+
 
 
 }
