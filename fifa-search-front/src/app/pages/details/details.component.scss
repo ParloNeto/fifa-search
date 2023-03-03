@@ -7,7 +7,7 @@
     align-items: center;
     text-align: center;
     background-color: var(--white);
-    border-radius: 5px;
+    border-radius:rem-calc(5);
     // border: dashed red;
   }
 
@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom:rem-calc(20);
     // border: dashed rgb(0, 140, 255);
   }
   .playercard-superior {
@@ -94,15 +94,11 @@
     margin-left: rem-calc(75);
   }
 
-  #card-gold {
-  }
-
   #overral {
     position: absolute;
     font-size: 25px;
   }
-  .btn {
-  }
+
 }
 
 //different types of cards gold
@@ -146,7 +142,7 @@
 
   #photo__card {
     margin-bottom: rem-calc(158);
-  
+
   }
 
 
