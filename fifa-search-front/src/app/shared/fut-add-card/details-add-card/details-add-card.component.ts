@@ -12,8 +12,10 @@ import { FutApiService } from 'src/app/service/fut-api.service';
   styleUrls: ['./details-add-card.component.scss']
 })
 export class DetailsAddCardComponent implements OnInit {
+  
 
   public infoCardsForm: FormGroup = this.formBuilder.group({
+   
     firstName: ['' , Validators.required],
     lastName: ['', Validators.required],
     nickName: [''],
