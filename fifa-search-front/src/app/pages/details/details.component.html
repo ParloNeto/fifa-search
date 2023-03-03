@@ -5,11 +5,11 @@
   <div [ngClass]="cardTypeAdjustmentCss[card.type]" class="card-details" >
     <div class="card ">
       <div class="card__header flipInY">
-        
+
         <p id="card__content__name">
           {{ card.nickName ? card.nickName : card.firstName + ' ' + card.lastName}}
         </p>
-      
+
 
         <div class="playercard-superior">
           <div class="playercard-position-and-overral">
@@ -51,14 +51,14 @@
         <!-- <img id="card-gold" *ngIf="cardTypeMapping[card?.type.toLowerCase()]" [src]="card?.attributes[0].overall >= 75 ? cardGoldMapping[card?.type.toLowerCase()] : cardSilverMapping[card?.type.toLowerCase()]"> -->
         <img id="card-gold" *ngIf="cardTypeMapping[card?.type.toLowerCase()]" [src]="card?.attributeCard.overall >= 75 ? cardTypeMapping[card?.type.toLowerCase()].gold : (card?.attributeCard.overall >= 65 ? cardTypeMapping[card?.type.toLowerCase()].silver : cardTypeMapping[card?.type.toLowerCase()].bronze)" />
 
-   
+
         <!-- <img
-         id="card-gold" 
-         *ngIf="cardTypeMapping[card.type.toLowerCase()]" 
+         id="card-gold"
+         *ngIf="cardTypeMapping[card.type.toLowerCase()]"
          [src]="card?.attributes[0].overall >= 75 ? cardTypeMapping[card?.type.toLowerCase()].gold : (card?.attributes[0].overall >= 65 ? cardTypeMapping[card?.type.toLowerCase()].silver : cardTypeMapping[card?.type.toLowerCase()].bronze)" /> -->
 
-        
-        
+
+
       </div>
       <h2 class="card__title">Detalhes do jogador</h2>
 
