@@ -1,21 +1,67 @@
-@import '../../../../config-scss/rem-calc.scss';
+@import "../../../../config-scss/rem-calc.scss";
 
 :host {
-    .card {
-      
+  .card {
+    background-color: var(--white);
+    border-radius: 5px;
+    margin: rem-calc(0) rem-calc(250);
+    padding: 0;
+    &-background {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      text-align: center;
-      background-color: var(--white);
-      border-radius: 5px;
-      margin: rem-calc(150) rem-calc(240);
-      &-background{
-        margin: rem-calc(50) rem-calc(60);
-        background-color: rgb(124, 55, 55);
-        padding: rem-calc(150) ;
-      }
-     
+      margin: rem-calc(50) rem-calc(60);
+      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+      padding: rem-calc(10);
     }
+
+    .container {
+      max-width: 700px;
+      width: 100%;
+      padding: 25px 30px;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .form-details {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 20px 0 12px 0;
+
+      .input-box {
+        margin-bottom: 15px;
+        width: calc(100% / 2 - 20px);
+        select {
+          height: 34px;
+          width: 106%;
+          outline: none;
+          font-size: 16px;
+          border-radius: 5px;
+          padding-left: 15px;
+          border: 1px solid #ccc;
+          border-bottom-width: 2px;
+          transition: all 0.3s ease;
+        }
+        .details {
+          display: block;
+          font-weight: 500;
+          margin-bottom: 5px;
+
+          input {
+            height: 34px;
+            width: 100%;
+            outline: none;
+            font-size: 16px;
+            border-radius: 5px;
+            padding-left: 15px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+          }
+        }
+      }
+    }
+  }
 }

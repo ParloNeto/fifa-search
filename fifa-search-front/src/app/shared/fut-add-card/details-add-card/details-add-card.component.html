@@ -1,35 +1,71 @@
 <div class="card">
-    <div class="card-background">
-        <form [formGroup]="infoCardsForm" (ngSubmit)="submitForm()">
-            <label for="firstName">Nome: 
-                <input type="text" formControlName="firstName">
-            </label>
-          
-            <label for="lastName">Sobrenome: 
-                <input type="text" formControlName="lastName">
-            </label>
+  <div class="card-background">
+    <div class="container">
+    <form [formGroup]="infoCardsForm" (ngSubmit)="submitForm()">
+      <div class="form-details" >
+        <div class="input-box">
+            <label for="cardType"
+            >Tipo de Carta:
+          <select class="details" formControlName="cardType">
+            <option *ngFor="let type of cardTypes" [value]="type">
+              {{ formatCardType(type) }}
+            </option>
+          </select>
+        </label>
+        </div>
 
-            <label for="nickName">Apelido: 
-                <input type="text" formControlName="nickName">
-            </label>
+        <div class="input-box">
+          <label class="details" for="firstName"
+            >Nome:
+            <input type="text" placeholder="Enter your name" formControlName="firstName" />
+          </label>
+        </div>
 
-            <label for="nationality">Nacionalidade: 
-                <input type="text" formControlName="nationality">
-            </label>
+        <div class="input-box">
+          <label class="details" for="lastName"
+            >Sobrenome:
+            <input type="text" placeholder="Enter your name" formControlName="lastName" />
+          </label>
+        </div>
 
-            <label for="club">Clube: 
-                <input type="text" formControlName="club">
-            </label>
+        <div class="input-box">
+          <label class="details" for="nickName"
+            >Apelido:
+            <input type="text" placeholder="Enter your name" formControlName="nickName" />
+          </label>
+        </div>
 
-            <label for="position">Posição: 
-                <input type="text" formControlName="position">
-            </label>
+        <div class="input-box">
+          <label class="details" for="nationality"
+            >Nacionalidade:
+            <input type="text" placeholder="Enter your name" formControlName="nationality" />
+          </label>
+        </div>
 
-            <label for="nickName">Foto (URL): 
-                <input type="text" formControlName="photo">
-            </label>
-           
-            <button [disabled]="infoCardsForm.invalid">Enviar</button>
-        </form>
-    </div>
+        <div class="input-box">
+          <label class="details" for="club"
+            >Clube:
+            <input type="text" placeholder="Enter your name" formControlName="club" />
+          </label>
+        </div>
+
+        <div class="input-box">
+          <label class="details" for="position"
+            >Posição:
+            <input type="text" placeholder="Enter your name" formControlName="position" />
+          </label>
+        </div>
+
+        <div class="input-box">
+          <label class="details" for="nickName"
+            >Foto (URL):
+            <input type="text" placeholder="Enter your name" formControlName="photo" />
+          </label>
+        </div>
+
+        <button [disabled]="infoCardsForm.invalid">Enviar</button>
+      </div>
+    </form>
+  </div>
+</div>
 </div>
