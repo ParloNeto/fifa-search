@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Card } from 'src/app/models/card';
 
 import { FutApiService } from 'src/app/service/fut-api.service';
+import { CardService } from 'src/app/service/card.service';
 
 @Component({
   selector: 'app-details-add-card',
@@ -12,10 +13,13 @@ import { FutApiService } from 'src/app/service/fut-api.service';
   styleUrls: ['./details-add-card.component.scss']
 })
 export class DetailsAddCardComponent implements OnInit {
+
+  cardTypeMapping = this.cardService.cardTypeMapping;
   
 
   public infoCardsForm: FormGroup = this.formBuilder.group({
    
+    cardType: ['', Validators.required],
     firstName: ['' , Validators.required],
     lastName: ['', Validators.required],
     nickName: [''],
@@ -23,13 +27,27 @@ export class DetailsAddCardComponent implements OnInit {
     club: ['', Validators.required],
     position: ['', Validators.required],
     photo: ['', Validators.required],
+    attributeCard: this.formBuilder.group({
+      overall: [null, ],
+            pace: ['', Validators.required],
+            shooting: ['', Validators.required],
+            passing: ['', Validators.required],
+            dribbling: ['', Validators.required],
+            defending: ['', Validators.required],
+            physicality: ['', Validators.required]
+    })
   });
-  name = new FormControl('');
+  // name = new FormControl('');
+  public cardTypes = Object.keys(this.cardService.cardTypeMapping);
   
   constructor(
     private futApiService: FutApiService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private cardService: CardService
   ){}
+
+
+  
 
   ngOnInit(): void {
 
@@ -63,10 +81,14 @@ export class DetailsAddCardComponent implements OnInit {
     // );
   }
 
+  formatCardType(cardType: string): string {
+    const formatted = cardType.replace(/-/g, ' ').toUpperCase();
+    return formatted;
+  }
+
   public submitForm(){
     if(this.infoCardsForm.valid){
-      console.log(this.infoCardsForm.value.firstName);
-      console.log(this.infoCardsForm.value.lastName);
+      console.log(this.infoCardsForm.value);
     }
       
     }

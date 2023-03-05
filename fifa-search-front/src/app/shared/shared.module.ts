@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Components
 import { FutHeaderComponent } from './fut-header/fut-header.component';
@@ -32,7 +32,8 @@ import { DetailsAddCardComponent } from './fut-add-card/details-add-card/details
     imports: [
         CommonModule,
         RouterModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        FormsModule
     ]
 })
 export class SharedModule { }
