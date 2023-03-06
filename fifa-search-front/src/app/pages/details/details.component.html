@@ -43,12 +43,7 @@
         </div>
 
         <img id="photo__card" [src]="card.photo" alt="card.photo" />
-        <!-- <img
-          id="card-gold"
-          *ngIf="cardGoldMapping[card.type.toLowerCase()]"
-          [src]="cardGoldMapping[card.type.toLowerCase()]"
-        /> -->
-        <!-- <img id="card-gold" *ngIf="cardTypeMapping[card?.type.toLowerCase()]" [src]="card?.attributes[0].overall >= 75 ? cardGoldMapping[card?.type.toLowerCase()] : cardSilverMapping[card?.type.toLowerCase()]"> -->
+    
         <img id="card-gold" *ngIf="cardTypeMapping[card?.type.toLowerCase()]" [src]="card?.attributeCard.overall >= 75 ? cardTypeMapping[card?.type.toLowerCase()].gold : (card?.attributeCard.overall >= 65 ? cardTypeMapping[card?.type.toLowerCase()].silver : cardTypeMapping[card?.type.toLowerCase()].bronze)" />
 
 

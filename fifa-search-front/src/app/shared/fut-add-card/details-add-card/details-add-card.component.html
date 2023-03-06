@@ -3,12 +3,13 @@
     <div class="container">
     <form [formGroup]="infoCardsForm" (ngSubmit)="submitForm()">
       <div class="form-details" >
+
         <div class="input-box">
             <label for="cardType"
             >Tipo de Carta:
-          <select class="details" formControlName="cardType">
-            <option *ngFor="let type of cardTypes" [value]="type">
-              {{ formatCardType(type) }}
+          <select class="details" formControlName="type">
+            <option *ngFor="let cards of type" [ngValue]="cards">
+              {{ formatCardType(cards) }}
             </option>
           </select>
         </label>
@@ -63,9 +64,33 @@
           </label>
         </div>
 
+        
+
         <button [disabled]="infoCardsForm.invalid">Enviar</button>
+
+        
       </div>
+
     </form>
+
+    <form [formGroup]="attributeCard" (ngSubmit)="submitForm()">
+      <input type="number"  formControlName="overall" >
+      <input  type="number" formControlName="pace">
+      <input  type="number" formControlName="shooting" >
+      <input  type="number" formControlName="passing" >
+      <input  type="number" formControlName="dribbling">
+      <input  type="number" formControlName="defending" >
+      <input  type="number" formControlName="physicality">
+    </form>
+
+    <app-attributes-details-add-card [infoCardsForm]="infoCardsForm" [attributeCard]="attributeCard"></app-attributes-details-add-card>
   </div>
 </div>
+<!-- <img [src]="cardImage"> -->
+
+
+</div>
+
+<div>
+  
 </div>

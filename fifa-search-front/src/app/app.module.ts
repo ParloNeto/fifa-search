@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 //Modules
 import { PagesModule } from './pages/pages.module';
+import { AttributesDetailsAddCardComponent } from './shared/fut-add-card/details-add-card/attributes-details-add-card/attributes-details-add-card.component';
 
 //Components
 

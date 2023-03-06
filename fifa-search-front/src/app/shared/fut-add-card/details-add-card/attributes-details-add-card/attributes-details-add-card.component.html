@@ -1,0 +1,69 @@
+<!-- <form action="">
+  
+  <label class="details" for="pace"
+  >pace:
+  <input type="text" placeholder="Enter your name" formControlName="infoCardsForm.attributeCard.pace" />
+</label>
+<p>{{ infoCardsForm?.value.attributeCard.pace }}</p>
+<label class="details" for="physicality"
+      >physicality:
+      <input type="text" placeholder="Enter your name" formControlName="infoCardsForm.attributeCard.physicality" />
+    </label>
+
+    <label class="details" for="overall"
+      >overall:
+     
+    </label>
+    <p>{{ infoCardsForm?.value.attributeCard.overall }}</p>
+  
+</form> -->
+
+
+
+<div class="card__header flipInY">
+
+    <p id="card__content__name">
+        {{ infoCardsForm?.value.nickName ? infoCardsForm?.value.nickName : infoCardsForm?.value.firstName + ' ' + infoCardsForm?.value.lastName}}
+    </p>
+
+
+    <div class="playercard-superior">
+      <div class="playercard-position-and-overral">
+        <div class="images-details-icons">
+           <img
+            class="playercard-image-icon"
+            *ngIf="logoMapping[infoCardsForm?.value.club.toLowerCase()]"
+            [src]="logoMapping[infoCardsForm?.value.club.toLowerCase()]"
+          />
+          <img
+            class="playercard-image-icon"
+            id="nation"
+            *ngIf="nationMapping[infoCardsForm?.value.nationality.toLowerCase()]"
+            [src]="nationMapping[infoCardsForm?.value.nationality.toLowerCase()]"
+          /> 
+
+        </div>
+
+        <p>{{ attributeCard?.get('overall')?.value }} </p>
+        <p [ngStyle]="{ 'font-size': '15px' }">{{ infoCardsForm?.value.position }}</p>
+      </div>
+    </div>
+
+    <div class="card__attributes">
+     <div class="card__content">
+      <p>{{ attributeCard?.get('pace')?.value }} PAC</p>
+      <p>{{ attributeCard?.get('shooting')?.value }} DRI</p>
+      <p>{{ attributeCard?.get('passing')?.value }} SHO</p>
+      <p>{{ attributeCard?.get('dribbling')?.value }} DEF</p>
+      <p>{{ attributeCard?.get('defending')?.value }} PAS</p>
+      <p>{{ attributeCard?.get('physicality')?.value }} PHY</p>
+    </div>
+</div>
+
+    <img id="photo__card" [src]="infoCardsForm?.value.photo" alt="card.photo" />
+   
+
+<img [src]="cardImage">
+
+
+  </div>

@@ -9,6 +9,7 @@ import { FutListComponent } from './fut-list/fut-list.component';
 import { RouterModule } from '@angular/router';
 import { FutAddCardComponent } from './fut-add-card/fut-add-card.component';
 import { DetailsAddCardComponent } from './fut-add-card/details-add-card/details-add-card.component';
+import { AttributesDetailsAddCardComponent } from './fut-add-card/details-add-card/attributes-details-add-card/attributes-details-add-card.component';
 
 
 
@@ -19,15 +20,15 @@ import { DetailsAddCardComponent } from './fut-add-card/details-add-card/details
         FutSearchComponent,
         FutListComponent,
         FutAddCardComponent,
-        DetailsAddCardComponent
+        DetailsAddCardComponent,
+        AttributesDetailsAddCardComponent
        
     ],
     exports: [
         FutHeaderComponent,
         FutSearchComponent,
         FutListComponent,
-        FutAddCardComponent,
-        DetailsAddCardComponent
+        FutAddCardComponent
     ],
     imports: [
         CommonModule,

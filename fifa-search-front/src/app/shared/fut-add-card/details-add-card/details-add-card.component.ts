@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AttributeCard } from 'src/app/models/attributeCard';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -15,30 +15,41 @@ import { CardService } from 'src/app/service/card.service';
 export class DetailsAddCardComponent implements OnInit {
 
   cardTypeMapping = this.cardService.cardTypeMapping;
+
+  public overallValue: string = '0';
   
 
   public infoCardsForm: FormGroup = this.formBuilder.group({
    
-    cardType: ['', Validators.required],
-    firstName: ['' , Validators.required],
+    type: ['FIFA 16', Validators.required],
+    firstName: ['Messi' , Validators.required],
     lastName: ['', Validators.required],
     nickName: [''],
     nationality: ['', Validators.required],
     club: ['', Validators.required],
     position: ['', Validators.required],
-    photo: ['', Validators.required],
-    attributeCard: this.formBuilder.group({
-      overall: [null, ],
-            pace: ['', Validators.required],
-            shooting: ['', Validators.required],
-            passing: ['', Validators.required],
-            dribbling: ['', Validators.required],
-            defending: ['', Validators.required],
-            physicality: ['', Validators.required]
-    })
+    photo: ['https://futhead.cursecdn.com/static/img/23/players/158023.png', Validators.required],
   });
+
+  attributeCard: FormGroup = this.formBuilder.group({
+    overall: [94],
+          pace: [81],
+          shooting: [92],
+          passing: [89],
+          dribbling: [94],
+          defending: [37],
+          physicality: [67]
+  })
+
+  
+  paceValue = this.infoCardsForm.get('attributeCard.pace')?.value;
+  shootingValue = this.infoCardsForm.get('attributeCard.shooting')?.value;
+  passingValue = this.infoCardsForm.get('attributeCard.passing')?.value;
+  dribblingValue = this.infoCardsForm.get('attributeCard.dribbling')?.value;
+  defendingValue = this.infoCardsForm.get('attributeCard.defending')?.value;
+  physicalityValue = this.infoCardsForm.get('attributeCard.physicality')?.value;
   // name = new FormControl('');
-  public cardTypes = Object.keys(this.cardService.cardTypeMapping);
+  public type = Object.keys(this.cardService.cardTypeMapping);
   
   constructor(
     private futApiService: FutApiService,
@@ -50,7 +61,9 @@ export class DetailsAddCardComponent implements OnInit {
   
 
   ngOnInit(): void {
+    console.log(this.infoCardsForm.get('attributeCard.overall')?.value)
 
+    
     // const newAttribute: AttributeCard = {
     //   overall: 90,
     //   pace: 85,
@@ -86,11 +99,36 @@ export class DetailsAddCardComponent implements OnInit {
     return formatted;
   }
 
-  public submitForm(){
-    if(this.infoCardsForm.valid){
-      console.log(this.infoCardsForm.value);
+ 
+  
+
+  
+
+
+  public submitForm() {
+    if (this.infoCardsForm.valid) {
+     console.log(this.infoCardsForm.value);
+       const data = Object.assign({}, this.infoCardsForm.value, { attributeCard: this.attributeCard.value });
+       console.log(data);
+      this.futApiService.addCard(data).subscribe(
+        (card) => {
+          console.log('Card added:', card.type);
+        },
+        (error) => {
+          console.error('Error adding card:', error);
+        }
+      );
     }
-      
-    }
+  }
+    
+
+public updateFormGroup(attribute: string, value: string) {
+  const attributeCardForm = this.infoCardsForm.get('attributeCard') as FormGroup;
+  const attributeFormControl = attributeCardForm.get(attribute);
+  attributeFormControl?.patchValue(value);
+}
+
+
+    
 
 }
