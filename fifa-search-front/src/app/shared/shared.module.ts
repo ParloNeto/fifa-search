@@ -11,6 +11,11 @@ import { FutAddCardComponent } from './fut-add-card/fut-add-card.component';
 import { DetailsAddCardComponent } from './fut-add-card/details-add-card/details-add-card.component';
 import { AttributesDetailsAddCardComponent } from './fut-add-card/details-add-card/attributes-details-add-card/attributes-details-add-card.component';
 
+//DiretivasPersonalizadas
+import { ClearFieldDirective } from '../directives/clear-field.directive';
+
+//Material
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 
@@ -21,7 +26,8 @@ import { AttributesDetailsAddCardComponent } from './fut-add-card/details-add-ca
         FutListComponent,
         FutAddCardComponent,
         DetailsAddCardComponent,
-        AttributesDetailsAddCardComponent
+        AttributesDetailsAddCardComponent,
+        ClearFieldDirective
        
     ],
     exports: [
@@ -29,12 +35,14 @@ import { AttributesDetailsAddCardComponent } from './fut-add-card/details-add-ca
         FutSearchComponent,
         FutListComponent,
         FutAddCardComponent
+        
     ],
     imports: [
         CommonModule,
         RouterModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        MatSnackBarModule
     ]
 })
 export class SharedModule { }
