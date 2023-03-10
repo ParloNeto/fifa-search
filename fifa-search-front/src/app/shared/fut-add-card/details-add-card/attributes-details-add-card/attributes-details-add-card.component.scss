@@ -1,145 +1,188 @@
+@import '../../../../../config-scss/rem-calc.scss';
+
 :host{
+  
     .card__header {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom:rem-calc(20);
-        // border: dashed rgb(0, 140, 255);
+       display: flex;
+       flex-direction: column;
+       justify-content: space-between;
+       width: rem-calc(230);
+       height: rem-calc(340);
       }
-      
-      .playercard-superior {
-        width: 185px;
-        height: 265px;
-        margin-top: auto;
-        position: absolute;
-      }
-    
-      .playercard-position-and-overral {
-        position: absolute;
+
+      .playercard {
         display: flex;
-        flex-direction: column;
-        align-items: center;
+        align-items: start;
         text-align: center;
-    
-        font-size: 30px;
+        margin-top: rem-calc(39);
+        margin-right: rem-calc(2);
+        font-size: rem-calc(30);
+        z-index: 2;
+        &__top{
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          width: 100%;
+          height: rem-calc(140);
+          &__icons{
+            width: rem-calc(50);
+            z-index: 2;
+          }
+        }
       }
-    
-      .images-details-icons {
-        position: absolute;
+
+      .iconAndNation{
         display: flex;
         flex-direction: column;
-        margin-top: 45px;
       }
-      #nation {
-        margin-top: -10px;
-      }
-      .playercard-image-icon {
-        background-size: cover;
     
-        width: 50px;
+      #photo__card{
+        width: auto;
         height: auto;
-        margin: 0 auto;
-        border-radius: 25px;
-        padding: auto;
       }
-    
-      .card__title {
-        font-size: 24px;
-      }
-    
-      .card__attributes{
-        display: flexbox;
-        // background-color: red;
-        position: absolute;
-        margin-top: 160px;
-        width: 220px;
-        height: 110px;
-        position: absolute;
-        .card__content {
-            position: absolute;
-            margin-left: 50px;
-            width: 60%;
-            height: 100%;
-            
-            
-           display: flex;
-            justify-content: space-between;
-            align-items: center;
-            
-            flex-wrap: wrap;
-            font-size: 18px;
+
+      #nation { 
+        margin-top: rem-calc(-12); 
       }
       
-      }
-    
       #card__content__name {
         position: absolute;
+        bottom: rem-calc(127);
+        width: 100%;
         color: rgba(0, 0, 0, 0.9);
-        margin-top: rem-calc(35);
-        // margin-left: rem-calc(220);
         text-transform: uppercase;
-        font-size: 21px;
+        font-size: rem-calc(19);
         line-height: rem-calc(33.6);
         font-weight: 500;
         text-shadow: 1px 1px 1px rgb(255 255 255 / 30%);
+        z-index: 2;
       }
-    
+
       #photo__card {
-        position: absolute;
-        height: rem-calc(140);
-        width: rem-calc(140);
-        margin-bottom: rem-calc(138);
-        margin-left: rem-calc(75);
+        z-index: 2;
+      }
+
+      .type__card__image{
+        position:absolute;
+        z-index: 1;
       }
     
       #overral {
-        position: absolute;
-        font-size: 25px;
+        font-size: rem-calc(25);
       }
-    
-    }
+
+      .card__body__position{
+        width: 100%;
+        height: rem-calc(138);
+        z-index: 2;
+      }
+
+      .card__body{
+        width: 100%;
+        display: flex;
+      }
+
+      .cardAttributes {
+        font-weight: 300;
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        padding: 5%;
+        font-size: rem-calc(18);
+      }
+      
+      .attributeLeft {
+       display: flex;
+       flex-direction: column;
+       line-height: 1.5;
+      }
+      
+      .attributeRight {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.5;
+      }
+
+      .bold__numbers{
+        font-weight: 400;
+      }
+  }
     
     //different types of cards gold
     .card-fifa-16{
-      .playercard-superior {
-        width: 145px;
-        height: 265px;
-      }
-    
-      .card__content {
-        position: absolute;
-        width: 162px;
-        height: 85px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        text-align: center;
-        font-size: 20px;
-        flex-wrap: wrap;
-    
-        margin-top: 153px;
-        padding: 0;
-      }
+      
+      .playercard {
+      
+        &__top{
+          margin-left: rem-calc(35);
+        }
+    }
+
+    .cardAttributes {
+      padding: rem-calc(8);
     }
     
+  }
+    
     .card-fifa-18 {
-    
+
+      .playercard {
+        margin-top: rem-calc(29);
+        &__top{
+          &__icons{
+            width: rem-calc(44);
+          }
+        }
+        &__details__icons{
+          margin-right: rem-calc(28);
+          margin-top: rem-calc(18);
+        }
+      }
+      .card__body{
+        margin-left: rem-calc(25);
+      }
+
       #card__content__name {
-        margin-top: rem-calc(28);
-        margin-left: rem-calc(35);
+        bottom: rem-calc(136);
+        left: rem-calc(20);
       }
-    
-       .card__content {
-        margin-left: 40px;
-      }
-      .playercard-superior {
-        width: 205px;
-        height: 265px;
-      }
-    
-      #photo__card {
-        margin-bottom: rem-calc(158);
-    
-      }
+
+      
 }
+
+.card-fifa-19{
+  .playercard {
+        margin-top: rem-calc(47);
+        &__top{
+          &__icons{
+            width: rem-calc(44);
+           
+          }
+        }
+        &__details__icons{
+         
+          margin-left: rem-calc(15);
+          
+        }
+      }
+      .card__body{
+        margin-top: rem-calc(13);
+      }
+
+      #card__content__name {
+        bottom: rem-calc(116);
+        
+      }
+
+      .iconAndNation{
+        display: flex;
+        flex-direction: column-reverse;
+      }
+
+      #nation { 
+        margin-top: rem-calc(9); 
+      }
+
+}
+
+
