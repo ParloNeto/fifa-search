@@ -3,68 +3,116 @@
 :host {
   .card {
     display: flex;
-    justify-content: start;
+    justify-content: center;
     background-color: var(--white);
-    border-radius: 5px;
-    margin: rem-calc(0) rem-calc(50);
-    padding: 0;
+    border-radius: rem-calc(5);
+    margin: rem-calc(30) rem-calc(50);
+    padding: rem-calc(0);
+  
     &-background {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      margin: rem-calc(50) rem-calc(60) ;
-      background: linear-gradient(135deg, #71b7e6, #9b59b6);
+      margin: rem-calc(40) rem-calc(40) ;
+      background: linear-gradient(135deg, #5e70d6, #0a3457);
       padding: rem-calc(10);
     }
 
     .container {
-      max-width: 700px;
+      max-width: rem-calc(700);
       width: 100%;
-      padding: 25px 30px;
-      border-radius: 5px;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+      padding: rem-calc(25) rem-calc(30);
+      border-radius: rem-calc(5);
+      box-shadow: 0 rem-calc(5) rem-calc(10) rgba(0, 0, 0, 0.15);
     }
 
     .form-details {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      margin: 20px 0 12px 0;
+      margin: rem-calc(20) 0 rem-calc(12) 0;
 
       .input-box {
-        margin-bottom: 15px;
-        width: calc(100% / 2 - 20px);
+        margin-bottom: rem-calc(15);
+        width: calc(100% / 2 - rem-calc(20));
         select {
-          height: 34px;
+          height: rem-calc(34);
           width: 106%;
           outline: none;
-          font-size: 16px;
-          border-radius: 5px;
-          padding-left: 15px;
+          font-size: rem-calc(16);
+          border-radius: rem-calc(5);
+          padding-left: rem-calc(15);
           border: 1px solid #ccc;
-          border-bottom-width: 2px;
+          border-bottom-width: rem-calc(2);
           transition: all 0.3s ease;
         }
         .details {
           display: block;
           font-weight: 500;
-          margin-bottom: 5px;
+          margin-bottom: rem-calc(5);
 
           input {
-            height: 34px;
+            height: rem-calc(34);
             width: 100%;
             outline: none;
-            font-size: 16px;
-            border-radius: 5px;
-            padding-left: 15px;
-            border: 1px solid #ccc;
-            border-bottom-width: 2px;
+            font-size: rem-calc(16);
+            border-radius: rem-calc(5);
+            padding-left: rem-calc(15);
+            border: rem-calc(1) solid #ccc;
+            border-bottom-width: rem-calc(2);
             transition: all 0.3s ease;
           }
         }
       }
     }
+    .buttonsSide{
+      display: flex;
+      flex-direction: row;
+      
+    }
+
+    #buttonForm{
+      padding: rem-calc(14) rem-calc(22) rem-calc(14) rem-calc(22);
+      border-radius: rem-calc(4);
+      border: rem-calc(1) solid #ccc;
+      border-bottom-width: rem-calc(2);
+      cursor: pointer;
+      &:hover{
+        transition: 0.50s;
+        background:none;
+        color: #fff;
+      }
+    }
+    #buttonSide{
+      padding: rem-calc(8) ;
+      cursor: pointer;
+      background-color: #c93c8a70;
+      color: #000000;
+      transition: background-color 0.3s ease-out, padding 0.3s ease-out, color 0.3s ease-out;
+      &:hover{
+        padding: rem-calc(16) rem-calc(16) rem-calc(26);
+        background-color: rgb(201, 60, 137);
+        color: #fff;
+      }
+
+    }
+
+    #buttonBackSide{
+      padding: rem-calc(8) ;
+      cursor: pointer;
+      background-color: #5e70d677;
+      color: #000000;
+      
+      transition: background-color 0.3s ease-out, padding 0.3s ease-out, color 0.3s ease-out;
+      &:hover{
+        padding: rem-calc(16) rem-calc(16) rem-calc(26);
+        background-color: #5e70d6;
+        color: #fff;
+      }
+
+    }
+    
 
     img{
       width: 22%;
@@ -72,6 +120,15 @@
       position:relative;
       margin-top: rem-calc(30);
       margin-right: rem-calc(25);
+    }
+
+    .formAttributes{
+      padding: rem-calc(20) rem-calc(30) rem-calc(0);
+      margin-left: rem-calc(30);
+    }
+
+    #card__model__attributes{
+      margin-top: rem-calc(50);
     }
   
   }
