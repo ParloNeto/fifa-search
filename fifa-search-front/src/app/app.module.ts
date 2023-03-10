@@ -6,19 +6,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 //Modules
 import { PagesModule } from './pages/pages.module';
-import { AttributesDetailsAddCardComponent } from './shared/fut-add-card/details-add-card/attributes-details-add-card/attributes-details-add-card.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 //Components
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     PagesModule,
-    HttpClientModule
+    HttpClientModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

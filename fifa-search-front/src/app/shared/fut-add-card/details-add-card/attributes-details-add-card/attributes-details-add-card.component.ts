@@ -13,6 +13,8 @@ export class AttributesDetailsAddCardComponent implements OnInit{
   @Input() attributeCard?: FormGroup;
   
   public cardImage: string = '';
+  public showImgCardDefault: boolean = true;
+  
   
   public cardTypeMapping = this.cardService.cardTypeMapping;
   public logoMapping = this.cardService.logoMapping;
@@ -41,4 +43,17 @@ export class AttributesDetailsAddCardComponent implements OnInit{
       }
     });
   }
+
+  onTypeChange() {
+    this.showImgCardDefault = false;
+  }
+  
+  showDefaultCardType() {
+    if (this.infoCardsForm?.value.type != null) {
+      this.showImgCardDefault = false;
+    } else {
+      this.showImgCardDefault = true;
+    }
+  }
+  
 }

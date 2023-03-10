@@ -1,96 +1,131 @@
 <div class="card">
   <div class="card-background">
     <div class="container">
-    <form [formGroup]="infoCardsForm" (ngSubmit)="submitForm()">
-      <div class="form-details" >
+      <form [formGroup]="infoCardsForm" (ngSubmit)="submitForm()">
+        <div class="form-details" >
 
+            <div class="input-box">
+                <label for="cardType"
+                >Tipo de Carta:
+              <select class="details" formControlName="type">
+                <option *ngFor="let cards of type" [ngValue]="cards">
+                  {{ formatCardType(cards) }}
+                </option>
+              </select>
+            </label>
+            </div>
+
+              <div class="input-box">
+                <label class="details" for="firstName"
+                  >Nome:
+                  <input type="text" placeholder="Enter your name" formControlName="firstName" maxlength="14"/>
+                </label>
+              </div>
+
+                <div class="input-box">
+                  <label class="details" for="lastName"
+                    >Sobrenome:
+                    <input type="text" placeholder="Enter your name" formControlName="lastName" maxlength="14"/>
+                  </label>
+                </div>
+
+                  <div class="input-box">
+                    <label class="details" for="nickName"
+                      >Apelido:
+                      <input type="text" placeholder="Enter your name" formControlName="nickName" />
+                    </label>
+                  </div>
+
+                <div class="input-box">
+                  <label class="details" for="nationality"
+                    >Nacionalidade:
+                    <select class="details" formControlName="nationality">
+                      <option *ngFor="let nation of nationality" [ngValue]="nation">
+                        {{ formatCardType(nation) }}
+                      </option>
+                    </select>
+                  </label>
+                </div>
+
+              <div class="input-box">
+                <label class="details" for="club"
+                  >Clube:
+                  <select class="details" formControlName="club">
+                    <option *ngFor="let OneClub of club" [ngValue]="OneClub">
+                      {{ formatCardType(OneClub) }}
+                    </option>
+                  </select>
+                </label>
+              </div>
+
+            <div class="input-box">
+              <label class="details" for="position"
+                >Posição:
+                <input type="text" placeholder="Enter your name" formControlName="position" maxlength="3"/>
+              </label>
+            </div>
+
+          <div class="input-box">
+            <label class="details" for="photo">
+              Foto (URL):
+              <input type="text" placeholder="Enter your name" formControlName="photo" />
+            </label>
+          </div>
+
+          <button id="buttonForm" [disabled]="infoCardsForm.invalid">Enviar</button>
+        </div>
+      </form>
+   </div>
+</div>
+
+<app-attributes-details-add-card id='card__model__attributes' [infoCardsForm]="infoCardsForm" [attributeCard]="attributeCard"></app-attributes-details-add-card>
+
+<div class="formAttributes">
+  <form [formGroup]="attributeCard" (ngSubmit)="submitForm()">
+    <div class="form-details">
         <div class="input-box">
-            <label for="cardType"
-            >Tipo de Carta:
-          <select class="details" formControlName="type">
-            <option *ngFor="let cards of type" [ngValue]="cards">
-              {{ formatCardType(cards) }}
-            </option>
-          </select>
+          <label class="details" for="overall">
+            Overral:
+            <input type="number" pattern="[0-9]*" onKeyPress="if(this.value.length==2) return false;" formControlName="overall" appClearField>
+          </label>
+
+            <label class="details" for="pace">
+              Pace:
+              <input  type="number" pattern="[0-9]*" onKeyPress="if(this.value.length==2) return false;" formControlName="pace" appClearField>
+            </label>
+            
+              <label class="details" for="shooting">
+                Shooting:
+                <input  type="number" pattern="[0-9]*" onKeyPress="if(this.value.length==2) return false;" formControlName="shooting" appClearField>
+              </label>
+
+                <label class="details" for="passing">
+                  Passing:
+                  <input  type="number" pattern="[0-9]*" onKeyPress="if(this.value.length==2) return false;" formControlName="passing" appClearField>
+                </label>
+
+              <label class="details" for="dribbling">
+                Dribbling:
+                <input  type="number" pattern="[0-9]*" onKeyPress="if(this.value.length==2) return false;" formControlName="dribbling" appClearField>
+              </label>
+
+            <label class="details" for="defending">
+              Defending:
+              <input  type="number" pattern="[0-9]*" onKeyPress="if(this.value.length==2) return false;" formControlName="defending" appClearField>
+            </label>
+
+          <label class="details" for="physicality">
+            Physicality:
+          <input  type="number" pattern="[0-9]*" onKeyPress="if(this.value.length==2) return false;" formControlName="physicality" appClearField>
         </label>
-        </div>
 
-        <div class="input-box">
-          <label class="details" for="firstName"
-            >Nome:
-            <input type="text" placeholder="Enter your name" formControlName="firstName" />
-          </label>
-        </div>
-
-        <div class="input-box">
-          <label class="details" for="lastName"
-            >Sobrenome:
-            <input type="text" placeholder="Enter your name" formControlName="lastName" />
-          </label>
-        </div>
-
-        <div class="input-box">
-          <label class="details" for="nickName"
-            >Apelido:
-            <input type="text" placeholder="Enter your name" formControlName="nickName" />
-          </label>
-        </div>
-
-        <div class="input-box">
-          <label class="details" for="nationality"
-            >Nacionalidade:
-            <input type="text" placeholder="Enter your name" formControlName="nationality" />
-          </label>
-        </div>
-
-        <div class="input-box">
-          <label class="details" for="club"
-            >Clube:
-            <input type="text" placeholder="Enter your name" formControlName="club" />
-          </label>
-        </div>
-
-        <div class="input-box">
-          <label class="details" for="position"
-            >Posição:
-            <input type="text" placeholder="Enter your name" formControlName="position" />
-          </label>
-        </div>
-
-        <div class="input-box">
-          <label class="details" for="nickName"
-            >Foto (URL):
-            <input type="text" placeholder="Enter your name" formControlName="photo" />
-          </label>
-        </div>
-
-        
-
-        <button [disabled]="infoCardsForm.invalid">Enviar</button>
-
-        
       </div>
-
-    </form>
-
-    <form [formGroup]="attributeCard" (ngSubmit)="submitForm()">
-      <input type="number"  formControlName="overall" >
-      <input  type="number" formControlName="pace">
-      <input  type="number" formControlName="shooting" >
-      <input  type="number" formControlName="passing" >
-      <input  type="number" formControlName="dribbling">
-      <input  type="number" formControlName="defending" >
-      <input  type="number" formControlName="physicality">
-    </form>
-
-    <app-attributes-details-add-card [infoCardsForm]="infoCardsForm" [attributeCard]="attributeCard"></app-attributes-details-add-card>
-  </div>
-</div>
-<!-- <img [src]="cardImage"> -->
-
-
+      
+    </div>
+  </form>
 </div>
 
-<div>
-  
+<div class="buttonsSide">
+  <button  id="buttonSide" [disabled]="infoCardsForm.invalid">Enviar</button>
+  <button id="buttonBackSide" [routerLink]="['']">Voltar</button>
 </div>
