@@ -1,9 +1,12 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardService {
+
+  private apiUrl = '/card-types';
 
   public cardTypeMapping: { [key: string]: { gold:string, silver: string, bronze: string } } = {
     'fifa-16': { gold: 'assets/images/cards/card-fifa-16.png', silver: 'assets/images/cards/card-silver-fifa-16.png', bronze: 'assets/images/cards/card-bronze-fifa-16.png' },
@@ -33,5 +36,5 @@ public cardTypeAdjustmentCss: { [key: string]: string } = {
 };
 
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 }
