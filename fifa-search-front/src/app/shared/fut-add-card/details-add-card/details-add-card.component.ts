@@ -1,11 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { AttributeCard } from 'src/app/models/attributeCard';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-
-import { Card } from 'src/app/models/card';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FutApiService } from 'src/app/service/fut-api.service';
 import { CardService } from 'src/app/service/card.service';
+import { TypeCard } from 'src/app/models/typeCard';
 
 @Component({
   selector: 'app-details-add-card',
@@ -14,10 +12,12 @@ import { CardService } from 'src/app/service/card.service';
 })
 export class DetailsAddCardComponent implements OnInit {
 
-  cardTypeMapping = this.cardService.cardTypeMapping;
+  photoUrl: string = '';
 
-  public overallValue: string = '0';
-  
+  public versionInstanciado: string[] = ['fifa-16', 'fifa-17', 'fifa-18', 'fifa-19'];
+  public selectedTypeCard: string[] = [];
+
+  private arrayBack: TypeCard[] = [];
 
   public infoCardsForm: FormGroup = this.formBuilder.group({
    
@@ -40,8 +40,10 @@ export class DetailsAddCardComponent implements OnInit {
     defending: [37, Validators.maxLength(2)],
     physicality: [67, Validators.maxLength(2)]
   });
-  
 
+  public selectTypeForm: FormGroup = this.formBuilder.group({ 
+    typeCard: ['', Validators.required]
+  });
   
   paceValue = this.infoCardsForm.get('attributeCard.pace')?.value;
   shootingValue = this.infoCardsForm.get('attributeCard.shooting')?.value;
@@ -50,7 +52,7 @@ export class DetailsAddCardComponent implements OnInit {
   defendingValue = this.infoCardsForm.get('attributeCard.defending')?.value;
   physicalityValue = this.infoCardsForm.get('attributeCard.physicality')?.value;
   
-  public type = Object.keys(this.cardService.cardTypeMapping);
+  public type = this.versionInstanciado;
   public club = Object.keys(this.cardService.logoMapping);
   public nationality = Object.keys(this.cardService.nationMapping);
   
@@ -61,7 +63,38 @@ export class DetailsAddCardComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    
+    this.cardService.getAllVersionCards().forEach(card => {
+      this.arrayBack = card;
+      console.log(this.arrayBack)
+    });
+
+  }
+
+  filterTypeByVersion(): void {
+    this.selectedTypeCard = [];
+    const version = this.infoCardsForm.get('type')?.value;
+
+    this.cardService.getVersionCards(version).forEach(res => {
+     res.map(card => {
+     this.selectedTypeCard.push(card.cardType);
+      });
+    });
+   }
+
+   getPhotoType(): void {
+    const version = this.infoCardsForm.get('type')?.value;
+    const typeCard = this.selectTypeForm.get('typeCard')?.value;
+
+      if (version && typeCard) {
+        this.cardService.getSpecificType(version, typeCard).subscribe(card => {
+            this.photoUrl = card.photoUrl;
+            // console.log(`o valor é:`, typeCard, version, card.photoUrl);
+        });
+      }
+   }
+
+  onOptionSelected(): void {
+    console.log('Valor selecionado:', this.selectTypeForm.get('typeCard')?.value , this.photoUrl);
   }
 
   formatCardType(cardType: string): string {
@@ -84,15 +117,10 @@ export class DetailsAddCardComponent implements OnInit {
       );
     }
   }
-    
 
-public updateFormGroup(attribute: string, value: string) {
-  const attributeCardForm = this.infoCardsForm.get('attributeCard') as FormGroup;
-  const attributeFormControl = attributeCardForm.get(attribute);
-  attributeFormControl?.patchValue(value);
-}
-
-
-    
-
+  public updateFormGroup(attribute: string, value: string) {
+    const attributeCardForm = this.infoCardsForm.get('attributeCard') as FormGroup;
+    const attributeFormControl = attributeCardForm.get(attribute);
+    attributeFormControl?.patchValue(value);
+  }
 }

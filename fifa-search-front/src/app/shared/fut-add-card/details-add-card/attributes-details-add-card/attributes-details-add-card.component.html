@@ -1,23 +1,24 @@
 <div
   [ngClass]="cardTypeAdjustmentCss[infoCardsForm?.value.type]"
+ 
   class="card__header flipInY"
 >
-  <ng-container *ngIf="cardImage">
+  <ng-container>
     <img 
     class="type__card__image" 
-    [src]="cardImage" 
+    [src]="photoUrl" 
     />
   </ng-container>
 
   <img
     class="type__card__image"
-    *ngIf="!cardImage && showImgCardDefault"
+    *ngIf="!photoUrl"
     src="../../../../../assets/images/cards/card-default.png"
   />
 
   <div class="playercard">
     <div class="playercard__top">
-      <div class="playercard__details__icons">
+      <div [ngClass]="{'overallWhite': colorOverallWhite}" class="playercard__details__icons">
         <p>{{ attributeCard?.get("overall")?.value }}</p>
         <p [ngStyle]="{ 'font-size': '15px' }">
           {{ infoCardsForm?.value.position }}
@@ -45,7 +46,7 @@
       />
     </div>
 
-    <p id="card__content__name">
+    <p [ngStyle]="{'color': changeColorText()}" id="card__content__name">
       {{
         infoCardsForm?.value.nickName
           ? infoCardsForm?.value.nickName
@@ -54,7 +55,7 @@
     </p>
   </div>
 
-  <div class="card__body__position">
+  <div [ngStyle]="{'color': changeColorText()}" class="card__body__position">
     <div class="card__body">
       <div class="cardAttributes">
         <div class="attributeLeft">

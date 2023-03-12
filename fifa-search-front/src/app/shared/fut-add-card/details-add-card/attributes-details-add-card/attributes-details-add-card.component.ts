@@ -1,7 +1,7 @@
-import { Component, Input, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Card } from 'src/app/models/card';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { CardService } from 'src/app/service/card.service';
+import { DetailsAddCardComponent } from '../details-add-card.component';
 
 @Component({
   selector: 'app-attributes-details-add-card',
@@ -11,49 +11,43 @@ import { CardService } from 'src/app/service/card.service';
 export class AttributesDetailsAddCardComponent implements OnInit{
   @Input() infoCardsForm?: FormGroup;
   @Input() attributeCard?: FormGroup;
+  @Input() selectTypeForm?: FormGroup;
+
+  @Input() photoUrl?: string;
+
+  colorFontWhite: string = '';
+  colorOverallWhite: boolean = false;
   
   public cardImage: string = '';
-  public showImgCardDefault: boolean = true;
   
-  
-  public cardTypeMapping = this.cardService.cardTypeMapping;
+  public insertPhoto = this.details.getPhotoType;
+
   public logoMapping = this.cardService.logoMapping;
   public cardTypeAdjustmentCss = this.cardService.cardTypeAdjustmentCss;
   public nationMapping = this.cardService.nationMapping;
   
-  
-
-
   constructor( private cardService: CardService,
-    private formBuilder: FormBuilder,){
+    private formBuilder: FormBuilder,
+    private details: DetailsAddCardComponent){
    
   }
   ngOnInit(): void {
-    
-    
+   
+  }
 
-    this.infoCardsForm?.get('type')?.valueChanges.subscribe(type => {
-      
-      if (type) {
-        const cardMapping = this.cardTypeMapping[type];
-
-        if (cardMapping) {
-          this.cardImage = cardMapping.gold; // ou qualquer tipo que desejar
-        }
+  changeColorText(): string {
+    if (this.infoCardsForm?.get("type")?.value == 'fifa-16') {
+      if (this.selectTypeForm?.get("typeCard")?.value == 'toty' || this.selectTypeForm?.get("typeCard")?.value == 'record-breaker') {
+        this.colorOverallWhite = true;
+        return '#fff';
+        
       }
-    });
+      this.colorOverallWhite = false;
+      if (this.selectTypeForm?.get("typeCard")?.value == 'totw') {
+        return 'rgb(231, 211, 115)';
+      }
+    }
+    return '';
   }
 
-  onTypeChange() {
-    this.showImgCardDefault = false;
-  }
-  
-  showDefaultCardType() {
-    if (this.infoCardsForm?.value.type != null) {
-      this.showImgCardDefault = false;
-    } else {
-      this.showImgCardDefault = true;
-    }
-  }
-  
 }

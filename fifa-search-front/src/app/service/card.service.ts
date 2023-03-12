@@ -1,12 +1,29 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { TypeCard } from '../models/typeCard';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardService {
 
-  private apiUrl = '/card-types';
+  private apiUrl = '/types';
+
+  getAllVersionCards(): Observable<TypeCard[]> {
+    return this.http.get<TypeCard[]>(this.apiUrl);
+  }
+
+  getVersionCards(fifaVersion: string): Observable<TypeCard[]> {
+    const url = `${this.apiUrl}/${fifaVersion}`;
+    return this.http.get<TypeCard[]>(url);
+  }
+
+  getSpecificType(fifaVersion: string, cardType: string): Observable<TypeCard> {
+    const url = `${this.apiUrl}/${fifaVersion}/${cardType}`;
+    return this.http.get<TypeCard>(url);
+  }
+  
 
   public cardTypeMapping: { [key: string]: { gold:string, silver: string, bronze: string } } = {
     'fifa-16': { gold: 'assets/images/cards/card-fifa-16.png', silver: 'assets/images/cards/card-silver-fifa-16.png', bronze: 'assets/images/cards/card-bronze-fifa-16.png' },

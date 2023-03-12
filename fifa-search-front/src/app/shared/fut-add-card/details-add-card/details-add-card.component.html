@@ -1,19 +1,30 @@
 <div class="card">
   <div class="card-background">
     <div class="container">
-      <form [formGroup]="infoCardsForm" (ngSubmit)="submitForm()">
+      <form [formGroup]="infoCardsForm" (ngSubmit)="submitForm()" (change)="filterTypeByVersion()" (change)="getPhotoType()">
         <div class="form-details" >
 
             <div class="input-box">
                 <label for="cardType"
                 >Tipo de Carta:
               <select class="details" formControlName="type">
-                <option *ngFor="let cards of type" [ngValue]="cards">
+                <option *ngFor="let cards of type" [ngValue]="cards" >
                   {{ formatCardType(cards) }}
                 </option>
               </select>
             </label>
             </div>
+
+            <div class="input-box" [formGroup]="selectTypeForm">
+              <label for="types"
+              >Tipo de Carta:
+            <select class="details" formControlName="typeCard">
+              <option *ngFor="let types of selectedTypeCard" [ngValue]="types">
+                {{ formatCardType(types) }}
+              </option>
+            </select>
+          </label>
+          </div>
 
               <div class="input-box">
                 <label class="details" for="firstName"
@@ -78,7 +89,14 @@
    </div>
 </div>
 
-<app-attributes-details-add-card id='card__model__attributes' [infoCardsForm]="infoCardsForm" [attributeCard]="attributeCard"></app-attributes-details-add-card>
+<app-attributes-details-add-card
+ id='card__model__attributes' 
+ [infoCardsForm]="infoCardsForm" 
+ [attributeCard]="attributeCard" 
+ [selectTypeForm]="selectTypeForm"
+ [photoUrl]="photoUrl">
+
+</app-attributes-details-add-card>
 
 <div class="formAttributes">
   <form [formGroup]="attributeCard" (ngSubmit)="submitForm()">
