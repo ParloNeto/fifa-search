@@ -10,7 +10,8 @@ import java.util.Objects;
 public class Card implements Serializable {
     @Id
     private String id;
-    private String type;
+    private String versionFifa;
+    private String typeCard;
     private String firstName;
     private String lastName;
     private String nickName;
@@ -24,10 +25,11 @@ public class Card implements Serializable {
     public Card() {
     }
 
-    public Card(String id, String type, String firstName, String lastName, String nickName, String nationality,
+    public Card(String id, String versionFifa, String typeCard, String firstName, String lastName, String nickName, String nationality,
                 String club, String position, String photo, AttributeCard attributeCard) {
         this.id = id;
-        this.type = type;
+        this.versionFifa = versionFifa;
+        this.typeCard = typeCard;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nickName = nickName;
@@ -46,12 +48,12 @@ public class Card implements Serializable {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getVersionFifa() {
+        return versionFifa;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setVersionFifa(String type) {
+        this.versionFifa = versionFifa;
     }
 
     public String getFirstName() {
@@ -116,6 +118,14 @@ public class Card implements Serializable {
 
     public void setAttributeCard(AttributeCard attributeCard) {
         this.attributeCard = attributeCard;
+    }
+
+    public String getTypeCard() {
+        return typeCard;
+    }
+
+    public void setTypeCard(String typeCard) {
+        this.typeCard = typeCard;
     }
 
     @Override

@@ -41,7 +41,8 @@ public class CardService {
     }
 
     private void updateData(Card newObj, Card obj) {
-        newObj.setType(obj.getType());
+        newObj.setVersionFifa(obj.getVersionFifa());
+        newObj.setTypeCard(obj.getTypeCard());
         newObj.setFirstName(obj.getFirstName());
         newObj.setLastName(obj.getLastName());
         newObj.setNickName(obj.getNickName());
@@ -53,7 +54,7 @@ public class CardService {
     }
 
     public Card fromDTO(CardDTO objDto) {
-        return new Card(objDto.getId(), objDto.getType(), objDto.getFirstName(), objDto.getLastName(), objDto.getNickName(),
+        return new Card(objDto.getId(), objDto.getVersionFifa(), objDto.getTypeCard(), objDto.getFirstName(), objDto.getLastName(), objDto.getNickName(),
                 objDto.getNationality(), objDto.getClub(), objDto.getPosition(), objDto.getPhoto(), objDto.getAttributeCard());
     }
 }

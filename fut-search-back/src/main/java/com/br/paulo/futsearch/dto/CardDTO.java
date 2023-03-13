@@ -8,7 +8,8 @@ import java.io.Serializable;
 public class CardDTO implements Serializable {
 
     private String id;
-    private String type;
+    private String versionFifa;
+    private String typeCard;
     private String firstName;
     private String lastName;
     private String nickName;
@@ -24,7 +25,8 @@ public class CardDTO implements Serializable {
 
     public CardDTO(Card obj) {
         id = obj.getId();
-        type = obj.getType();
+        versionFifa = obj.getVersionFifa();
+        typeCard = obj.getTypeCard();
         firstName = obj.getFirstName();
         lastName = obj.getLastName();
         nickName = obj.getNickName();
@@ -43,12 +45,20 @@ public class CardDTO implements Serializable {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getVersionFifa() {
+        return versionFifa;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setVersionFifa(String versionFifa) {
+        this.versionFifa = versionFifa;
+    }
+
+    public String getTypeCard() {
+        return typeCard;
+    }
+
+    public void setTypeCard(String typeCard) {
+        this.typeCard = typeCard;
     }
 
     public String getFirstName() {
