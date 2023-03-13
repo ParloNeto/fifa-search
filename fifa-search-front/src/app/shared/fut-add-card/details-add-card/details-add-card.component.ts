@@ -21,7 +21,8 @@ export class DetailsAddCardComponent implements OnInit {
 
   public infoCardsForm: FormGroup = this.formBuilder.group({
    
-    type: ['', Validators.required],
+    versionFifa: ['', Validators.required],
+    typeCard: ['', Validators.required],
     firstName: ['Lionel' , [Validators.required, Validators.maxLength(10)] ],
     lastName: ['Messi', [Validators.required, Validators.maxLength(10)] ],
     nickName: ['', Validators.maxLength(15)],
@@ -40,10 +41,6 @@ export class DetailsAddCardComponent implements OnInit {
     defending: [37, Validators.maxLength(2)],
     physicality: [67, Validators.maxLength(2)]
   });
-
-  public selectTypeForm: FormGroup = this.formBuilder.group({ 
-    typeCard: ['', Validators.required]
-  });
   
   paceValue = this.infoCardsForm.get('attributeCard.pace')?.value;
   shootingValue = this.infoCardsForm.get('attributeCard.shooting')?.value;
@@ -52,7 +49,7 @@ export class DetailsAddCardComponent implements OnInit {
   defendingValue = this.infoCardsForm.get('attributeCard.defending')?.value;
   physicalityValue = this.infoCardsForm.get('attributeCard.physicality')?.value;
   
-  public type = this.versionInstanciado;
+  public versionFifa = this.versionInstanciado;
   public club = Object.keys(this.cardService.logoMapping);
   public nationality = Object.keys(this.cardService.nationMapping);
   
@@ -72,18 +69,19 @@ export class DetailsAddCardComponent implements OnInit {
 
   filterTypeByVersion(): void {
     this.selectedTypeCard = [];
-    const version = this.infoCardsForm.get('type')?.value;
+    const version = this.infoCardsForm.get('versionFifa')?.value;
 
     this.cardService.getVersionCards(version).forEach(res => {
      res.map(card => {
      this.selectedTypeCard.push(card.cardType);
+     this.selectedTypeCard.sort();
       });
     });
    }
 
    getPhotoType(): void {
-    const version = this.infoCardsForm.get('type')?.value;
-    const typeCard = this.selectTypeForm.get('typeCard')?.value;
+    const version = this.infoCardsForm.get('versionFifa')?.value;
+    const typeCard = this.infoCardsForm.get('typeCard')?.value;
 
       if (version && typeCard) {
         this.cardService.getSpecificType(version, typeCard).subscribe(card => {
@@ -94,7 +92,7 @@ export class DetailsAddCardComponent implements OnInit {
    }
 
   onOptionSelected(): void {
-    console.log('Valor selecionado:', this.selectTypeForm.get('typeCard')?.value , this.photoUrl);
+    console.log('Valor selecionado:', this.infoCardsForm.get('typeCard')?.value , this.photoUrl);
   }
 
   formatCardType(cardType: string): string {

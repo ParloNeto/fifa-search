@@ -11,7 +11,6 @@ import { DetailsAddCardComponent } from '../details-add-card.component';
 export class AttributesDetailsAddCardComponent implements OnInit{
   @Input() infoCardsForm?: FormGroup;
   @Input() attributeCard?: FormGroup;
-  @Input() selectTypeForm?: FormGroup;
 
   @Input() photoUrl?: string;
 
@@ -29,21 +28,21 @@ export class AttributesDetailsAddCardComponent implements OnInit{
   constructor( private cardService: CardService,
     private formBuilder: FormBuilder,
     private details: DetailsAddCardComponent){
-   
+     
   }
   ngOnInit(): void {
-   
-  }
+    
+    }
 
   changeColorText(): string {
-    if (this.infoCardsForm?.get("type")?.value == 'fifa-16') {
-      if (this.selectTypeForm?.get("typeCard")?.value == 'toty' || this.selectTypeForm?.get("typeCard")?.value == 'record-breaker') {
+    if (this.infoCardsForm?.get("versionFifa")?.value == 'fifa-16') {
+      if (this.infoCardsForm?.get("typeCard")?.value == 'toty' || this.infoCardsForm?.get("typeCard")?.value == 'record-breaker') {
         this.colorOverallWhite = true;
         return '#fff';
         
       }
       this.colorOverallWhite = false;
-      if (this.selectTypeForm?.get("typeCard")?.value == 'totw') {
+      if (this.infoCardsForm?.get("typeCard")?.value == 'totw') {
         return 'rgb(231, 211, 115)';
       }
     }

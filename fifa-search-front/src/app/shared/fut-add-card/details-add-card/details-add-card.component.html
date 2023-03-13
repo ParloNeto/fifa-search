@@ -5,17 +5,17 @@
         <div class="form-details" >
 
             <div class="input-box">
-                <label for="cardType"
+                <label for="versionFifa"
                 >Tipo de Carta:
-              <select class="details" formControlName="type">
-                <option *ngFor="let cards of type" [ngValue]="cards" >
-                  {{ formatCardType(cards) }}
+              <select class="details" formControlName="versionFifa">
+                <option *ngFor="let versions of versionFifa" [ngValue]="versions" >
+                  {{ formatCardType(versions) }}
                 </option>
               </select>
             </label>
             </div>
 
-            <div class="input-box" [formGroup]="selectTypeForm">
+            <div class="input-box">
               <label for="types"
               >Tipo de Carta:
             <select class="details" formControlName="typeCard">
@@ -93,7 +93,6 @@
  id='card__model__attributes' 
  [infoCardsForm]="infoCardsForm" 
  [attributeCard]="attributeCard" 
- [selectTypeForm]="selectTypeForm"
  [photoUrl]="photoUrl">
 
 </app-attributes-details-add-card>

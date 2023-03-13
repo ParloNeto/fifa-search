@@ -2,7 +2,7 @@
 
 <main>
     <ng-template [ngIf]="isLoading">
-  <div [ngClass]="cardTypeAdjustmentCss[card.type]" class="card-details" >
+  <div [ngClass]="cardTypeAdjustmentCss[card.typeCard]" class="card-details" >
     <div class="card ">
       <div class="card__header flipInY">
 
@@ -43,16 +43,8 @@
         </div>
 
         <img id="photo__card" [src]="card.photo" alt="card.photo" />
-    
-        <img id="card-gold" *ngIf="cardTypeMapping[card?.type.toLowerCase()]" [src]="card?.attributeCard.overall >= 75 ? cardTypeMapping[card?.type.toLowerCase()].gold : (card?.attributeCard.overall >= 65 ? cardTypeMapping[card?.type.toLowerCase()].silver : cardTypeMapping[card?.type.toLowerCase()].bronze)" />
 
-
-        <!-- <img
-         id="card-gold"
-         *ngIf="cardTypeMapping[card.type.toLowerCase()]"
-         [src]="card?.attributes[0].overall >= 75 ? cardTypeMapping[card?.type.toLowerCase()].gold : (card?.attributes[0].overall >= 65 ? cardTypeMapping[card?.type.toLowerCase()].silver : cardTypeMapping[card?.type.toLowerCase()].bronze)" /> -->
-
-
+        <img id="card-gold" [src]="photoUrl" alt="card.typeCard">
 
       </div>
       <h2 class="card__title">Detalhes do jogador</h2>
