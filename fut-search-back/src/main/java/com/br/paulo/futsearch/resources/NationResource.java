@@ -27,9 +27,9 @@ public class NationResource {
 
         return ResponseEntity.ok().body(list);
     }
-    @GetMapping("/{id}")
-    public ResponseEntity<Nation> findAll(@PathVariable String id){
-        Nation obj = service.findById(id);
+    @GetMapping("/{nation}")
+    public ResponseEntity<Nation> findAll(@PathVariable("nation") String nation){
+        Nation obj = service.findByNation(nation);
         return ResponseEntity.ok().body(obj);
     }
 

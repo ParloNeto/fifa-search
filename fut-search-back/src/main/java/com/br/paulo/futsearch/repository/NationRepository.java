@@ -11,4 +11,8 @@ import java.util.List;
 
 @Repository
 public interface NationRepository extends MongoRepository<Nation, String> {
+
+
+    @Query("{'nation': ?0}")
+    Nation findByNation(String nation);
 }

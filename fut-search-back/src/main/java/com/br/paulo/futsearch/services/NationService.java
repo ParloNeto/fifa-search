@@ -28,6 +28,10 @@ public class NationService {
         return obj.orElseThrow(() -> new ObjectNotFoundException("Objeto não encontrado"));
     }
 
+    public Nation findByNation(String nation) {
+        return repository.findByNation(nation);
+    }
+
     public Nation insert(Nation obj) {
        return repository.insert(obj);
     }
