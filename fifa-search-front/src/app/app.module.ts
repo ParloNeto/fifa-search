@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 //Modules
 import { PagesModule } from './pages/pages.module';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { CardModule } from './shared/fut-add-card/card.module';
 
 
 

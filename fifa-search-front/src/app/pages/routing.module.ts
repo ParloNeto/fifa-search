@@ -9,7 +9,8 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   {
   path: '',
-  component: HomeComponent
+  component: HomeComponent,
+  
   },
   {
     path: 'details/:id',
@@ -18,8 +19,8 @@ const routes: Routes = [
     },
     {
       path: 'addcard',
-      component:  DetailsAddCardComponent
-    
+      component:  DetailsAddCardComponent,
+      loadChildren: () => import('../shared/fut-add-card/card.module').then(p => p.CardModule)
       }
 ];
 

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Card } from 'src/app/models/card';
 import { CardService } from 'src/app/service/card.service';
 
 import { FutApiService } from 'src/app/service/fut-api.service';
