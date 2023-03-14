@@ -18,14 +18,10 @@ import { DetailsAddCardComponent } from '../shared/fut-add-card/details-add-card
     HomeComponent,
     DetailsComponent
   ],
-  providers: [
-    DetailsAddCardComponent, 
-  ],
   imports: [
     CommonModule,
     RoutingModule,
-    SharedModule,
-    
+    SharedModule
   ]
 })
 export class PagesModule { }
