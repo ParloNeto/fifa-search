@@ -34,6 +34,8 @@
       .iconAndNation{
         display: flex;
         flex-direction: column;
+        width: 100%;
+        height: 100%;
       }
     
       #photo__card{
@@ -42,7 +44,7 @@
       }
 
       #nation { 
-        margin-top: rem-calc(-12); 
+        
       }
       
       #card__content__name {
