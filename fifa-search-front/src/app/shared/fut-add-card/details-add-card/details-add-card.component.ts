@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FutApiService } from 'src/app/service/fut-api.service';
 import { CardService } from 'src/app/service/card.service';
 import { TypeCard } from 'src/app/models/typeCard';
+import { NationService } from 'src/app/service/nation.service';
 
 @Component({
   selector: 'app-details-add-card',
@@ -13,10 +14,14 @@ import { TypeCard } from 'src/app/models/typeCard';
 export class DetailsAddCardComponent implements OnInit {
 
   photoUrl: string = '';
+  nationUrl: string = '';
 
   public versionInstanciado: string[] = ['fifa-16', 'fifa-17', 'fifa-18', 'fifa-19'];
   public selectedTypeCard: string[] = [];
 
+
+  public selectedNationCard: string[] = [];
+ 
   private arrayBack: TypeCard[] = [];
 
   public infoCardsForm: FormGroup = this.formBuilder.group({
@@ -26,7 +31,7 @@ export class DetailsAddCardComponent implements OnInit {
     firstName: ['Lionel' , [Validators.required, Validators.maxLength(10)] ],
     lastName: ['Messi', [Validators.required, Validators.maxLength(10)] ],
     nickName: ['', Validators.maxLength(15)],
-    nationality: ['ARGENTINA', Validators.required],
+    nationality: ['', Validators.required],
     club: ['PSG', Validators.required],
     position: ['RW', [Validators.required, Validators.maxLength(3)]],
     photo: ['https://futhead.cursecdn.com/static/img/23/players/158023.png', Validators.required],
@@ -49,6 +54,7 @@ export class DetailsAddCardComponent implements OnInit {
   defendingValue = this.infoCardsForm.get('attributeCard.defending')?.value;
   physicalityValue = this.infoCardsForm.get('attributeCard.physicality')?.value;
   
+  public nation = this.selectedNationCard;
   public versionFifa = this.versionInstanciado;
   public club = Object.keys(this.cardService.logoMapping);
   public nationality = Object.keys(this.cardService.nationMapping);
@@ -56,7 +62,8 @@ export class DetailsAddCardComponent implements OnInit {
   constructor(
     private futApiService: FutApiService,
     private formBuilder: FormBuilder,
-    private cardService: CardService
+    private cardService: CardService,
+    private nationService: NationService
   ){}
 
   ngOnInit(): void {
@@ -65,6 +72,13 @@ export class DetailsAddCardComponent implements OnInit {
       console.log(this.arrayBack)
     });
 
+    this.infoCardsForm.patchValue({
+      nationality: 'argentina',
+      typeCard: 'futties'
+    });
+
+    this.getAllNations();
+    this.getNation();
   }
 
   filterTypeByVersion(): void {
@@ -90,6 +104,35 @@ export class DetailsAddCardComponent implements OnInit {
         });
       }
    }
+
+     getAllNations(): void {
+    this.nationService.getAllNations().forEach(res => {
+      console.log(res);
+     res.map(card => {
+      console.log(card.nation);
+      this.selectedNationCard.push(card.nation);
+      this.selectedTypeCard.sort();
+      console.log(this.selectedNationCard);
+      });
+    });
+   }
+
+   getNation(): void {
+    
+    console.log(this.selectedNationCard)
+    
+    const nation = this.infoCardsForm.get('nationality')?.value;
+    this.nationService.getSpecificNation(nation).subscribe(card => {
+    if (nation == card.nation) {
+        this.nationUrl = card.nationUrl;
+      console.log(this.nationUrl)
+    } else{
+      console.log('deu ruim')
+    }
+    
+    });
+   }
+
 
   onOptionSelected(): void {
     console.log('Valor selecionado:', this.infoCardsForm.get('typeCard')?.value , this.photoUrl);

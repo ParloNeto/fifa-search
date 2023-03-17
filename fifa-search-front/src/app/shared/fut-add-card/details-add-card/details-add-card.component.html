@@ -50,9 +50,9 @@
                 <div class="input-box">
                   <label class="details" for="nationality"
                     >Nacionalidade:
-                    <select class="details" formControlName="nationality">
-                      <option *ngFor="let nation of nationality" [ngValue]="nation">
-                        {{ formatCardType(nation) }}
+                    <select (change)="getNation()" class="details" formControlName="nationality">
+                      <option *ngFor="let nations of selectedNationCard" [ngValue]="nations">
+                        {{ nations }}
                       </option>
                     </select>
                   </label>
@@ -93,7 +93,8 @@
  id='card__model__attributes' 
  [infoCardsForm]="infoCardsForm" 
  [attributeCard]="attributeCard" 
- [photoUrl]="photoUrl">
+ [photoUrl]="photoUrl"
+ [nationUrl]="nationUrl">
 
 </app-attributes-details-add-card>
 

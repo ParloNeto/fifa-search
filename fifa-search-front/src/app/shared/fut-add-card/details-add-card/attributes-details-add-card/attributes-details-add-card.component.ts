@@ -13,6 +13,7 @@ export class AttributesDetailsAddCardComponent implements OnInit{
   @Input() attributeCard?: FormGroup;
 
   @Input() photoUrl?: string;
+  @Input() nationUrl?: string;
 
   colorFontWhite: string = '';
   colorOverallWhite: boolean = false;
@@ -22,7 +23,6 @@ export class AttributesDetailsAddCardComponent implements OnInit{
   public insertPhoto = this.details.getPhotoType;
 
   public logoMapping = this.cardService.logoMapping;
-  public cardTypeAdjustmentCss = this.cardService.cardTypeAdjustmentCss;
   public nationMapping = this.cardService.nationMapping;
   
   constructor( private cardService: CardService,
@@ -33,6 +33,16 @@ export class AttributesDetailsAddCardComponent implements OnInit{
   ngOnInit(): void {
     
     }
+
+    
+public cardTypeAdjustmentCss: { [key: string]: string } = {
+  'fifa-16': 'card-fifa-16',
+  'fifa-17': 'card-fifa-17',
+  'fifa-18': 'card-fifa-18',
+  'fifa-19': 'card-fifa-19'
+};
+
+
 
   changeColorText(): string {
     if (this.infoCardsForm?.get("versionFifa")?.value == 'fifa-16') {
