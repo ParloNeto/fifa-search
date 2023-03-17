@@ -3,7 +3,7 @@ package com.br.paulo.futsearch.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "type-cards")
+@Document(collection = "nation")
 public class Nation {
 
     @Id
