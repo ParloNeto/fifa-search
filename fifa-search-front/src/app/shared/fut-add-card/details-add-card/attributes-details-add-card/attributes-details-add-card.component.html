@@ -1,10 +1,10 @@
 <div
-  [ngClass]="cardTypeAdjustmentCss[infoCardsForm?.value.typeCard]"
+  [ngClass]="cardTypeAdjustmentCss[infoCardsForm?.value.versionFifa]"
  
   class="card__header flipInY"
 >
   <ng-container>
-    <img 
+    <img width="100%"
     class="type__card__image" 
     [src]="photoUrl" 
     />
@@ -27,8 +27,7 @@
         <div class="iconAndNation">
             <img
               class="playercard__top__icons"
-              *ngIf="logoMapping[infoCardsForm?.value.club.toLowerCase()]"
-              [src]="logoMapping[infoCardsForm?.value.club.toLowerCase()]"
+              [src]="clubUrl"
             />
             <img
               class="playercard__top__icons"

@@ -24,8 +24,10 @@
           justify-content: center;
           width: 100%;
           height: rem-calc(140);
+          margin-left: 30px;
           &__icons{
-            width: rem-calc(50);
+            width: rem-calc(48);
+            margin-top: rem-calc(3);
             z-index: 2;
           }
         }
@@ -36,15 +38,19 @@
         flex-direction: column;
         width: 100%;
         height: 100%;
+       
       }
     
       #photo__card{
         width: auto;
         height: auto;
+        margin-left: 10px;
+        margin-bottom: 3px;
+        z-index: 2;
       }
 
       #nation { 
-        
+        margin-top: rem-calc(6);
       }
       
       #card__content__name {
@@ -57,10 +63,6 @@
         line-height: rem-calc(33.6);
         font-weight: 500;
         text-shadow: 1px 1px 1px rgb(255 255 255 / 30%);
-        z-index: 2;
-      }
-
-      #photo__card {
         z-index: 2;
       }
 
@@ -118,7 +120,7 @@
     .card-fifa-16{
       
       .playercard {
-      
+       
         &__top{
           margin-left: rem-calc(35);
         }
@@ -127,7 +129,10 @@
     .cardAttributes {
       padding: rem-calc(8);
     }
-    
+
+    #photo__card{
+      margin-bottom: -4px;
+    }
   }
     
     .card-fifa-18 {
@@ -136,22 +141,27 @@
         margin-top: rem-calc(29);
         &__top{
           &__icons{
-            width: rem-calc(44);
+            width: rem-calc(37);
           }
         }
         &__details__icons{
-          margin-right: rem-calc(28);
+          margin-right: rem-calc(13);
           margin-top: rem-calc(18);
         }
       }
       .card__body{
-        margin-left: rem-calc(25);
+        margin-left: rem-calc(22);
       }
 
       #card__content__name {
         bottom: rem-calc(136);
         left: rem-calc(20);
       }
+
+      #photo__card{
+        margin-right: rem-calc(60);
+      }
+
 
       
 }

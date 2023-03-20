@@ -61,8 +61,8 @@
               <div class="input-box">
                 <label class="details" for="club"
                   >Clube:
-                  <select class="details" formControlName="club">
-                    <option *ngFor="let OneClub of club" [ngValue]="OneClub">
+                  <select (change)="getClub()" class="details" formControlName="club">
+                    <option *ngFor="let OneClub of selectedClubCard" [ngValue]="OneClub">
                       {{ formatCardType(OneClub) }}
                     </option>
                   </select>
@@ -94,7 +94,8 @@
  [infoCardsForm]="infoCardsForm" 
  [attributeCard]="attributeCard" 
  [photoUrl]="photoUrl"
- [nationUrl]="nationUrl">
+ [nationUrl]="nationUrl"
+ [clubUrl]="clubUrl">
 
 </app-attributes-details-add-card>
 

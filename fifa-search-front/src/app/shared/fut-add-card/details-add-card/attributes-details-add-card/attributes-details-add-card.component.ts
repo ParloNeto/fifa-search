@@ -14,6 +14,7 @@ export class AttributesDetailsAddCardComponent implements OnInit{
 
   @Input() photoUrl?: string;
   @Input() nationUrl?: string;
+  @Input() clubUrl?: string;
 
   colorFontWhite: string = '';
   colorOverallWhite: boolean = false;
@@ -41,8 +42,6 @@ public cardTypeAdjustmentCss: { [key: string]: string } = {
   'fifa-18': 'card-fifa-18',
   'fifa-19': 'card-fifa-19'
 };
-
-
 
   changeColorText(): string {
     if (this.infoCardsForm?.get("versionFifa")?.value == 'fifa-16') {

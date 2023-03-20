@@ -5,6 +5,7 @@ import { FutApiService } from 'src/app/service/fut-api.service';
 import { CardService } from 'src/app/service/card.service';
 import { TypeCard } from 'src/app/models/typeCard';
 import { NationService } from 'src/app/service/nation.service';
+import { ClubService } from 'src/app/service/club.service';
 
 @Component({
   selector: 'app-details-add-card',
@@ -15,12 +16,14 @@ export class DetailsAddCardComponent implements OnInit {
 
   photoUrl: string = '';
   nationUrl: string = '';
+  clubUrl: string = '';
 
   public versionInstanciado: string[] = ['fifa-16', 'fifa-17', 'fifa-18', 'fifa-19'];
   public selectedTypeCard: string[] = [];
 
 
   public selectedNationCard: string[] = [];
+  public selectedClubCard: string[] = [];
  
   private arrayBack: TypeCard[] = [];
 
@@ -32,7 +35,7 @@ export class DetailsAddCardComponent implements OnInit {
     lastName: ['Messi', [Validators.required, Validators.maxLength(10)] ],
     nickName: ['', Validators.maxLength(15)],
     nationality: ['', Validators.required],
-    club: ['PSG', Validators.required],
+    club: ['palmeiras', Validators.required],
     position: ['RW', [Validators.required, Validators.maxLength(3)]],
     photo: ['https://futhead.cursecdn.com/static/img/23/players/158023.png', Validators.required],
   });
@@ -63,13 +66,14 @@ export class DetailsAddCardComponent implements OnInit {
     private futApiService: FutApiService,
     private formBuilder: FormBuilder,
     private cardService: CardService,
-    private nationService: NationService
+    private nationService: NationService,
+    private clubService: ClubService
   ){}
 
   ngOnInit(): void {
     this.cardService.getAllVersionCards().forEach(card => {
       this.arrayBack = card;
-      console.log(this.arrayBack)
+      // console.log(this.arrayBack)
     });
 
     this.infoCardsForm.patchValue({
@@ -79,6 +83,9 @@ export class DetailsAddCardComponent implements OnInit {
 
     this.getAllNations();
     this.getNation();
+
+    this.getAllClubs();
+    this.getClub();
   }
 
   filterTypeByVersion(): void {
@@ -93,7 +100,7 @@ export class DetailsAddCardComponent implements OnInit {
     });
    }
 
-   getPhotoType(): void {
+  getPhotoType(): void {
     const version = this.infoCardsForm.get('versionFifa')?.value;
     const typeCard = this.infoCardsForm.get('typeCard')?.value;
 
@@ -103,24 +110,22 @@ export class DetailsAddCardComponent implements OnInit {
             // console.log(`o valor é:`, typeCard, version, card.photoUrl);
         });
       }
-   }
+  }
 
-     getAllNations(): void {
+  getAllNations(): void {
     this.nationService.getAllNations().forEach(res => {
-      console.log(res);
+      // console.log(res);
      res.map(card => {
-      console.log(card.nation);
+      // console.log(card.nation);
       this.selectedNationCard.push(card.nation);
-      this.selectedTypeCard.sort();
-      console.log(this.selectedNationCard);
+      this.selectedNationCard.sort();
+      // console.log(this.selectedNationCard);
       });
     });
-   }
+  }
 
-   getNation(): void {
-    
+  getNation(): void { 
     console.log(this.selectedNationCard)
-    
     const nation = this.infoCardsForm.get('nationality')?.value;
     this.nationService.getSpecificNation(nation).subscribe(card => {
     if (nation == card.nation) {
@@ -129,9 +134,33 @@ export class DetailsAddCardComponent implements OnInit {
     } else{
       console.log('deu ruim')
     }
-    
     });
-   }
+  }
+
+  getAllClubs(): void {
+    this.clubService.getAllClubs().forEach(res => {
+      console.log(res);
+     res.map(card => {
+      console.log(card.club);
+      this.selectedClubCard.push(card.club);
+      this.selectedClubCard.sort();
+      console.log(this.selectedClubCard);
+      });
+    });
+  }
+
+  getClub(): void { 
+    console.log(this.selectedClubCard)
+    const club = this.infoCardsForm.get('club')?.value;
+    this.clubService.getSpecificClub(club).subscribe(card => {
+    if (club == card.club) {
+        this.clubUrl = card.clubUrl;
+      console.log(this.clubUrl)
+    } else{
+      console.log('deu ruim')
+    }
+    });
+  }
 
 
   onOptionSelected(): void {

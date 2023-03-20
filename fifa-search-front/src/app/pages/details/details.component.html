@@ -16,14 +16,12 @@
             <div class="images-details-icons">
               <img
                 class="playercard-image-icon"
-                *ngIf="logoMapping[card.club.toLowerCase()]"
-                [src]="logoMapping[card.club.toLowerCase()]"
+                [src]="clubUrl"
               />
               <img
                 class="playercard-image-icon"
                 id="nation"
-                *ngIf="nationMapping[card.nationality.toLowerCase()]"
-                [src]="nationMapping[card.nationality.toLowerCase()]"
+                [src]="nationUrl"
               />
 
             </div>
