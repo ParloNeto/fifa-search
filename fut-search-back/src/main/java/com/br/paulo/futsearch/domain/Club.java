@@ -3,23 +3,23 @@ package com.br.paulo.futsearch.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "nation")
-public class Nation {
+@Document(collection = "club")
+public class Club {
 
     @Id
     private String id;
 
-    private String nation;
+    private String club;
 
-    private String nationUrl;
+    private String clubUrl;
 
-    public Nation() {
+    public Club() {
     }
 
-    public Nation(String id, String nation, String nationUrl) {
+    public Club(String id, String club, String clubUrl) {
         this.id = id;
-        this.nation = nation;
-        this.nationUrl = nationUrl;
+        this.club = club;
+        this.clubUrl = clubUrl;
     }
 
     public String getId() {
@@ -30,19 +30,19 @@ public class Nation {
         this.id = id;
     }
 
-    public String getNation() {
-        return nation;
+    public String getClub() {
+        return club;
     }
 
-    public void setNation(String nation) {
-        this.nation = nation;
+    public void setClub(String club) {
+        this.club = club;
     }
 
-    public String getNationUrl() {
-        return nationUrl;
+    public String getClubUrl() {
+        return clubUrl;
     }
 
-    public void setNationUrl(String nationUrl) {
-        this.nationUrl = nationUrl;
+    public void setClubUrl(String clubUrl) {
+        this.clubUrl = clubUrl;
     }
 }
