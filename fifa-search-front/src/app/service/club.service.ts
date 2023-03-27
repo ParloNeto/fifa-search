@@ -12,6 +12,8 @@ export class ClubService {
 
   private apiUrl = '/clubs';
 
+  constructor(private http: HttpClient) { }
+
   getAllClubs(): Observable<Club[]> {
     return this.http.get<Club[]>(this.apiUrl);
   }
@@ -20,6 +22,4 @@ export class ClubService {
     const url = `${this.apiUrl}/${club}`;
     return this.http.get<Club>(url);
   }
-
-  constructor(private http: HttpClient) { }
 }

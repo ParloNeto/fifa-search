@@ -37,6 +37,8 @@ $fifa-search-theme: mat.define-light-theme((
 @import './config-scss/variables.scss';
 @import './config-scss/rem-calc.scss';
 @import './config-scss/animation.scss';
+@import './config-scss/mixin.scss';
+@import './config-scss/mixin-version-fifa.scss';
 
 html{
     font-family: 'Roboto', sans-serif;

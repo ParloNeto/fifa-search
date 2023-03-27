@@ -8,12 +8,16 @@ import { FutListComponent } from './fut-list/fut-list.component';
 import { RouterModule } from '@angular/router';
 import { FutAddCardComponent } from './fut-add-card/fut-add-card.component';
 
+import {MatDialogModule} from '@angular/material/dialog';
+import { ConfirmDialogComponent } from './material/confirm-dialog/confirm-dialog.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 @NgModule({
     declarations: [
         FutHeaderComponent,
         FutSearchComponent,
         FutListComponent,
-        FutAddCardComponent
+        FutAddCardComponent,
+        ConfirmDialogComponent
     ],
     exports: [
         FutHeaderComponent,
@@ -23,7 +27,10 @@ import { FutAddCardComponent } from './fut-add-card/fut-add-card.component';
     ],
     imports: [
         CommonModule,
-        RouterModule
+        MatSnackBarModule,
+        RouterModule,
+        MatDialogModule,
+       
     ]
 })
 export class SharedModule { }

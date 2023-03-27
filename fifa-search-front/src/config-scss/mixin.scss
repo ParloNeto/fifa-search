@@ -1,0 +1,31 @@
+@mixin buttonDefault{
+        border-radius: rem-calc(10);
+        border: thin ridge var(--secundary-color);
+        color: var(--primary-color);
+        cursor: pointer;
+        transition:all 0.3s ease;
+        &:hover{
+            background-color: transparent;
+            color: var(--secundary-color);
+            border: thin ridge;
+            transition:all 0.3s ease;
+        }
+    }
+    @mixin buttonBackDefault{
+       @include buttonDefault();
+       background-color: var(--red);
+       border: thin ridge var(--red);
+       border-radius: rem-calc(10) rem-calc(0) rem-calc(10) rem-calc(10);
+       padding: rem-calc(12) rem-calc(30) rem-calc(12) rem-calc(30);
+       &:hover{
+        background-color: var(--medium-dark-red);
+        color: var(--secundary-color);
+        border: thin ridge var(--dark-red);
+        transition:all 0.3s ease;
+    }
+    }
+
+    @mixin flex-justify-center {
+        display: flex;
+        justify-content: center;
+    }

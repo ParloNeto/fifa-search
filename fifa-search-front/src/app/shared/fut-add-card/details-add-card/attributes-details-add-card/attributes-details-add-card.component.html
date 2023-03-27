@@ -16,11 +16,11 @@
     src="../../../../../assets/images/cards/card-default.png"
   />
 
-  <div class="playercard">
+  <div  class="playercard">
     <div class="playercard__top">
-      <div [ngClass]="{'overallWhite': colorOverallWhite}" class="playercard__details__icons">
-        <p>{{ attributeCard?.get("overall")?.value }}</p>
-        <p [ngStyle]="{ 'font-size': '15px' }">
+      <div class="playercard__details__icons">
+        <p [ngStyle]="{'color': colorOverall}">{{ attributeCard?.get("overall")?.value }}</p>
+        <p [ngStyle]="{ 'font-size': '15px', 'color': colorPosition }">
           {{ infoCardsForm?.value.position }}
         </p>
 
@@ -44,7 +44,7 @@
       />
     </div>
 
-    <p [ngStyle]="{'color': changeColorText()}" id="card__content__name">
+    <p [ngStyle]="{'color': colorFontName}" id="card__content__name">
       {{
         infoCardsForm?.value.nickName
           ? infoCardsForm?.value.nickName

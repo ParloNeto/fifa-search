@@ -14,9 +14,9 @@ $padding: rem-calc(45);
 
             width: calc(49% - 2.813rem);
             height: rem-calc(157);
-            background: var(--white);
+            background: var(--secundary-color);
 
-    margin-bottom: rem-calc(10);
+            margin-bottom: rem-calc(10);
             padding: rem-calc(20);
             border-radius: rem-calc(10);
 
@@ -39,6 +39,7 @@ $padding: rem-calc(45);
 
                     li{
                         background: var(--gray);
+                        color: var(--primary-color);
                         font-size: rem-calc(10);
 
                         display: flex;
@@ -68,7 +69,6 @@ $padding: rem-calc(45);
 
                 &__player-photo{
                     position: absolute;
-                
                 }
 
                 img{

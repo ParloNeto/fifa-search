@@ -6,6 +6,8 @@ import { CardService } from 'src/app/service/card.service';
 import { TypeCard } from 'src/app/models/typeCard';
 import { NationService } from 'src/app/service/nation.service';
 import { ClubService } from 'src/app/service/club.service';
+import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-details-add-card',
@@ -59,15 +61,15 @@ export class DetailsAddCardComponent implements OnInit {
   
   public nation = this.selectedNationCard;
   public versionFifa = this.versionInstanciado;
-  public club = Object.keys(this.cardService.logoMapping);
-  public nationality = Object.keys(this.cardService.nationMapping);
   
   constructor(
     private futApiService: FutApiService,
     private formBuilder: FormBuilder,
     private cardService: CardService,
     private nationService: NationService,
-    private clubService: ClubService
+    private clubService: ClubService,
+    private router: Router,
+    private snackBar: MatSnackBar
   ){}
 
   ngOnInit(): void {
@@ -162,15 +164,26 @@ export class DetailsAddCardComponent implements OnInit {
     });
   }
 
-
-  onOptionSelected(): void {
-    console.log('Valor selecionado:', this.infoCardsForm.get('typeCard')?.value , this.photoUrl);
-  }
-
   formatCardType(cardType: string): string {
     const formatted = cardType.replace(/-/g, ' ').toUpperCase();
     return formatted;
   }
+
+  capitalizeName(cardType: string): string {
+    const formattedName = cardType.replace(/-/g, " ");
+    const words = formattedName.toLowerCase().split(" ");
+    const capitalizedWords = words.map(word => {
+      const hyphenIndex = word.indexOf("-");
+      if (hyphenIndex > 0) {
+        return word.substr(0, hyphenIndex + 1) + word.charAt(hyphenIndex + 1).toUpperCase() + word.slice(hyphenIndex + 2);
+      } else {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      }
+    });
+    return capitalizedWords.join(" ");
+  }
+  
+  
 
   public submitForm() {
     if (this.infoCardsForm.valid) {
@@ -180,6 +193,10 @@ export class DetailsAddCardComponent implements OnInit {
       this.futApiService.addCard(data).subscribe(
         (card) => {
           console.log('Carta adicionada:', card);
+          this.router.navigateByUrl('');
+          this.snackBar.open('Jogador adicionado com sucesso!', 'Fechar', {
+            duration: 3000
+          });
         },
         (error) => {
           console.error('Erro ao adicionar carta:', error);

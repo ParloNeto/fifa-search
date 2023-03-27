@@ -1,4 +1,5 @@
 @import '../../../config-scss/rem-calc.scss';
+@import '../../../config-scss/mixin.scss';
 
 :host{
     .addPlayer{
@@ -6,12 +7,14 @@
         justify-content: end;
         margin-left: rem-calc(30);
         button{
-            position: absolute;
+            position: fixed;
             top: rem-calc(10);
-            padding: rem-calc(20);
-            border-radius: rem-calc(10);
-            background-color: aqua;
-            cursor: pointer;
+            right: rem-calc(10);
+            background: var(--secundary-color);
+           @include buttonDefault;
+           padding: rem-calc(20);
+           
+           
         }
     }
 }

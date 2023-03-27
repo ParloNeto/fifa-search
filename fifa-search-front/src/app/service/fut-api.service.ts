@@ -14,32 +14,22 @@ export class FutApiService {
     private http: HttpClient
   ) { }
 
-
   getAllCards(): Observable<Card[]> {
     return this.http.get<Card[]>(this.apiUrl);
   }
 
   getCard(url: string): Observable<Card[]> {
     return this.http.get<Card[]>(url);
-}
+  }
 
-public addCard(card: Card): Observable<Card> {
-  return this.http.post<Card>(this.apiUrl, card).pipe(
-    tap(() => console.log(`Card added: ${card}`)),
-  );
-}
-// getCardAttributes(card: Card): Attribute[] {
-//   return card.attributes;
-// }
+  addCard(card: Card): Observable<Card> {
+    return this.http.post<Card>(this.apiUrl, card).pipe(
+      tap(() => console.log(`Card added: ${card}`)),
+    );
+  }
 
-  // get apiListAllCards(): Observable<Card>{
-  //   return this.http.get<Card>(this.apiUrl).pipe(
-  //     tap(res => res),
-  //     tap(res => {
-  //       res.attributes.map((resAttributes: Attribute) => {
-
-  //       })
-  //     })
-  //   )
-  // }
+  deleteCardById(id: string): Observable<Card> {
+    const url = `${this.apiUrl}/${id}`;
+    return this.http.delete<Card>(url);
+  }
 }

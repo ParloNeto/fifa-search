@@ -1,56 +1,103 @@
 <app-fut-header></app-fut-header>
 
 <main>
-    <ng-template [ngIf]="isLoading">
-  <div [ngClass]="cardTypeAdjustmentCss[card.typeCard]" class="card-details" >
-    <div class="card ">
-      <div class="card__header flipInY">
+<ng-template [ngIf]="isLoading">
+  <div class="background">
+<div
+  [ngClass]="cardTypeAdjustmentCss[card.versionFifa]"
+ 
+  class="card__header flipInY"
+>
+  <ng-container>
+    <img width="100%"
+    class="type__card__image" 
+    [src]="photoUrl" 
+    />
+  </ng-container>
 
-        <p id="card__content__name">
-          {{ card.nickName ? card.nickName : card.firstName + ' ' + card.lastName}}
+  <img
+    class="type__card__image"
+    *ngIf="!photoUrl"
+    src="../../../../../assets/images/cards/card-default.png"
+  />
+
+  <div class="playercard">
+    <div class="playercard__top">
+      <div class="playercard__details__icons">
+        <p >{{ card.attributeCard.overall }}</p>
+        <p [ngStyle]="{ 'font-size': '15px' }">
+          {{ card.position }}
         </p>
 
-
-        <div class="playercard-superior">
-          <div class="playercard-position-and-overral">
-            <div class="images-details-icons">
-              <img
-                class="playercard-image-icon"
-                [src]="clubUrl"
-              />
-              <img
-                class="playercard-image-icon"
-                id="nation"
-                [src]="nationUrl"
-              />
-
-            </div>
-
-            <p>{{ card.attributeCard.overall }} </p>
-            <p [ngStyle]="{ 'font-size': '15px' }">{{ card.position }}</p>
-          </div>
-        </div>
-
-        <div class="card__content">
-          <p>{{ card.attributeCard.pace }} PAC</p>
-          <p>{{ card.attributeCard.dribbling }} DRI</p>
-          <p>{{ card.attributeCard.shooting }} SHO</p>
-          <p>{{ card.attributeCard.defending }} DEF</p>
-          <p>{{ card.attributeCard.passing }} PAS</p>
-          <p>{{ card.attributeCard.physicality }} PHY</p>
-        </div>
-
-        <img id="photo__card" [src]="card.photo" alt="card.photo" />
-
-        <img id="card-gold" [src]="photoUrl" alt="card.typeCard">
-
+        <div class="iconAndNation">
+            <img
+              class="playercard__top__icons"
+              [src]="clubUrl"
+            />
+            <img
+              class="playercard__top__icons"
+              id="nation"
+              [src]="nationUrl"
+            />
       </div>
-      <h2 class="card__title">Detalhes do jogador</h2>
+      </div>
+      <img
+        id="photo__card"
+        [src]="card.photo"
+        alt="card.photo"
+        width="75%"
+      />
+    </div>
 
-      <a [routerLink]="['']" class="btn btn__secondary">Voltar</a>
+    <p id="card__content__name">
+      {{ card.nickName ? card.nickName : card.firstName + ' ' + card.lastName}}
+    </p>
+  </div>
+
+  <div class="card__body__position">
+    <div class="card__body">
+      <div class="cardAttributes">
+        <div class="attributeLeft">
+          <div><label class="bold__numbers">{{ card.attributeCard.pace }}</label> PAC</div>
+          <div><label class="bold__numbers">{{ card.attributeCard.shooting }}</label> SHO</div>
+          <div><label class="bold__numbers">{{ card.attributeCard.passing }}</label> PAS</div>
+        </div>
+        <div class="attributeRight">
+          <div><label class="bold__numbers">{{ card.attributeCard.dribbling }}</label> DRI</div>
+          <div><label class="bold__numbers">{{ card.attributeCard.defending }}</label> DEF</div>
+          <div><label class="bold__numbers">{{ card.attributeCard.physicality }}</label> PHY</div>
+        </div>
+      </div>
     </div>
   </div>
+</div>
+
+<div class="infoRight">
+
+
+
+</div>
+
+<div class="menuButton">
+  <button id="buttonDeletePlayer" mat-raised-button (click)="DialogDeletePlayer(card.id)">Deletar Jogador</button>
+  <button [routerLink]="['']" class="btn btn__secondary">Voltar</button>
+</div>
+</div>
+
+<div class="menuDetails">
+  <div class="detailsPlayer">
+    <h2 class="card__title">Detalhes do jogador</h2>
+    <p>Nome: {{ capitalizeFirstLetter(card.firstName) }} </p>
+    <p>Sobrenome: {{ capitalizeFirstLetter(card.lastName) }}</p>
+    <p>Nacionalidade: {{ capitalizeFirstLetter(card.nationality)}}</p>
+    <p>Clube: {{ capitalizeFirstLetter(card.club)}}</p>
+  </div>
+</div>
 </ng-template>
 
+
+
+
 <img src="assets/images/error.png" alt="Erro ao carregar Cards" width="100%" *ngIf="apiError">
+
 </main>

@@ -1,20 +1,21 @@
 @import "../../../../config-scss/rem-calc.scss";
+@import "../../../../config-scss/mixin.scss";
+@import "../../../../config-scss/variables.scss";
 
 :host {
   .card {
-    display: flex;
-    justify-content: center;
+    @include flex-justify-center;
     background-color: var(--white);
     border-radius: rem-calc(5);
-    margin: rem-calc(30) rem-calc(50);
-    padding: rem-calc(0);
+    margin: rem-calc(0) rem-calc(20) rem-calc(0) rem-calc(20);
   
     &-background {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      margin: rem-calc(40) rem-calc(40) ;
+      border-radius: $defaultBorderRadius;
+      margin: rem-calc(30) rem-calc(50) ;
       background: linear-gradient(135deg, #5e70d6, #0a3457);
       padding: rem-calc(10);
     }
@@ -23,7 +24,7 @@
       max-width: rem-calc(700);
       width: 100%;
       padding: rem-calc(25) rem-calc(30);
-      border-radius: rem-calc(5);
+      border-radius: $defaultBorderRadius;
       box-shadow: 0 rem-calc(5) rem-calc(10) rgba(0, 0, 0, 0.15);
     }
 
@@ -41,7 +42,7 @@
           width: 106%;
           outline: none;
           font-size: rem-calc(16);
-          border-radius: rem-calc(5);
+          border-radius: $defaultBorderRadius;
           padding-left: rem-calc(15);
           border: 1px solid #ccc;
           border-bottom-width: rem-calc(2);
@@ -50,69 +51,34 @@
         .details {
           display: block;
           font-weight: 500;
-          margin-bottom: rem-calc(5);
-
+          margin-bottom: rem-calc(9);
           input {
             height: rem-calc(34);
             width: 100%;
             outline: none;
-            font-size: rem-calc(16);
-            border-radius: rem-calc(5);
+            font-size: rem-calc(18);
+            font-weight: 300;
+            border-radius: $defaultBorderRadius;
             padding-left: rem-calc(15);
             border: rem-calc(1) solid #ccc;
             border-bottom-width: rem-calc(2);
             transition: all 0.3s ease;
+            &[type=number]::-webkit-inner-spin-button { 
+              -webkit-appearance: none;
+            }
           }
         }
       }
     }
-    .buttonsSide{
-      display: flex;
-      flex-direction: row;
-      
-    }
-
+  
     #buttonForm{
-      padding: rem-calc(14) rem-calc(22) rem-calc(14) rem-calc(22);
-      border-radius: rem-calc(4);
-      border: rem-calc(1) solid #ccc;
-      border-bottom-width: rem-calc(2);
-      cursor: pointer;
-      &:hover{
-        transition: 0.50s;
-        background:none;
-        color: #fff;
-      }
-    }
-    #buttonSide{
-      padding: rem-calc(8) ;
-      cursor: pointer;
-      background-color: #c93c8a70;
-      color: #000000;
-      transition: background-color 0.3s ease-out, padding 0.3s ease-out, color 0.3s ease-out;
-      &:hover{
-        padding: rem-calc(16) rem-calc(16) rem-calc(26);
-        background-color: rgb(201, 60, 137);
-        color: #fff;
-      }
-
+      @include buttonDefault;
+      padding: rem-calc(25) rem-calc(35) rem-calc(25) rem-calc(35);
     }
 
-    #buttonBackSide{
-      padding: rem-calc(8) ;
-      cursor: pointer;
-      background-color: #5e70d677;
-      color: #000000;
-      
-      transition: background-color 0.3s ease-out, padding 0.3s ease-out, color 0.3s ease-out;
-      &:hover{
-        padding: rem-calc(16) rem-calc(16) rem-calc(26);
-        background-color: #5e70d6;
-        color: #fff;
-      }
-
+    #buttonBackHome{
+      @include buttonBackDefault;
     }
-    
 
     img{
       width: 22%;

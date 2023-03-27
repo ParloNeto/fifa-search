@@ -12,10 +12,9 @@ export class FutListComponent implements OnInit{
   private setCards: Card[] = [];
   public cards: Card[] = [];
   public apiError: boolean = false;
-
  
-
-  constructor(private futApiService: FutApiService){
+  constructor(
+    private futApiService: FutApiService){
     
   }
   ngOnInit() {
@@ -34,7 +33,6 @@ export class FutListComponent implements OnInit{
     return !res.firstName.toLowerCase().indexOf(value.toLowerCase()) || 
     !res.lastName.toLowerCase().indexOf(value.toLowerCase());
    });
-
 
    this.cards = filter;
   

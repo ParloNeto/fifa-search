@@ -1,13 +1,13 @@
 <div class="card">
   <div class="card-background">
     <div class="container">
-      <form [formGroup]="infoCardsForm" (ngSubmit)="submitForm()" (change)="filterTypeByVersion()" (change)="getPhotoType()">
+      <form [formGroup]="infoCardsForm" (ngSubmit)="submitForm()"  (change)="getPhotoType()">
         <div class="form-details" >
 
             <div class="input-box">
-                <label for="versionFifa"
-                >Tipo de Carta:
-              <select class="details" formControlName="versionFifa">
+                <label class="details" for="versionFifa"
+                >Versão do FIFA:
+              <select (change)="filterTypeByVersion()" class="details" formControlName="versionFifa">
                 <option *ngFor="let versions of versionFifa" [ngValue]="versions" >
                   {{ formatCardType(versions) }}
                 </option>
@@ -16,11 +16,11 @@
             </div>
 
             <div class="input-box">
-              <label for="types"
+              <label class="details" for="types"
               >Tipo de Carta:
-            <select class="details" formControlName="typeCard">
+            <select formControlName="typeCard">
               <option *ngFor="let types of selectedTypeCard" [ngValue]="types">
-                {{ formatCardType(types) }}
+                {{ capitalizeName(types) }}
               </option>
             </select>
           </label>
@@ -52,7 +52,7 @@
                     >Nacionalidade:
                     <select (change)="getNation()" class="details" formControlName="nationality">
                       <option *ngFor="let nations of selectedNationCard" [ngValue]="nations">
-                        {{ nations }}
+                        {{ capitalizeName(nations) }}
                       </option>
                     </select>
                   </label>
@@ -63,7 +63,7 @@
                   >Clube:
                   <select (change)="getClub()" class="details" formControlName="club">
                     <option *ngFor="let OneClub of selectedClubCard" [ngValue]="OneClub">
-                      {{ formatCardType(OneClub) }}
+                      {{ capitalizeName(OneClub) }}
                     </option>
                   </select>
                 </label>
@@ -103,6 +103,7 @@
   <form [formGroup]="attributeCard" (ngSubmit)="submitForm()">
     <div class="form-details">
         <div class="input-box">
+          
           <label class="details" for="overall">
             Overral:
             <input type="number" pattern="[0-9]*" onKeyPress="if(this.value.length==2) return false;" formControlName="overall" appClearField>
@@ -144,7 +145,6 @@
   </form>
 </div>
 
-<div class="buttonsSide">
-  <button  id="buttonSide" [disabled]="infoCardsForm.invalid">Enviar</button>
-  <button id="buttonBackSide" [routerLink]="['']">Voltar</button>
+<div>
+  <button id="buttonBackHome" [routerLink]="['']">Voltar</button>
 </div>

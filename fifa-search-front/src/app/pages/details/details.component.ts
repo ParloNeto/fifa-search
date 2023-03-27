@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CardService } from 'src/app/service/card.service';
 import { ClubService } from 'src/app/service/club.service';
 
 import { FutApiService } from 'src/app/service/fut-api.service';
 import { NationService } from 'src/app/service/nation.service';
+import { AttributesDetailsAddCardComponent } from 'src/app/shared/fut-add-card/details-add-card/attributes-details-add-card/attributes-details-add-card.component';
+import { ConfirmDialogComponent } from 'src/app/shared/material/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-details',
@@ -20,20 +24,23 @@ export class DetailsComponent implements OnInit {
   public nationUrl: string = '';
   public card: any = {};
 
+ 
   public isLoading: boolean = false;
   public apiError: boolean = false;
 
-  public cardTypeMapping = this.cardService.cardTypeMapping;
-  public logoMapping = this.cardService.logoMapping;
+
   public cardTypeAdjustmentCss = this.cardService.cardTypeAdjustmentCss;
-  public nationMapping = this.cardService.nationMapping;
+
   
   constructor(
     private activatedRoute: ActivatedRoute,
     private futApiService: FutApiService,
     private cardService: CardService,
     private nationService: NationService,
-    private clubService: ClubService
+    private clubService: ClubService,
+    public dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -86,6 +93,40 @@ export class DetailsComponent implements OnInit {
     }
     });
   }
+
+  DialogDeletePlayer(id: string): void {
+  const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+    data: {
+      message: 'Tem certeza que deseja deletar este jogador?'
+    }
+  });
+
+  dialogRef.afterClosed().subscribe((result) => {
+    if (result) {
+      this.deletePlayer(id);
+      this.router.navigateByUrl('');
+      this.snackBar.open('Jogador deletado com sucesso!', 'Fechar', {
+        duration: 3000 // duração da mensagem em milissegundos
+      });
+    }
+  });
+}
+
+deletePlayer(id: string): void {
+  this.futApiService.deleteCardById(id).subscribe(
+    (card) => {
+      console.log(card);
+    },
+    (error) => {
+      console.error('Erro ao deletar carta:', error);
+    }
+  );
+}
+
+capitalizeFirstLetter(word: string): string {
+  return word.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
+}
+
 
 }
 

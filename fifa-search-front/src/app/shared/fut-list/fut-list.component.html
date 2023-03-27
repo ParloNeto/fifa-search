@@ -2,7 +2,7 @@
 
 <section class="list">
 <ng-template ngFor let-cards [ngForOf] ="cards">
-  <a [routerLink]="['details', cards.id]" class="card">
+  <a [routerLink]="['details', cards.id]" class="card fadeIn">
     <section class="card__info">
       <h2>
         {{ cards.firstName }} {{ cards.lastName }}
@@ -17,7 +17,6 @@
 
     <section class="card__image">
       <img class="card__image__player-photo" [src]="cards.photo" alt="{{cards.firstName}} photo">
-       <!-- <img src="assets/images/card-fifa-17.png" alt="Messi" /> -->
     </section>
   </a>
 </ng-template>
