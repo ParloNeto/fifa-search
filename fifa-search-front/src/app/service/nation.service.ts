@@ -8,7 +8,7 @@ import { TypeCard } from '../models/typeCard';
   providedIn: 'root',
 })
 export class NationService {
-  private apiUrl = '/nations';
+  private readonly apiUrl = '/nations';
 
   constructor(private http: HttpClient) {}
 

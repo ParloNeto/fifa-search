@@ -24,6 +24,11 @@ export class DetailsComponent implements OnInit {
   public nationUrl: string = '';
   public card: any = {};
 
+  public colorOverall: string = '';
+  public colorFontName: string = '';
+  public colorPosition: string = '';
+  public colorAttributes: string = '';
+
  
   public isLoading: boolean = false;
   public apiError: boolean = false;
@@ -58,21 +63,24 @@ export class DetailsComponent implements OnInit {
     });
   }
   
-  getPhotoType(): void {
-    
+  public getPhotoType(): void {
     const version = this.card.versionFifa;
       const typeCard = this.card.typeCard;
         if (version && typeCard) {
           this.cardService.getSpecificType(version, typeCard).subscribe(card => {
               this.photoUrl = card.photoUrl;
+              this.colorFontName = card.colorText.colorFontName;
+              this.colorOverall = card.colorText.colorOverall;
+              this.colorPosition = card.colorText.colorPosition;
+              this.colorAttributes = card.colorText.colorAttributes;
               console.log(`o valor é:`, typeCard, version, card.photoUrl);
           });
         }
    }
 
-   getNation(): void { 
+   public getNation(): void { 
     const nation = this.card.nationality;
-    this.nationService.getSpecificNation(nation).subscribe(card => {
+      this.nationService.getSpecificNation(nation).subscribe(card => {
     if (nation) {
         this.nationUrl = card.nationUrl;
       console.log(this.nationUrl)
@@ -82,7 +90,7 @@ export class DetailsComponent implements OnInit {
     });
   }
 
-  getClub(): void { 
+  public getClub(): void { 
     const club = this.card.club;
     this.clubService.getSpecificClub(club).subscribe(card => {
     if (club) {
@@ -94,40 +102,38 @@ export class DetailsComponent implements OnInit {
     });
   }
 
-  DialogDeletePlayer(id: string): void {
-  const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-    data: {
-      message: 'Tem certeza que deseja deletar este jogador?'
-    }
-  });
+    public dialogDeletePlayer(id: string): void {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: {
+        message: 'Tem certeza que deseja deletar este jogador?'
+      }
+    });
 
-  dialogRef.afterClosed().subscribe((result) => {
-    if (result) {
-      this.deletePlayer(id);
-      this.router.navigateByUrl('');
-      this.snackBar.open('Jogador deletado com sucesso!', 'Fechar', {
-        duration: 3000 // duração da mensagem em milissegundos
-      });
-    }
-  });
-}
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.deletePlayer(id);
+        this.router.navigateByUrl('');
+        this.snackBar.open('Jogador deletado com sucesso!', 'Fechar', {
+          duration: 3000 // duração da mensagem em milissegundos
+        });
+      }
+    });
+  }
 
-deletePlayer(id: string): void {
-  this.futApiService.deleteCardById(id).subscribe(
-    (card) => {
-      console.log(card);
-    },
-    (error) => {
-      console.error('Erro ao deletar carta:', error);
-    }
-  );
-}
+  public deletePlayer(id: string): void {
+    this.futApiService.deleteCardById(id).subscribe(
+      (card) => {
+        console.log(card);
+      },
+      (error) => {
+        console.error('Erro ao deletar carta:', error);
+      }
+    );
+  }
 
-capitalizeFirstLetter(word: string): string {
-  return word.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
-}
-
-
+  public capitalizeFirstLetter(word: string): string {
+    return word.toLowerCase().replace(/^\w/, (c) => c.toUpperCase());
+  }
 }
 
 

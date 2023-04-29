@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FutApiService } from 'src/app/service/fut-api.service';
 import { CardService } from 'src/app/service/card.service';
-import { TypeCard } from 'src/app/models/typeCard';
 import { NationService } from 'src/app/service/nation.service';
 import { ClubService } from 'src/app/service/club.service';
 import { Router } from '@angular/router';
@@ -16,18 +15,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class DetailsAddCardComponent implements OnInit {
 
-  photoUrl: string = '';
-  nationUrl: string = '';
-  clubUrl: string = '';
+  public photoUrl: string = '';
+  public nationUrl: string = '';
+  public clubUrl: string = '';
 
-  public versionInstanciado: string[] = ['fifa-16', 'fifa-17', 'fifa-18', 'fifa-19'];
+  public colorOverall: string = '';
+  public colorFontName: string = '';
+  public colorPosition: string = '';
+  public colorAttributes: string = '';
+
+  public versionInstanciado: ReadonlyArray<string> = ['fifa-16', 'fifa-17', 'fifa-18', 'fifa-19', 'fifa-20'];
   public selectedTypeCard: string[] = [];
-
-
   public selectedNationCard: string[] = [];
   public selectedClubCard: string[] = [];
- 
-  private arrayBack: TypeCard[] = [];
 
   public infoCardsForm: FormGroup = this.formBuilder.group({
    
@@ -43,24 +43,14 @@ export class DetailsAddCardComponent implements OnInit {
   });
 
   attributeCard: FormGroup = this.formBuilder.group({
-    overall: [94, Validators.maxLength(2)],
-    pace: [81, Validators.maxLength(2)],
-    shooting: [92, Validators.maxLength(2)],
-    passing: [89, Validators.maxLength(2)],
-    dribbling: [94, Validators.maxLength(2)],
-    defending: [37, Validators.maxLength(2)],
-    physicality: [67, Validators.maxLength(2)]
+    overall: [94, [Validators.maxLength(2), Validators.required]],
+    pace: [81, [Validators.maxLength(2), Validators.required]],
+    shooting: [92, [Validators.maxLength(2), Validators.required]],
+    passing: [89, [Validators.maxLength(2), Validators.required]],
+    dribbling: [94, [Validators.maxLength(2), Validators.required]],
+    defending: [37, [Validators.maxLength(2), Validators.required]],
+    physicality: [67, [Validators.maxLength(2), Validators.required]]
   });
-  
-  paceValue = this.infoCardsForm.get('attributeCard.pace')?.value;
-  shootingValue = this.infoCardsForm.get('attributeCard.shooting')?.value;
-  passingValue = this.infoCardsForm.get('attributeCard.passing')?.value;
-  dribblingValue = this.infoCardsForm.get('attributeCard.dribbling')?.value;
-  defendingValue = this.infoCardsForm.get('attributeCard.defending')?.value;
-  physicalityValue = this.infoCardsForm.get('attributeCard.physicality')?.value;
-  
-  public nation = this.selectedNationCard;
-  public versionFifa = this.versionInstanciado;
   
   constructor(
     private futApiService: FutApiService,
@@ -73,10 +63,6 @@ export class DetailsAddCardComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
-    this.cardService.getAllVersionCards().forEach(card => {
-      this.arrayBack = card;
-      // console.log(this.arrayBack)
-    });
 
     this.infoCardsForm.patchValue({
       nationality: 'argentina',
@@ -90,100 +76,15 @@ export class DetailsAddCardComponent implements OnInit {
     this.getClub();
   }
 
-  filterTypeByVersion(): void {
-    this.selectedTypeCard = [];
-    const version = this.infoCardsForm.get('versionFifa')?.value;
-
-    this.cardService.getVersionCards(version).forEach(res => {
-     res.map(card => {
-     this.selectedTypeCard.push(card.cardType);
-     this.selectedTypeCard.sort();
-      });
-    });
-   }
-
-  getPhotoType(): void {
-    const version = this.infoCardsForm.get('versionFifa')?.value;
-    const typeCard = this.infoCardsForm.get('typeCard')?.value;
-
-      if (version && typeCard) {
-        this.cardService.getSpecificType(version, typeCard).subscribe(card => {
-            this.photoUrl = card.photoUrl;
-            // console.log(`o valor é:`, typeCard, version, card.photoUrl);
-        });
-      }
-  }
-
-  getAllNations(): void {
-    this.nationService.getAllNations().forEach(res => {
-      // console.log(res);
-     res.map(card => {
-      // console.log(card.nation);
-      this.selectedNationCard.push(card.nation);
-      this.selectedNationCard.sort();
-      // console.log(this.selectedNationCard);
-      });
-    });
-  }
-
-  getNation(): void { 
-    console.log(this.selectedNationCard)
-    const nation = this.infoCardsForm.get('nationality')?.value;
-    this.nationService.getSpecificNation(nation).subscribe(card => {
-    if (nation == card.nation) {
-        this.nationUrl = card.nationUrl;
-      console.log(this.nationUrl)
-    } else{
-      console.log('deu ruim')
-    }
-    });
-  }
-
-  getAllClubs(): void {
-    this.clubService.getAllClubs().forEach(res => {
-      console.log(res);
-     res.map(card => {
-      console.log(card.club);
-      this.selectedClubCard.push(card.club);
-      this.selectedClubCard.sort();
-      console.log(this.selectedClubCard);
-      });
-    });
-  }
-
-  getClub(): void { 
-    console.log(this.selectedClubCard)
-    const club = this.infoCardsForm.get('club')?.value;
-    this.clubService.getSpecificClub(club).subscribe(card => {
-    if (club == card.club) {
-        this.clubUrl = card.clubUrl;
-      console.log(this.clubUrl)
-    } else{
-      console.log('deu ruim')
-    }
-    });
-  }
-
-  formatCardType(cardType: string): string {
-    const formatted = cardType.replace(/-/g, ' ').toUpperCase();
+  public formatUpperCase(option: string): string {
+    const formatted = option.replace(/-/g, ' ').toUpperCase();
     return formatted;
   }
 
-  capitalizeName(cardType: string): string {
-    const formattedName = cardType.replace(/-/g, " ");
-    const words = formattedName.toLowerCase().split(" ");
-    const capitalizedWords = words.map(word => {
-      const hyphenIndex = word.indexOf("-");
-      if (hyphenIndex > 0) {
-        return word.substr(0, hyphenIndex + 1) + word.charAt(hyphenIndex + 1).toUpperCase() + word.slice(hyphenIndex + 2);
-      } else {
-        return word.charAt(0).toUpperCase() + word.slice(1);
-      }
-    });
-    return capitalizedWords.join(" ");
+  public formatWithoutHyphen(option: string): string {
+    const formatted = option.replace(/-/g, ' ');
+    return formatted;
   }
-  
-  
 
   public submitForm() {
     if (this.infoCardsForm.valid) {
@@ -205,9 +106,79 @@ export class DetailsAddCardComponent implements OnInit {
     }
   }
 
-  public updateFormGroup(attribute: string, value: string) {
-    const attributeCardForm = this.infoCardsForm.get('attributeCard') as FormGroup;
-    const attributeFormControl = attributeCardForm.get(attribute);
-    attributeFormControl?.patchValue(value);
+  public filterTypeByVersion(): void {
+    this.selectedTypeCard = [];
+    const version = this.infoCardsForm.get('versionFifa')!.value;
+
+    this.cardService.getVersionCards(version).forEach(res => {
+     res.map(card => {
+     this.selectedTypeCard.push(card.cardType);
+     this.selectedTypeCard.sort();
+      });
+    });
+   }
+
+   public getTypesColor(): void {
+    const version = this.infoCardsForm.get('versionFifa')!.value;
+    const typeCard = this.infoCardsForm.get('typeCard')!.value;
+
+      if (version && typeCard) {
+        this.cardService.getSpecificType(version, typeCard).subscribe(card => {
+          this.colorOverall = card.colorText.colorOverall;
+          this.colorFontName = card.colorText.colorFontName;
+          this.colorAttributes = card.colorText.colorAttributes;
+          this.colorPosition = card.colorText.colorPosition;
+        });
+      }
   }
+
+  public getPhotoType(): void {
+    const version = this.infoCardsForm.get('versionFifa')!.value;
+    const typeCard = this.infoCardsForm.get('typeCard')!.value;
+
+      if (version && typeCard) {
+        this.cardService.getSpecificType(version, typeCard).subscribe(card => {
+            this.photoUrl = card.photoUrl;
+            this.getTypesColor();
+        });
+      }
+  }
+
+  public getAllNations(): void {
+    this.nationService.getAllNations().forEach(res => {
+     res.map(card => {
+      this.selectedNationCard.push(card.nation);
+      this.selectedNationCard.sort();
+      });
+    });
+  }
+
+  public getNation(): void { 
+    const nation = this.infoCardsForm.get('nationality')!.value;
+    this.nationService.getSpecificNation(nation).subscribe(card => {
+      if (nation == card.nation) {
+          this.nationUrl = card.nationUrl;
+      }
+    });
+  }
+
+  public getAllClubs(): void {
+    this.clubService.getAllClubs().forEach(res => {
+     res.map(card => {
+      this.selectedClubCard.push(card.club);
+      this.selectedClubCard.sort();
+      });
+    });
+  }
+
+  public getClub(): void { 
+    const club = this.infoCardsForm.get('club')!.value;
+    this.clubService.getSpecificClub(club).subscribe(card => {
+      if (club == card.club) {
+          this.clubUrl = card.clubUrl;
+      }
+    });
+  }
+
+
 }

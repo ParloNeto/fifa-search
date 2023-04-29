@@ -8,11 +8,11 @@ import { Card } from '../models/card';
 })
 export class FutApiService {
 
-  private apiUrl = '/cards';
+  private readonly apiUrl = '/cards';
 
   constructor(
     private http: HttpClient
-  ) { }
+  ) {}
 
   getAllCards(): Observable<Card[]> {
     return this.http.get<Card[]>(this.apiUrl);
@@ -23,9 +23,7 @@ export class FutApiService {
   }
 
   addCard(card: Card): Observable<Card> {
-    return this.http.post<Card>(this.apiUrl, card).pipe(
-      tap(() => console.log(`Card added: ${card}`)),
-    );
+    return this.http.post<Card>(this.apiUrl, card);
   }
 
   deleteCardById(id: string): Observable<Card> {

@@ -11,9 +11,6 @@ import java.util.List;
 @Repository
 public interface TypeCardRepository extends MongoRepository<TypeCard, String> {
 
-
-
-
     List<TypeCard> findByFifaVersion(String fifaVersion);
 
     @Query("{'fifaVersion': ?0, 'cardType': ?1}")

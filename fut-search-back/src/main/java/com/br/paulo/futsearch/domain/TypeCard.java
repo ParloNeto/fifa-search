@@ -3,8 +3,10 @@ package com.br.paulo.futsearch.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.io.Serializable;
+
 @Document(collection = "type-cards")
-public class TypeCard {
+public class TypeCard implements Serializable {
 
     @Id
     private String id;
@@ -15,17 +17,25 @@ public class TypeCard {
 
     private String photoUrl;
 
+    private ColorText colorText;
+
     public TypeCard() {
     }
 
-    public TypeCard(String id, String fifaVersion, String cardType, String photoUrl) {
+    public TypeCard(String id, String fifaVersion, String cardType, String photoUrl, ColorText colorText) {
+        this.id = id;
         this.fifaVersion = fifaVersion;
         this.cardType = cardType;
         this.photoUrl = photoUrl;
+        this.colorText = colorText;
     }
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getFifaVersion() {
@@ -50,5 +60,13 @@ public class TypeCard {
 
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
+    }
+
+    public ColorText getColorText() {
+        return colorText;
+    }
+
+    public void setColorText(ColorText colorText) {
+        this.colorText = colorText;
     }
 }

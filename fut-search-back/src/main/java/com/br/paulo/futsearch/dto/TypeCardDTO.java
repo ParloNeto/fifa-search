@@ -1,5 +1,6 @@
 package com.br.paulo.futsearch.dto;
 
+import com.br.paulo.futsearch.domain.ColorText;
 import com.br.paulo.futsearch.domain.TypeCard;
 
 import java.io.Serializable;
@@ -14,6 +15,8 @@ public class TypeCardDTO implements Serializable {
 
     private String photoUrl;
 
+    private ColorText colorText;
+
     public TypeCardDTO() {
     }
 
@@ -22,6 +25,7 @@ public class TypeCardDTO implements Serializable {
         fifaVersion = obj.getFifaVersion();
         cardType = obj.getCardType();
         photoUrl = obj.getPhotoUrl();
+        colorText = obj.getColorText();
     }
 
     public String getId() {
@@ -54,5 +58,13 @@ public class TypeCardDTO implements Serializable {
 
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
+    }
+
+    public ColorText getColorText() {
+        return colorText;
+    }
+
+    public void setColorText(ColorText colorText) {
+        this.colorText = colorText;
     }
 }

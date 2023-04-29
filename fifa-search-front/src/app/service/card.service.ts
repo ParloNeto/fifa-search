@@ -8,7 +8,7 @@ import { TypeCard } from '../models/typeCard';
 })
 export class CardService {
 
-  private apiUrl = '/types';
+  private readonly apiUrl = '/types';
 
   constructor(private http: HttpClient) { }
 

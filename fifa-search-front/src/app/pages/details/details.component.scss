@@ -172,6 +172,14 @@
     
     }
 
+    #nameInBackground{
+      position: absolute;
+      bottom: rem-calc(120);
+      left: rem-calc(-50);
+      font-size: rem-calc(75);
+      white-space: nowrap;
+      color: rgba(0, 0, 0, 0.082);
+    }
     
 }
   

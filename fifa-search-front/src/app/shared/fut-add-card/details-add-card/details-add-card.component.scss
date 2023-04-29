@@ -52,6 +52,10 @@
           display: block;
           font-weight: 500;
           margin-bottom: rem-calc(9);
+         
+          .selectStyle{
+            text-transform: capitalize;
+          }
           input {
             height: rem-calc(34);
             width: 100%;

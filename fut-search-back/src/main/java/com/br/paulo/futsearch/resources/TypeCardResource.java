@@ -9,13 +9,7 @@ import com.br.paulo.futsearch.services.TypeCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -49,13 +43,23 @@ public class TypeCardResource {
         }
         return ResponseEntity.ok(card);
     }
+
         @PostMapping
         public ResponseEntity<TypeCard> saveCard(@RequestBody TypeCard card) {
             TypeCard savedCard = repository.save(card);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedCard);
         }
 
-        @DeleteMapping("/{id}")
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TypeCard> updateCard(@PathVariable String id, @RequestBody TypeCard card) {
+        card.setId(id); // garante que o id recebido na URL seja atribuído ao objeto card
+        TypeCard updatedCard = service.update(card);
+        return ResponseEntity.ok(updatedCard);
+    }
+
+
+    @DeleteMapping("/{id}")
         public ResponseEntity<Void> deleteCard(@PathVariable String id) {
             service.delete(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);

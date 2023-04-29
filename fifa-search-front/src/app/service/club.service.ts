@@ -10,7 +10,7 @@ import { TypeCard } from '../models/typeCard';
 })
 export class ClubService {
 
-  private apiUrl = '/clubs';
+  private readonly apiUrl = '/clubs';
 
   constructor(private http: HttpClient) { }
 
