@@ -4,17 +4,16 @@
   
   .background{
     background-color: rgba(251, 253, 247, 0.897);
-    border-radius: 3%;
-    display: flex;
+
+  
    
-    width: 150%;
-    flex-direction: row;
-    align-items:center;
-    justify-content: start;
+
+   
+    
   }
   
   .card__header {
-    margin-left: rem-calc(185);
+    margin-left: rem-calc(3);
      display: flex;
      flex-direction: column;
      justify-content: space-between;
@@ -129,20 +128,16 @@
 
     .menuButton{
       position: absolute;
-      right: rem-calc(80);
+      right: rem-calc(400);
       bottom: rem-calc(130);
-      margin-top: rem-calc(8);
       margin-right: rem-calc(14);
 
       #buttonDeletePlayer{
         margin-right: rem-calc(14);
       }
       button{
-        padding: rem-calc(14);
-        border-radius: rem-calc(10);
-        background-color: aqua;
         cursor: pointer;
-    }
+      }
     }
 
     
@@ -151,7 +146,7 @@
     border-radius: 5%;
     position: absolute;
     bottom: rem-calc(250);
-    right: rem-calc(280);
+    right: rem-calc(430);
     .detailsPlayer{
     
       .card__title{

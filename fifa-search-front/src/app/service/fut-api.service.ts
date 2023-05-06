@@ -10,9 +10,7 @@ export class FutApiService {
 
   private readonly apiUrl = '/cards';
 
-  constructor(
-    private http: HttpClient
-  ) {}
+  constructor(private http: HttpClient) {}
 
   getAllCards(): Observable<Card[]> {
     return this.http.get<Card[]>(this.apiUrl);

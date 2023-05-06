@@ -12,7 +12,7 @@ export class ClubService {
 
   private readonly apiUrl = '/clubs';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAllClubs(): Observable<Club[]> {
     return this.http.get<Club[]>(this.apiUrl);

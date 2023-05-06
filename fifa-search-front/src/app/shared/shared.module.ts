@@ -5,12 +5,15 @@ import { CommonModule } from '@angular/common';
 import { FutHeaderComponent } from './fut-header/fut-header.component';
 import { FutSearchComponent } from './fut-search/fut-search.component';
 import { FutListComponent } from './fut-list/fut-list.component';
-import { RouterModule } from '@angular/router';
 import { FutAddCardComponent } from './fut-add-card/fut-add-card.component';
 
-import {MatDialogModule} from '@angular/material/dialog';
+//Routes
+import { RouterModule } from '@angular/router';
+
+//Material
+
 import { ConfirmDialogComponent } from './material/confirm-dialog/confirm-dialog.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { MaterialModule } from './material/material.module';
 @NgModule({
     declarations: [
         FutHeaderComponent,
@@ -27,10 +30,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     ],
     imports: [
         CommonModule,
-        MatSnackBarModule,
+        MaterialModule,
         RouterModule,
-        MatDialogModule,
-       
     ]
 })
 export class SharedModule { }

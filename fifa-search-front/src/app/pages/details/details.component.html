@@ -11,7 +11,7 @@
   <ng-container>
     <img width="100%"
     class="type__card__image" 
-    [src]="photoUrl" 
+    [src]="photoUrl"
     />
   </ng-container>
 
@@ -72,23 +72,30 @@
   </div>
 </div>
 
-<div class="menuButton">
-  <button id="buttonDeletePlayer" mat-raised-button (click)="dialogDeletePlayer(card.id)">Deletar Jogador</button>
-  <button [routerLink]="['']" class="btn btn__secondary">Voltar</button>
-</div>
-</div>
-
-<div class="menuDetails">
-  <div class="detailsPlayer">
-    <h1 *ngIf="card.nickName == '' " id="nameInBackground"> {{ capitalizeFirstLetter(card.firstName) }} {{ capitalizeFirstLetter(card.lastName) }} </h1>
-    <h1 *ngIf="card.nickName" id="nameInBackground"> {{ capitalizeFirstLetter(card.nickName) }} </h1>
-    <h2 class="card__title">Detalhes do jogador</h2>
-    <p>Nome: {{ capitalizeFirstLetter(card.firstName) }} </p>
-    <p>Sobrenome: {{ capitalizeFirstLetter(card.lastName) }}</p>
-    <p *ngIf="card.nickName">Apelido: {{ capitalizeFirstLetter(card.nickName) }}</p>
-    <p>Nacionalidade: {{ capitalizeFirstLetter(card.nationality)}}</p>
-    <p>Clube: {{ capitalizeFirstLetter(card.club)}}</p>
+  <div class="menuButton">
+    <button id="buttonDeletePlayer" mat-flat-button color="warn" (click)="dialogDeletePlayer(card.id)">
+      Deletar Jogador
+      <mat-icon>delete</mat-icon>
+    </button>
+    <button [routerLink]="['']" mat-flat-button color="primary">
+      <mat-icon>forward</mat-icon>
+      Voltar
+    </button>
   </div>
+
+
+    <div class="menuDetails">
+      <div class="detailsPlayer">
+        <h1 *ngIf="card.nickName == '' " id="nameInBackground"> {{ capitalizeFirstLetter(card.firstName) }} {{ capitalizeFirstLetter(card.lastName) }} </h1>
+        <h1 *ngIf="card.nickName" id="nameInBackground"> {{ capitalizeFirstLetter(card.nickName) }} </h1>
+        <h2 class="card__title">Detalhes do jogador</h2>
+        <p>Nome: {{ capitalizeFirstLetter(card.firstName) }} </p>
+        <p>Sobrenome: {{ capitalizeFirstLetter(card.lastName) }}</p>
+        <p *ngIf="card.nickName">Apelido: {{ capitalizeFirstLetter(card.nickName) }}</p>
+        <p>Nacionalidade: {{ capitalizeFirstLetter(card.nationality)}}</p>
+        <p>Clube: {{ capitalizeFirstLetter(card.club)}}</p>
+      </div>
+    </div>
 </div>
 </ng-template>
 

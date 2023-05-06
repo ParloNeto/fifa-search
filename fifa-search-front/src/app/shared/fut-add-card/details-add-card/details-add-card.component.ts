@@ -60,7 +60,7 @@ export class DetailsAddCardComponent implements OnInit {
     private clubService: ClubService,
     private router: Router,
     private snackBar: MatSnackBar
-  ){}
+  ) {}
 
   ngOnInit(): void {
 
@@ -91,18 +91,17 @@ export class DetailsAddCardComponent implements OnInit {
      console.log(this.infoCardsForm.value);
        const data = Object.assign({}, this.infoCardsForm.value, { attributeCard: this.attributeCard.value });
        console.log(data);
-      this.futApiService.addCard(data).subscribe(
-        (card) => {
-          console.log('Carta adicionada:', card);
+      this.futApiService.addCard(data).subscribe({
+        next: () => {
           this.router.navigateByUrl('');
           this.snackBar.open('Jogador adicionado com sucesso!', 'Fechar', {
             duration: 3000
           });
         },
-        (error) => {
-          console.error('Erro ao adicionar carta:', error);
+        error: (error: Error) => {
+          console.error('Erro ao adicionar carta de jogador:', error);
         }
-      );
+      });
     }
   }
 
@@ -156,9 +155,7 @@ export class DetailsAddCardComponent implements OnInit {
   public getNation(): void { 
     const nation = this.infoCardsForm.get('nationality')!.value;
     this.nationService.getSpecificNation(nation).subscribe(card => {
-      if (nation == card.nation) {
-          this.nationUrl = card.nationUrl;
-      }
+      if (nation == card.nation) this.nationUrl = card.nationUrl;
     });
   }
 
@@ -174,11 +171,7 @@ export class DetailsAddCardComponent implements OnInit {
   public getClub(): void { 
     const club = this.infoCardsForm.get('club')!.value;
     this.clubService.getSpecificClub(club).subscribe(card => {
-      if (club == card.club) {
-          this.clubUrl = card.clubUrl;
-      }
+      if (club == card.club) this.clubUrl = card.clubUrl;
     });
   }
-
-
 }

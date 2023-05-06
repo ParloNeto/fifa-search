@@ -10,7 +10,7 @@ export class CardService {
 
   private readonly apiUrl = '/types';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getAllVersionCards(): Observable<TypeCard[]> {
     return this.http.get<TypeCard[]>(this.apiUrl);

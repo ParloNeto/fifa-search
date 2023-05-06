@@ -11,10 +11,7 @@
             top: rem-calc(10);
             right: rem-calc(10);
             background: var(--secundary-color);
-           @include buttonDefault;
-           padding: rem-calc(20);
-           
-           
+            padding: rem-calc(25);
         }
     }
 }

@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
 import { DetailsAddCardComponent } from '../shared/fut-add-card/details-add-card/details-add-card.component';
+import { MaterialModule } from '../shared/material/material.module';
 
 
 
@@ -21,7 +22,8 @@ import { DetailsAddCardComponent } from '../shared/fut-add-card/details-add-card
   imports: [
     CommonModule,
     RoutingModule,
-    SharedModule
+    SharedModule,
+    MaterialModule
   ]
 })
 export class PagesModule { }

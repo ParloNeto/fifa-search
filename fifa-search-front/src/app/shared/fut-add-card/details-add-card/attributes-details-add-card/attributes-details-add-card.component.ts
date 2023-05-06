@@ -25,12 +25,13 @@ export class AttributesDetailsAddCardComponent implements OnInit{
   
   public insertPhoto = this.details.getPhotoType;
   
-  constructor( private cardService: CardService,
+  constructor(
+    private cardService: CardService,
     private formBuilder: FormBuilder,
-    private details: DetailsAddCardComponent){
-     
-  }
-  ngOnInit(): void { }
+    private details: DetailsAddCardComponent
+    ) {}
+
+  ngOnInit(): void {}
     
   public cardTypeAdjustmentCss = this.cardService.cardTypeAdjustmentCss;
 

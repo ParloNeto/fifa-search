@@ -35,7 +35,7 @@
         }
       }
 
-      .iconAndNation{
+      .icon__and__nation{
         display: flex;
         flex-direction: column;
         width: 100%;
@@ -88,7 +88,7 @@
         display: flex;
       }
 
-      .cardAttributes {
+      .card__attributes {
         font-weight: 300;
         display: flex;
         justify-content: space-evenly;
@@ -97,13 +97,13 @@
         font-size: rem-calc(18);
       }
       
-      .attributeLeft {
+      .attribute__left {
        display: flex;
        flex-direction: column;
        line-height: 1.5;
       }
       
-      .attributeRight {
+      .attribute__right {
         display: flex;
         flex-direction: column;
         line-height: 1.5;

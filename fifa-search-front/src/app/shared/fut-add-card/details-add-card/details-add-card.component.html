@@ -24,6 +24,15 @@
               </option>
             </select>
           </label>
+
+          <!-- <mat-form-field class="details" appearance="fill">
+            <mat-label for="types">Tipo de Carta</mat-label>
+              <mat-select class="selectStyle" formControlName="typeCard">
+                <mat-option *ngFor="let types of selectedTypeCard" [value]="types">
+                   {{ formatWithoutHyphen(types) }}
+                  </mat-option>
+              </mat-select>
+          </mat-form-field> -->
           </div>
 
               <div class="input-box">
@@ -150,5 +159,8 @@
 </div>
 
 <div>
-  <button id="buttonBackHome" [routerLink]="['']">Voltar</button>
+  <button [routerLink]="['']" mat-fab extended color="warn">
+    <mat-icon>forward</mat-icon>
+    Voltar
+  </button>
 </div>

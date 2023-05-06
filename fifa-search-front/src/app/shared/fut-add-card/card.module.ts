@@ -9,6 +9,7 @@ import { AttributesDetailsAddCardComponent } from './details-add-card/attributes
 
 //DiretivasPersonalizadas
 import { ClearFieldDirective } from '../../directives/clear-field.directive';
+import { MaterialModule } from '../material/material.module';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { ClearFieldDirective } from '../../directives/clear-field.directive';
         CommonModule,
         RouterModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        MaterialModule
     ]
 })
 export class CardModule { }
