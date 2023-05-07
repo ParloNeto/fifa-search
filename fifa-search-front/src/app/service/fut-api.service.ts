@@ -8,7 +8,7 @@ import { Card } from '../models/card';
 })
 export class FutApiService {
 
-  private readonly apiUrl = '/cards';
+  private readonly apiUrl = 'http://localhost:8080/cards';
 
   constructor(private http: HttpClient) {}
 
@@ -17,7 +17,8 @@ export class FutApiService {
   }
 
   getCard(url: string): Observable<Card[]> {
-    return this.http.get<Card[]>(url);
+    const url2 = `${this.apiUrl}/${url}`;
+    return this.http.get<Card[]>(url2);
   }
 
   addCard(card: Card): Observable<Card> {

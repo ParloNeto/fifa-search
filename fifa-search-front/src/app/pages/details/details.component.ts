@@ -53,7 +53,7 @@ export class DetailsComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
       const id = params['id'];
-      this.futApiService.getCard(`${this.urlCard}/${id}`).subscribe({
+      this.futApiService.getCard(`${id}`).subscribe({
         next: res => {
           this.card = res;
           this.isLoading = true;
