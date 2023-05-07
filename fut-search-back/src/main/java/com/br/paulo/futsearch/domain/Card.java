@@ -2,22 +2,33 @@ package com.br.paulo.futsearch.domain;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.io.Serializable;
+import jakarta.persistence.*;
 import java.util.Objects;
 
+@Entity
 @Document(collection = "card")
 public class Card implements Serializable {
     @Id
     private String id;
+    @Column(nullable = false)
     private String versionFifa;
+
+    @Column(nullable = false, length = 50)
     private String typeCard;
+    @Column(nullable = false, length = 20)
     private String firstName;
+    @Column(nullable = false, length = 20)
     private String lastName;
+    @Column(nullable = true, length = 30)
     private String nickName;
+    @Column(nullable = false, length = 30)
     private String nationality;
+    @Column(nullable = false, length = 30)
     private String club;
+    @Column(nullable = false, length = 3)
     private String position;
+    @Column(nullable = false, length = 150)
     private String photo;
 
     private AttributeCard attributeCard;
@@ -52,7 +63,7 @@ public class Card implements Serializable {
         return versionFifa;
     }
 
-    public void setVersionFifa(String type) {
+    public void setVersionFifa(String versionFifa) {
         this.versionFifa = versionFifa;
     }
 

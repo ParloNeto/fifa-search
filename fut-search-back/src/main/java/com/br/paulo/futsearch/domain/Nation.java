@@ -1,16 +1,21 @@
 package com.br.paulo.futsearch.domain;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+@Entity
 @Document(collection = "nation")
 public class Nation {
 
     @Id
     private String id;
-
+    @Column(nullable = false, length = 30)
     private String nation;
-
+    @Column(nullable = false, length = 100)
     private String nationUrl;
 
     public Nation() {

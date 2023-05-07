@@ -1,9 +1,6 @@
 package com.br.paulo.futsearch.resources;
 
-import com.br.paulo.futsearch.domain.Card;
 import com.br.paulo.futsearch.domain.Nation;
-import com.br.paulo.futsearch.dto.CardDTO;
-import com.br.paulo.futsearch.services.CardService;
 import com.br.paulo.futsearch.services.NationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +9,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/nations")

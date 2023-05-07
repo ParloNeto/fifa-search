@@ -1,40 +1,56 @@
-package com.br.paulo.futsearch.dto;
+package com.br.paulo.futsearch.data.v1;
 
 import com.br.paulo.futsearch.domain.AttributeCard;
-import com.br.paulo.futsearch.domain.Card;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import org.springframework.hateoas.RepresentationModel;
+import org.springframework.web.bind.annotation.Mapping;
 
 import java.io.Serializable;
+import java.util.Objects;
 
-public class CardDTO implements Serializable {
-
+@JsonPropertyOrder({ "id","versionFifa","typeCard","firstName", "lastName", "nickName",
+"nationality", "club", "position", "photo", "attributeCard"})
+public class CardVO extends RepresentationModel<CardVO> implements Serializable {
+    @JsonProperty("id")
     private String id;
+
     private String versionFifa;
+
     private String typeCard;
+
     private String firstName;
+
     private String lastName;
+
     private String nickName;
+
     private String nationality;
+
     private String club;
+
     private String position;
+
     private String photo;
 
     private AttributeCard attributeCard;
 
-    public CardDTO() {
+    public CardVO() {
     }
 
-    public CardDTO(Card obj) {
-        id = obj.getId();
-        versionFifa = obj.getVersionFifa();
-        typeCard = obj.getTypeCard();
-        firstName = obj.getFirstName();
-        lastName = obj.getLastName();
-        nickName = obj.getNickName();
-        nationality = obj.getNationality();
-        club = obj.getClub();
-        position = obj.getPosition();
-        photo = obj.getPhoto();
-        attributeCard = obj.getAttributeCard();
+    public CardVO(String id, String versionFifa, String typeCard, String firstName, String lastName, String nickName, String nationality,
+                  String club, String position, String photo, AttributeCard attributeCard) {
+        this.id = id;
+        this.versionFifa = versionFifa;
+        this.typeCard = typeCard;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.nickName = nickName;
+        this.nationality = nationality;
+        this.club = club;
+        this.position = position;
+        this.photo = photo;
+        this.attributeCard = attributeCard;
     }
 
     public String getId() {
@@ -51,14 +67,6 @@ public class CardDTO implements Serializable {
 
     public void setVersionFifa(String versionFifa) {
         this.versionFifa = versionFifa;
-    }
-
-    public String getTypeCard() {
-        return typeCard;
-    }
-
-    public void setTypeCard(String typeCard) {
-        this.typeCard = typeCard;
     }
 
     public String getFirstName() {
@@ -123,5 +131,26 @@ public class CardDTO implements Serializable {
 
     public void setAttributeCard(AttributeCard attributeCard) {
         this.attributeCard = attributeCard;
+    }
+
+    public String getTypeCard() {
+        return typeCard;
+    }
+
+    public void setTypeCard(String typeCard) {
+        this.typeCard = typeCard;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CardVO card = (CardVO) o;
+        return Objects.equals(id, card.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
