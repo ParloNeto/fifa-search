@@ -1,69 +1,112 @@
 package com.br.paulo.futsearch.services;
 
+import com.br.paulo.futsearch.data.v1.TypeCardVO;
 import com.br.paulo.futsearch.domain.TypeCard;
-import com.br.paulo.futsearch.dto.TypeCardDTO;
+import com.br.paulo.futsearch.mapper.ModelMapper;
 import com.br.paulo.futsearch.repository.TypeCardRepository;
-import com.br.paulo.futsearch.services.exception.ObjectNotFoundException;
+import com.br.paulo.futsearch.resources.TypeCardResource;
+import com.br.paulo.futsearch.services.exception.RequiredObjectIsNullException;
+import com.br.paulo.futsearch.services.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.logging.Logger;
+
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
+import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+
 
 @Service
 public class TypeCardService {
 
+    private Logger logger = Logger.getLogger(CardService.class.getName());
+
     @Autowired
     private TypeCardRepository repository;
 
-    public List<TypeCard> findAll(){
-        return repository.findAll();
+    public List<TypeCardVO> findAll() {
+        logger.info("Finding all types card!");
+
+        var typesCards = ModelMapper.parseListObjects(repository.findAll(), TypeCardVO.class);
+        typesCards
+                .stream()
+                .forEach(p -> p.add(linkTo(methodOn(TypeCardResource.class).findTypeCardById(p.getId())).withSelfRel()));
+        return typesCards;
     }
 
-    public List<TypeCard> getCardsByFifaVersion(String fifaVersion) {
-        return repository.findByFifaVersion(fifaVersion);
+    public List<TypeCardVO> findByFifaVersions(String fifaVersion) {
+        logger.info("Finding one typeCard by Version!");
+
+        var typesCards = ModelMapper.parseListObjects(repository.findByFifaVersion(fifaVersion), TypeCardVO.class);
+        typesCards
+                .stream()
+                .forEach(p -> p.add(linkTo(methodOn(TypeCardResource.class).findByFifaVersion(p.getFifaVersion())).withSelfRel()));
+       return typesCards;
+
     }
 
-    public TypeCard insert(TypeCard obj) {
-       return repository.insert(obj);
+    public TypeCardVO findById(String id) {
+
+        logger.info("Finding one type card!");
+
+        var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(
+                "No records found for this ID!"));
+
+        var vo = ModelMapper.parseObject(entity, TypeCardVO.class);
+        vo.add(linkTo(methodOn(TypeCardResource.class).findTypeCardById(id)).withSelfRel());
+        return vo;
     }
 
-    public void delete(String fifaVersion){
-        getCardsByFifaVersion(fifaVersion);
-        repository.deleteById(fifaVersion);
+    public TypeCardVO create(TypeCardVO typeCard) {
+        if (typeCard == null) throw new RequiredObjectIsNullException();
+
+        logger.info("Creating one card!");
+
+        var entity = ModelMapper.parseObject(typeCard, TypeCard.class);
+        var vo = ModelMapper.parseObject(repository.save(entity), TypeCardVO.class);
+        vo.add(linkTo(methodOn(TypeCardResource.class).findTypeCardById(vo.getId())).withSelfRel());
+        return vo;
     }
 
-    public TypeCard getCardByFifaVersionAndCardType(String fifaVersion, String cardType) {
-        return repository.findByFifaVersionAndCardType(fifaVersion, cardType);
+    public void delete(String id) {
+        logger.info("Deleting one type card!");
+
+        var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(
+                "No records found for this ID!"));
+        repository.delete(entity);
     }
 
-//    public TypeCard update(TypeCard obj) {
-//        TypeCard newObj = getCardByFifaVersionAndCardType(obj.getFifaVersion(), obj.getCardType());
-//        updateData(newObj, obj);
-//        return repository.save(newObj);
-//    }
+    public TypeCardVO findByFifaVersionAndCardType(String fifaVersion, String cardType) {
+        logger.info("Finding by CardType and Version!");
 
-    //metodo do GPT
-    public TypeCard update(TypeCard obj) {
-        Optional<TypeCard> optionalCard = repository.findById(obj.getId());
-        if (optionalCard.isPresent()) {
-            TypeCard existingCard = optionalCard.get();
-            updateData(existingCard, obj);
-            return repository.save(existingCard);
-        } else {
-            throw new ObjectNotFoundException("Card not found with id: " + obj.getId());
+        var entity = repository.findByFifaVersionAndCardType(fifaVersion, cardType);
+
+        if (entity == null) {
+            throw new ResourceNotFoundException("No records found for this FIFA version and card type!");
         }
+
+        var vo = ModelMapper.parseObject(entity, TypeCardVO.class);
+        vo.add(linkTo(methodOn(TypeCardResource.class).findByFifaVersionAndCardType(fifaVersion, cardType)).withSelfRel());
+        return vo;
     }
 
+    public TypeCardVO update(TypeCardVO typeCard) {
 
-    private void updateData(TypeCard newObj, TypeCard obj) {
-        newObj.setFifaVersion(obj.getFifaVersion());
-        newObj.setCardType(obj.getCardType());
-        newObj.setPhotoUrl(obj.getPhotoUrl());
-        newObj.setColorText(obj.getColorText());
-    }
+        if (typeCard == null) throw new RequiredObjectIsNullException();
 
-    public TypeCard fromDTO(TypeCardDTO objDto) {
-        return new TypeCard(objDto.getId(), objDto.getFifaVersion(), objDto.getCardType(), objDto.getPhotoUrl(), objDto.getColorText());
+        logger.info("Updating one typeCard!");
+
+        var newObj = repository.findById(typeCard.getId()).orElseThrow(() -> new ResourceNotFoundException(
+                "No records found for this ID!"));
+
+        newObj.setFifaVersion(typeCard.getFifaVersion());
+        newObj.setCardType(typeCard.getCardType());
+        newObj.setPhotoUrl(typeCard.getPhotoUrl());
+        newObj.setColorText(typeCard.getColorText());
+
+        var vo = ModelMapper.parseObject(repository.save(newObj), TypeCardVO.class);
+        vo.add(linkTo(methodOn(TypeCardResource.class).findTypeCardById(vo.getId())).withSelfRel());
+        return vo;
     }
 }

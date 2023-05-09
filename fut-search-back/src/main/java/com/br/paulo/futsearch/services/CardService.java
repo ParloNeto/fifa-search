@@ -25,7 +25,7 @@ public class CardService {
     private CardRepository repository;
 
     public List<CardVO> findAll(){
-        logger.info("Finding all people!");
+        logger.info("Finding all cards!");
 
         var cards = ModelMapper.parseListObjects(repository.findAll(), CardVO.class);
         cards
@@ -35,10 +35,11 @@ public class CardService {
     }
 
     public CardVO findById(String id) {
-        logger.info("Finding one person!");
+        logger.info("Finding one card!");
 
         var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(
                 "No records found for this ID!"));
+
         var vo = ModelMapper.parseObject(entity, CardVO.class);
         vo.add(linkTo(methodOn(CardResource.class).findById(id)).withSelfRel());
         return vo;
@@ -54,7 +55,7 @@ public class CardService {
         return vo;
     }
 
-    public void delete(String id){
+    public void delete(String id) {
         logger.info("Deleting one card!");
 
         var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(

@@ -45,8 +45,8 @@ public class CardResource {
             }
     )
     public ResponseEntity<List<CardVO>> findAll(){
-        List<CardVO> list = service.findAll();
-        return ResponseEntity.ok().body(list);
+        List<CardVO> listCard = service.findAll();
+        return ResponseEntity.ok().body(listCard);
     }
 
     @GetMapping("/{id}")
@@ -64,7 +64,7 @@ public class CardResource {
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
             }
     )
-    public ResponseEntity<CardVO> findById(@PathVariable String id){
+    public ResponseEntity<CardVO> findById(@PathVariable String id) {
         CardVO obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
@@ -85,8 +85,9 @@ public class CardResource {
             })
     public ResponseEntity<CardVO> create(@RequestBody CardVO card) {
         CardVO obj = service.create(card);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).build();
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(obj.getId()).toUri();
+        return ResponseEntity.created(uri).body(obj);
     }
 
     @PutMapping("/{id}")
@@ -103,10 +104,9 @@ public class CardResource {
             @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
             @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
     })
-    public ResponseEntity<Void> update(@RequestBody CardVO card, @PathVariable String id) {
+    public ResponseEntity<CardVO> update(@RequestBody CardVO card, @PathVariable String id) {
         CardVO obj = service.update(card);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.ok().body(obj);
     }
 
     @DeleteMapping("/{id}")

@@ -5,7 +5,7 @@ import com.br.paulo.futsearch.domain.Nation;
 import com.br.paulo.futsearch.domain.TypeCard;
 import com.br.paulo.futsearch.dto.TypeCardDTO;
 import com.br.paulo.futsearch.repository.NationRepository;
-import com.br.paulo.futsearch.repository.TypeCardRepository;
+
 import com.br.paulo.futsearch.services.exception.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
