@@ -1,20 +1,18 @@
-@import '../../../config-scss/rem-calc.scss';
-
 :host{
     form{
         display: flex;
         justify-content: space-between;
         align-items: center;
-
-        padding: rem-calc(15) rem-calc(20);
+        margin: 0px 25% ;
+        padding: 15px 20px;
         background-color: rgb(255, 255, 255, 0.2);
-        border-radius: rem-calc(10);
+        border-radius: 10px;
         input{
             width: 95%;
             background: none;
             border: none;
            
-            font-size: rem-calc(18);
+            font-size: 18px;
 
             color: var(--white);
 

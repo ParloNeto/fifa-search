@@ -6,7 +6,7 @@ export interface Card {
     typeCard: string;
     firstName: string;
     lastName: string;
-    nickName: string;
+    nickName?: string;
     nationality: string;
     club: string;
     position: string;

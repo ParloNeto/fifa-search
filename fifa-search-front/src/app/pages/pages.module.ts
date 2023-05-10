@@ -8,8 +8,11 @@ import { SharedModule } from '../shared/shared.module';
 //Pages
 import { HomeComponent } from './home/home.component';
 import { DetailsComponent } from './details/details.component';
-import { DetailsAddCardComponent } from '../shared/fut-add-card/details-add-card/details-add-card.component';
+
 import { MaterialModule } from '../shared/material/material.module';
+import { DescriptionPlayerComponent } from './details/description-player/description-player.component';
+import { InformationButtonsComponent } from './details/information-buttons/information-buttons.component';
+import { CardDetailsComponent } from './details/card-details/card-details.component';
 
 
 
@@ -17,7 +20,10 @@ import { MaterialModule } from '../shared/material/material.module';
 @NgModule({
   declarations: [
     HomeComponent,
-    DetailsComponent
+    DetailsComponent,
+    DescriptionPlayerComponent,
+    InformationButtonsComponent,
+    CardDetailsComponent
   ],
   imports: [
     CommonModule,

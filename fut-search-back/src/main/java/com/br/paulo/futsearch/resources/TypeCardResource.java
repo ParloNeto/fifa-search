@@ -103,6 +103,6 @@ public class TypeCardResource {
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCard(@PathVariable String id) {
         service.delete(id);
-    return ResponseEntity.noContent().build();
+        return ResponseEntity.noContent().build();
     }
 }
