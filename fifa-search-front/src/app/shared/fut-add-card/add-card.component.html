@@ -1,1 +1,6 @@
-<p>add-card works!</p>
+<div class="background">
+    <app-fut-header></app-fut-header>
+    <app-details-add-card [attributeCard]="attributeCard"  (sendInfoCard)="getInfoCardForm($event)"></app-details-add-card>
+    <app-form-attributes (sendForm)="getForm($event)"></app-form-attributes>
+    <app-attributes-details-add-card [attributeCard]="attributeCard" [infoCardsForm]="infoCardsForm"></app-attributes-details-add-card>
+</div>

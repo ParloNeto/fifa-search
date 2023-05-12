@@ -116,15 +116,80 @@
 //different types of cards gold
 
 .card-fifa-16 {
-  @include fifa-16;
+  .playercard {
+    &__top{
+      margin-left: rem-calc(33);
+    }
+  }
+
+  .cardAttributes {
+    padding: rem-calc(15);
+  }
+
+  #photo__card{
+    margin-bottom: -4px;
+  }
 }
     
 .card-fifa-18 {
-  @include fifa-18;
+  .playercard {
+    margin-top: 29px;
+    &__top {
+      &__icons {
+        width: 37px;
+      }
+    }
+    &__details__icons {
+      margin-right: 13px;
+      margin-top: 18px;
+    }
+  }
+  .card__body {
+    margin-left: 22px;
+  }
+
+  #card__content__name {
+    bottom: 136px;
+    left: 20px;
+  }
+
+  #photo__card {
+    margin-right: 60px;
+  }
 }
 
 .card-fifa-19 {
-  @include fifa-19;
+  .playercard {
+    margin-top: rem-calc(47);
+    &__top{
+      &__icons{
+        width: rem-calc(44);
+       
+      }
+    }
+    &__details__icons{
+     
+      margin-left: rem-calc(15);
+      
+    }
+  }
+  .card__body{
+    margin-top: rem-calc(13);
+  }
+
+  #card__content__name {
+    bottom: rem-calc(116);
+    
+  }
+
+  .iconAndNation{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  #nation { 
+    margin-top: rem-calc(9); 
+  }
 }
 
 

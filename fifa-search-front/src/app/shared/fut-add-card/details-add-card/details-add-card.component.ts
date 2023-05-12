@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { FutApiService } from 'src/app/service/fut-api.service';
@@ -15,6 +15,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class DetailsAddCardComponent implements OnInit {
 
+  @Input() attributeCard!: FormGroup;
+  @Output() sendInfoCard = new EventEmitter<FormGroup>();
+
   public photoUrl: string = '';
   public nationUrl: string = '';
   public clubUrl: string = '';
@@ -29,28 +32,9 @@ export class DetailsAddCardComponent implements OnInit {
   public selectedNationCard: string[] = [];
   public selectedClubCard: string[] = [];
 
-  public infoCardsForm: FormGroup = this.formBuilder.group({
-   
-    versionFifa: ['', Validators.required],
-    typeCard: ['', Validators.required],
-    firstName: ['Lionel' , [Validators.required, Validators.maxLength(10)] ],
-    lastName: ['Messi', [Validators.required, Validators.maxLength(10)] ],
-    nickName: ['', Validators.maxLength(15)],
-    nationality: ['', Validators.required],
-    club: ['palmeiras', Validators.required],
-    position: ['RW', [Validators.required, Validators.maxLength(3)]],
-    photo: ['https://futhead.cursecdn.com/static/img/23/players/158023.png', Validators.required],
-  });
+  public infoCardsForm: FormGroup; 
 
-  attributeCard: FormGroup = this.formBuilder.group({
-    overall: [94, [Validators.maxLength(2), Validators.required]],
-    pace: [81, [Validators.maxLength(2), Validators.required]],
-    shooting: [92, [Validators.maxLength(2), Validators.required]],
-    passing: [89, [Validators.maxLength(2), Validators.required]],
-    dribbling: [94, [Validators.maxLength(2), Validators.required]],
-    defending: [37, [Validators.maxLength(2), Validators.required]],
-    physicality: [67, [Validators.maxLength(2), Validators.required]]
-  });
+  
   
   constructor(
     private futApiService: FutApiService,
@@ -60,9 +44,27 @@ export class DetailsAddCardComponent implements OnInit {
     private clubService: ClubService,
     private router: Router,
     private snackBar: MatSnackBar
-  ) {}
+  ) {
+     this.infoCardsForm = this.formBuilder.group({
+   
+      versionFifa: ['', Validators.required],
+      typeCard: ['', Validators.required],
+      firstName: ['Lionel' , [Validators.required, Validators.maxLength(10)] ],
+      lastName: ['Messi', [Validators.required, Validators.maxLength(10)] ],
+      nickName: ['', Validators.maxLength(15)],
+      nationality: ['', Validators.required],
+      club: ['palmeiras', Validators.required],
+      position: ['RW', [Validators.required, Validators.maxLength(3)]],
+      photo: ['https://futhead.cursecdn.com/static/img/23/players/158023.png', Validators.required],
+    });
+
+    this.infoCardsForm.valueChanges.subscribe((form) => {
+      this.sendInfoCard.emit(this.infoCardsForm);
+      });
+    }
 
   ngOnInit(): void {
+    this.sendInfoCard.emit(this.infoCardsForm);
 
     this.infoCardsForm.patchValue({
       nationality: 'argentina',
@@ -70,10 +72,7 @@ export class DetailsAddCardComponent implements OnInit {
     });
 
     this.getAllNations();
-    this.getNation();
-
     this.getAllClubs();
-    this.getClub();
   }
 
   public formatUpperCase(option: string): string {
@@ -88,9 +87,7 @@ export class DetailsAddCardComponent implements OnInit {
 
   public submitForm() {
     if (this.infoCardsForm.valid) {
-     console.log(this.infoCardsForm.value);
-       const data = Object.assign({}, this.infoCardsForm.value, { attributeCard: this.attributeCard.value });
-       console.log(data);
+      const data = Object.assign({}, this.infoCardsForm.value, { attributeCard: this.attributeCard.value });
       this.futApiService.addCard(data).subscribe({
         next: () => {
           this.router.navigateByUrl('');
@@ -98,9 +95,7 @@ export class DetailsAddCardComponent implements OnInit {
             duration: 3000
           });
         },
-        error: (error: Error) => {
-          console.error('Erro ao adicionar carta de jogador:', error);
-        }
+        error: (error: Error) => console.error('Erro ao adicionar carta de jogador:', error)
       });
     }
   }
@@ -117,45 +112,12 @@ export class DetailsAddCardComponent implements OnInit {
     });
    }
 
-   public getTypesColor(): void {
-    const version = this.infoCardsForm.get('versionFifa')!.value;
-    const typeCard = this.infoCardsForm.get('typeCard')!.value;
-
-      if (version && typeCard) {
-        this.cardService.getSpecificType(version, typeCard).subscribe(card => {
-          this.colorOverall = card.colorText.colorOverall;
-          this.colorFontName = card.colorText.colorFontName;
-          this.colorAttributes = card.colorText.colorAttributes;
-          this.colorPosition = card.colorText.colorPosition;
-        });
-      }
-  }
-
-  public getPhotoType(): void {
-    const version = this.infoCardsForm.get('versionFifa')!.value;
-    const typeCard = this.infoCardsForm.get('typeCard')!.value;
-
-      if (version && typeCard) {
-        this.cardService.getSpecificType(version, typeCard).subscribe(card => {
-            this.photoUrl = card.photoUrl;
-            this.getTypesColor();
-        });
-      }
-  }
-
   public getAllNations(): void {
     this.nationService.getAllNations().forEach(res => {
      res.map(card => {
       this.selectedNationCard.push(card.nation);
       this.selectedNationCard.sort();
       });
-    });
-  }
-
-  public getNation(): void { 
-    const nation = this.infoCardsForm.get('nationality')!.value;
-    this.nationService.getSpecificNation(nation).subscribe(card => {
-      if (nation == card.nation) this.nationUrl = card.nationUrl;
     });
   }
 
@@ -168,10 +130,4 @@ export class DetailsAddCardComponent implements OnInit {
     });
   }
 
-  public getClub(): void { 
-    const club = this.infoCardsForm.get('club')!.value;
-    this.clubService.getSpecificClub(club).subscribe(card => {
-      if (club == card.club) this.clubUrl = card.clubUrl;
-    });
-  }
 }

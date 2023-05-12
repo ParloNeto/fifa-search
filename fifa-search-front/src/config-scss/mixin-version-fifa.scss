@@ -1,4 +1,4 @@
-@mixin fifa-16{
+@mixin fifa-16 {
   .playercard {
     &__top{
       margin-left: rem-calc(33);
@@ -14,7 +14,7 @@
   }
 }
 
-@mixin fifa-18{
+@mixin fifa-18 {
   .playercard {
     margin-top: rem-calc(29);
     &__top{
@@ -41,7 +41,7 @@
   }
 }
 
- @mixin fifa-19{
+ @mixin fifa-19 {
   .playercard {
       margin-top: rem-calc(47);
       &__top{

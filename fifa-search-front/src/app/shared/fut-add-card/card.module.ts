@@ -12,6 +12,9 @@ import { ClearFieldDirective } from '../../directives/clear-field.directive';
 import { MaterialModule } from '../material/material.module';
 import { AddCardComponent } from './add-card.component';
 import { FormAttributesComponent } from './details-add-card/form-attributes/form-attributes.component';
+import { CardFifaModelComponent } from './card-fifa-model/card-fifa-model.component';
+import { SharedModule } from '../shared.module';
+
 
 @NgModule({
     declarations: [
@@ -19,7 +22,8 @@ import { FormAttributesComponent } from './details-add-card/form-attributes/form
         AttributesDetailsAddCardComponent,
         ClearFieldDirective,
         AddCardComponent,
-        FormAttributesComponent
+        FormAttributesComponent,
+        CardFifaModelComponent
     ],
     exports: [
     ],
@@ -28,7 +32,8 @@ import { FormAttributesComponent } from './details-add-card/form-attributes/form
         RouterModule,
         ReactiveFormsModule,
         FormsModule,
-        MaterialModule
+        MaterialModule,
+        SharedModule
     ]
 })
 export class CardModule { }

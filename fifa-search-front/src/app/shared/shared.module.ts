@@ -24,7 +24,6 @@ import { MaterialModule } from './material/material.module';
     ],
     exports: [
         FutHeaderComponent,
-        FutSearchComponent,
         FutListComponent,
         FutAddCardComponent
     ],

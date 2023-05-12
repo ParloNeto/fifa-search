@@ -5,6 +5,7 @@ import { DetailsAddCardComponent } from '../shared/fut-add-card/details-add-card
 //Components
 import { DetailsComponent } from './details/details.component';
 import { HomeComponent } from './home/home.component';
+import { AddCardComponent } from '../shared/fut-add-card/add-card.component';
 
 const routes: Routes = [
   {
@@ -17,11 +18,16 @@ const routes: Routes = [
     component: DetailsComponent
   
     },
-    {
-      path: 'addcard',
-      component:  DetailsAddCardComponent,
-      loadChildren: () => import('../shared/fut-add-card/card.module').then(p => p.CardModule)
-      }
+    // {
+    //   path: 'addcard',
+    //   component:  DetailsAddCardComponent,
+    //   loadChildren: () => import('../shared/fut-add-card/card.module').then(p => p.CardModule)
+    //   },
+      {
+        path: 'addcardtest',
+        component:  AddCardComponent,
+        loadChildren: () => import('../shared/fut-add-card/card.module').then(p => p.CardModule)
+        }
 ];
 
 @NgModule({

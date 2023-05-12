@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-background">
     <div class="container">
-      <form [formGroup]="infoCardsForm" (ngSubmit)="submitForm()" (change)="getPhotoType()">
+      <form [formGroup]="infoCardsForm" (ngSubmit)="submitForm()">
         <div class="form-details" >
 
             <div class="input-box">
@@ -51,7 +51,7 @@
                 <div class="input-box">
                   <label class="details" for="nationality"
                     >Nacionalidade:
-                    <select (change)="getNation()" class="selectStyle" formControlName="nationality">
+                    <select class="selectStyle" formControlName="nationality">
                       <option *ngFor="let nations of selectedNationCard" [ngValue]="nations">
                         {{ formatWithoutHyphen(nations) }}
                       </option>
@@ -62,7 +62,7 @@
               <div class="input-box">
                 <label class="details" for="club"
                   >Clube:
-                  <select (change)="getClub()" class="selectStyle" formControlName="club">
+                  <select class="selectStyle" formControlName="club">
                     <option *ngFor="let OneClub of selectedClubCard" [ngValue]="OneClub">
                       {{ formatWithoutHyphen(OneClub) }}
                     </option>
@@ -90,65 +90,8 @@
    </div>
 </div>
 
-<app-attributes-details-add-card
- id='card__model__attributes' 
- [infoCardsForm]="infoCardsForm" 
- [attributeCard]="attributeCard" 
- [photoUrl]="photoUrl"
- [nationUrl]="nationUrl"
- [clubUrl]="clubUrl"
- [colorOverall]="colorOverall"
- [colorFontName]="colorFontName"
- [colorPosition]="colorPosition"
- [colorAttributes]="colorAttributes">
 
-</app-attributes-details-add-card>
 
-<div class="formAttributes">
-  <form [formGroup]="attributeCard">
-    <div class="form-details">
-        <div class="input-box">
-          
-          <label class="details" for="overall">
-            Overral:
-            <input type="number" pattern="[0-9]*" onKeyPress="if(this.value.length==2) return false;" formControlName="overall" appClearField>
-          </label>
-
-            <label class="details" for="pace">
-              Pace:
-              <input  type="number" pattern="[0-9]*" onKeyPress="if(this.value.length==2) return false;" formControlName="pace" appClearField>
-            </label>
-            
-              <label class="details" for="shooting">
-                Shooting:
-                <input  type="number" pattern="[0-9]*" onKeyPress="if(this.value.length==2) return false;" formControlName="shooting" appClearField>
-              </label>
-
-                <label class="details" for="passing">
-                  Passing:
-                  <input  type="number" pattern="[0-9]*" onKeyPress="if(this.value.length==2) return false;" formControlName="passing" appClearField>
-                </label>
-
-              <label class="details" for="dribbling">
-                Dribbling:
-                <input  type="number" pattern="[0-9]*" onKeyPress="if(this.value.length==2) return false;" formControlName="dribbling" appClearField>
-              </label>
-
-            <label class="details" for="defending">
-              Defending:
-              <input  type="number" pattern="[0-9]*" onKeyPress="if(this.value.length==2) return false;" formControlName="defending" appClearField>
-            </label>
-
-          <label class="details" for="physicality">
-            Physicality:
-          <input  type="number" pattern="[0-9]*" onKeyPress="if(this.value.length==2) return false;" formControlName="physicality" appClearField>
-        </label>
-
-      </div>
-      
-    </div>
-  </form>
-</div>
 
 <div>
   <button [routerLink]="['']" mat-fab extended color="warn">
