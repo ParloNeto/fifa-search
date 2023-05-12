@@ -10,13 +10,16 @@ import { AttributesDetailsAddCardComponent } from './details-add-card/attributes
 //DiretivasPersonalizadas
 import { ClearFieldDirective } from '../../directives/clear-field.directive';
 import { MaterialModule } from '../material/material.module';
+import { AddCardComponent } from './add-card.component';
+import { FormAttributesComponent } from './details-add-card/form-attributes/form-attributes.component';
 
 @NgModule({
     declarations: [
         DetailsAddCardComponent,
         AttributesDetailsAddCardComponent,
-        ClearFieldDirective
-       
+        ClearFieldDirective,
+        AddCardComponent,
+        FormAttributesComponent
     ],
     exports: [
     ],

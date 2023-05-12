@@ -1,22 +1,26 @@
 <app-fut-header></app-fut-header>
 
 <main>
-<ng-template [ngIf]="loading">
+<ng-template [ngIf]="loading" >
   <div class="background">
 
+  <app-card-details (InformLoading)="getInfoLoading($event)" (informId)="getId($event)" (dataCard)="getDataCard($event)"></app-card-details>
 
-  <app-card-details (InformLoading)="getInfoLoading($event)" (InformError)="getInfoErrorApi($event)" (informId)="getId($event)" (dataCard)="getDataCard($event)"></app-card-details>
+  <div class="descriptionAndInformations">
+    <app-description-player id="textInfo" [cardInformation]="card"></app-description-player>
+    <app-information-buttons [getId]="id"></app-information-buttons>
+  </div>
 
-  <app-description-player [cardInformation]="card"></app-description-player>
-  
-  <app-information-buttons [getId]="id"></app-information-buttons>
-   
 </div>
 </ng-template>
 
 
 
 
-<img src="/src/assets/images/error.png" alt="Erro ao carregar Cards" width="100%" *ngIf="apiError">
+
+
+
+
+<img src="assets/images/error.png" alt="Erro ao carregar Cards" width="100%" *ngIf="!loading">
 
 </main>

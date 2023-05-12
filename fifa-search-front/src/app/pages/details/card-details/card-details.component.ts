@@ -14,7 +14,6 @@ import { NationService } from 'src/app/service/nation.service';
 export class CardDetailsComponent implements OnInit {
 
   @Output() public InformLoading = new EventEmitter();
-  @Output() public InformError = new EventEmitter();
   @Output() public informId = new EventEmitter();
   @Output() public dataCard = new EventEmitter();
 
@@ -29,7 +28,6 @@ export class CardDetailsComponent implements OnInit {
   public colorAttributes: string = '';
 
   public isLoading: boolean = false;
-  public apiError: boolean = false;
 
   public cardTypeAdjustmentCss = this.cardService.cardTypeAdjustmentCss;
 
@@ -54,7 +52,7 @@ export class CardDetailsComponent implements OnInit {
           this.InformLoading.emit(this.isLoading = true);
           this.informId.emit(this.card.id);
         },
-        error: () => this.InformError.emit(this.apiError = true) 
+        error: () => this.InformLoading.emit(this.isLoading = false)
       });
     });
   }

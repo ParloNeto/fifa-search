@@ -25,14 +25,6 @@
             </select>
           </label>
 
-          <!-- <mat-form-field class="details" appearance="fill">
-            <mat-label for="types">Tipo de Carta</mat-label>
-              <mat-select class="selectStyle" formControlName="typeCard">
-                <mat-option *ngFor="let types of selectedTypeCard" [value]="types">
-                   {{ formatWithoutHyphen(types) }}
-                  </mat-option>
-              </mat-select>
-          </mat-form-field> -->
           </div>
 
               <div class="input-box">
@@ -113,7 +105,7 @@
 </app-attributes-details-add-card>
 
 <div class="formAttributes">
-  <form [formGroup]="attributeCard" (ngSubmit)="submitForm()">
+  <form [formGroup]="attributeCard">
     <div class="form-details">
         <div class="input-box">
           

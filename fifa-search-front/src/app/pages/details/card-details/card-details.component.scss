@@ -15,14 +15,14 @@
       margin-right: 2px;
       font-size: 30px;
       z-index: 2;
-      &__top{
+      &__top {
         display: flex;
         flex-direction: row;
         justify-content: center;
         width: 100%;
         height: 140px;
         margin-left: 30px;
-        &__icons{
+        &__icons {
           width: 48px;
           margin-top: 3px;
           z-index: 2;
@@ -30,15 +30,14 @@
       }
     }
 
-    .iconAndNation{
+    .iconAndNation {
       display: flex;
       flex-direction: column;
       width: 100%;
       height: 100%;
-     
     }
   
-    #photo__card{
+    #photo__card {
       width: auto;
       height: auto;
       margin-left: 10px;
@@ -63,24 +62,19 @@
       z-index: 2;
     }
 
-    .type__card__image{
+    .type__card__image {
       position:absolute;
       z-index: 1;
     }
-  
-    #overral {
-      font-size: 25px;
-    }
 
-    .card__body__position{
-      width: 100%;
-      height: 138px;
-      z-index: 2;
-    }
-
-    .card__body{
+    .card__body {
       width: 100%;
       display: flex;
+      &__position {
+        width: 100%;
+        height: 138px;
+        z-index: 2;
+      }
     }
 
     .cardAttributes {
@@ -104,48 +98,10 @@
       line-height: 1.5;
     }
 
-    .bold__numbers{
+    .bold__numbers {
       font-weight: 400;
     }
-
-    .overallWhite{
-      color: #fff;
-    }
-
-    .menuButton{
-      position: absolute;
-      right: 400px;
-      bottom: 130px;
-      margin-right: 14px;
-
-      #buttonDeletePlayer{
-        margin-right: 14px;
-      }
-      button{
-        cursor: pointer;
-      }
-    }
-
     
-  
-
-    .infoRight{
-   display: flex;
-   align-items: center;
-   justify-content: center;
-    
-    }
-
-    #nameInBackground{
-      position: absolute;
-      bottom: 120px;
-      left: -50px;
-      font-size: 75px;
-      white-space: nowrap;
-      color: rgba(0, 0, 0, 0.082);
-    }
-    
-
   
   //different types of cards gold
   .card-fifa-16 {
@@ -161,7 +117,7 @@
     padding: 8px;
   }
 
-  #photo__card{
+  #photo__card {
     margin-bottom: -4px;
   }
 }
@@ -170,17 +126,17 @@
 
     .playercard {
       margin-top: 29px;
-      &__top{
-        &__icons{
+      &__top {
+        &__icons {
           width: 37px;
         }
       }
-      &__details__icons{
+      &__details__icons {
         margin-right: 13px;
         margin-top: 18px;
       }
     }
-    .card__body{
+    .card__body {
       margin-left: 22px;
     }
 
@@ -189,7 +145,7 @@
       left: 20px;
     }
 
-    #photo__card{
+    #photo__card {
       margin-right: 60px;
     }
 
@@ -197,19 +153,16 @@
     
 }
 
-.card-fifa-19{
+.card-fifa-19 {
 .playercard {
       margin-top: 47px;
-      &__top{
-        &__icons{
+      &__top {
+        &__icons {
           width: 44px;
-         
         }
       }
-      &__details__icons{
-       
+      &__details__icons {
         margin-left: 15px;
-        
       }
     }
     .card__body{
@@ -221,15 +174,14 @@
       
     }
 
-    .iconAndNation{
+    .iconAndNation {
       display: flex;
       flex-direction: column-reverse;
     }
-
+    
     #nation { 
       margin-top: 9px; 
     }
-
 }
 
 

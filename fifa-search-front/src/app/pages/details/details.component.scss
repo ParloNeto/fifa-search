@@ -1,10 +1,26 @@
 
 :host{
-  
-  .background{
+  .background {
     background-color: rgba(251, 253, 247, 0.897);
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    height: 25rem;
   }
-  
+
+  .descriptionAndInformations {
+    display: flex;
+    justify-content: space-evenly !important;
+    flex-direction: column;
+    width: 340px;
+    height: 25rem;
+    max-width: 400px;
+
+    #textInfo {
+      display: flex;
+      justify-content: center;
+    }
   }
+}
 

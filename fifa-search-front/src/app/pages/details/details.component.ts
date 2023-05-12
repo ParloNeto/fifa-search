@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Card } from 'src/app/models/card';
 
 @Component({
@@ -7,30 +7,15 @@ import { Card } from 'src/app/models/card';
   styleUrls: ['./details.component.scss'],
 })
 
-export class DetailsComponent implements OnInit {
+export class DetailsComponent {
 
   public loading: boolean = true;
-  public apiError: boolean = false;
-
-  public photoUrl: string = '';
-  public clubUrl: string = '';
-  public nationUrl: string = '';
   public card: any = {};
 
   public id!: string;
 
-  constructor() {}
-
-  ngOnInit(): void {}
-  
-  
-
   public getInfoLoading(event: boolean) {
     this.loading = event;
-  }
-
-  public getInfoErrorApi(event: boolean) {
-    this.apiError = event;
   }
 
   public getId(event: string) {
