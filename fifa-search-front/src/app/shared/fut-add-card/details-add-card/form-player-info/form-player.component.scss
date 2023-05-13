@@ -1,0 +1,86 @@
+@import "../../../../../config-scss/mixin.scss";
+@import "../../../../../config-scss/variables.scss";
+
+:host {
+  .card {
+    @include flex-justify-center;
+    border-radius: 5px;
+    margin: 0px 20px 0px 20px;
+  
+    &-background {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      border-radius: $defaultBorderRadius;
+      margin: 30px 50px ;
+      padding: 10px;
+      color: var(--gray);
+    }
+
+    .container {
+      max-width: 700px;
+      width: 100%;
+      padding: 25px 30px;
+      border-radius: $defaultBorderRadius;
+    }
+
+    .form-details {
+      
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin: 20px 0 12px 0;
+
+      .input-box {
+        margin-bottom: 20px;
+        width: calc(100% / 2 - 20px);
+        select {
+          border-radius: 5px;
+          margin-top: 5px;
+          height: 34px;
+          width: 106%;
+          outline: none;
+          font-size: 18px;
+          padding-left: 15px;
+          border: 1px solid #ccc;
+          border-bottom-width: 2px;
+          transition: all 0.3s ease;
+        }
+        .details {
+          
+          display: block;
+          font-weight: 500;
+          margin-bottom: 9px;
+         
+          .selectStyle {
+            text-transform: capitalize;
+          }
+          input {
+            border-radius: 5px;
+            margin-top: 5px;
+            height: 34px;
+            width: 100%;
+            outline: none;
+            font-size: 18px;
+            font-weight: 300;
+            padding-left: 15px;
+            border: 1px solid #ccc;
+            border-bottom-width: 2px;
+            transition: all 0.3s ease;
+            &[type=number]::-webkit-inner-spin-button { 
+              -webkit-appearance: none;
+            }
+          }
+        }
+      }
+    }
+  
+    #buttonForm {
+      @include buttonDefault;
+      padding: 25px 35px 25px 35px;
+    }
+  
+   
+  }
+}

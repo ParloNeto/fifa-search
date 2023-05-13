@@ -26,11 +26,14 @@ export class FormAttributesComponent implements OnInit {
       physicality: [67, [Validators.maxLength(2), Validators.required]]
     });
 
-    this.attributeCard.valueChanges.subscribe((form) => {
-      this.sendForm.emit(this.attributeCard);
-    })
+    this.attributeCard.valueChanges.subscribe(() => this.emitsFormValue());
    }
   ngOnInit(): void {
-    this.sendForm.emit(this.attributeCard);
+    this.emitsFormValue();
   }
+
+  public emitsFormValue(): void {
+    return this.sendForm.emit(this.attributeCard);
+  }
+  
 }

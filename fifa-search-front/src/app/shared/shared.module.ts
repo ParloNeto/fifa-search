@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FutHeaderComponent } from './fut-header/fut-header.component';
 import { FutSearchComponent } from './fut-search/fut-search.component';
 import { FutListComponent } from './fut-list/fut-list.component';
-import { FutAddCardComponent } from './fut-add-card/fut-add-card.component';
+import { FutAddCardComponent } from './fut-add-card/fut-add-card-button/fut-add-card-button.component';
 
 //Routes
 import { RouterModule } from '@angular/router';

@@ -4,26 +4,30 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Components
 import { RouterModule } from '@angular/router';
-import { DetailsAddCardComponent } from './details-add-card/details-add-card.component';
-import { AttributesDetailsAddCardComponent } from './details-add-card/attributes-details-add-card/attributes-details-add-card.component';
+
 
 //DiretivasPersonalizadas
 import { ClearFieldDirective } from '../../directives/clear-field.directive';
 import { MaterialModule } from '../material/material.module';
 import { AddCardComponent } from './add-card.component';
 import { FormAttributesComponent } from './details-add-card/form-attributes/form-attributes.component';
-import { CardFifaModelComponent } from './card-fifa-model/card-fifa-model.component';
+
 import { SharedModule } from '../shared.module';
+import { FormPlayerComponent } from './details-add-card/form-player-info/form-player.component';
+import { AttributesDetailsAddCardComponent } from './card-fifa-model/attributes-details-add-card.component';
+import { FutGoBackButtonComponent } from './fut-go-back-button/fut-go-back-button.component';
+import { UpperCaseDirective } from 'src/app/directives/upper-case.directive';
 
 
 @NgModule({
     declarations: [
-        DetailsAddCardComponent,
+        FormPlayerComponent,
         AttributesDetailsAddCardComponent,
         ClearFieldDirective,
+        UpperCaseDirective,
         AddCardComponent,
         FormAttributesComponent,
-        CardFifaModelComponent
+        FutGoBackButtonComponent
     ],
     exports: [
     ],

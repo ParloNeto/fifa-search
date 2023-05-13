@@ -1,0 +1,73 @@
+<div
+  [ngClass]="cardTypeAdjustmentCss[cardTypeAdjust]"
+  class="card__header flipInY"
+>
+  <ng-container>
+    <img width="100%"
+    class="type__card__image" 
+    [src]="photoUrl"
+    />
+  </ng-container>
+
+  <ng-container>
+    <img
+      class="type__card__image"
+      *ngIf="!photoUrl"
+      src="../../../../../assets/images/cards/card-default.png"
+    />
+  </ng-container>
+
+  <div  class="playercard">
+    <div class="playercard__top">
+      <div class="playercard__details__icons">
+        <p [ngStyle]="{'color': colorOverall! }">{{ attributeCard.get("overall")?.value }}</p>
+          <p [ngStyle]="{ 'font-size': '15px', 'color': colorPosition }">
+            {{ infoCardsForm.get("position")!.value }}
+          </p>
+            <div class="icon__and__nation">
+                <img
+                  class="playercard__top__icons"
+                  [src]="clubUrl"
+                />
+                <img
+                  class="playercard__top__icons"
+                  id="nation"
+                  [src]="nationUrl"
+                />
+          </div>
+      </div>
+        <img
+          id="photo__card"
+          [src]="infoCardsForm.value!.photo"
+          width="75%"
+          alt="card.photo"
+        />
+    </div>
+
+    <p [ngStyle]="{'color': colorFontName }" id="card__content__name">
+      {{ 
+        infoCardsForm.get("nickName")!.value 
+          ? infoCardsForm.get("nickName")!.value 
+          : infoCardsForm.get("firstName")!.value
+          + " " + infoCardsForm.get("lastName")!.value
+      }}
+    </p>
+  </div>
+
+  <div [ngStyle]="{'color': colorAttributes}" class="card__body__position">
+    <div class="card__body">
+      <div class="card__attributes">
+        <div class="attribute__left">
+          <div><label class="bold__numbers">{{ attributeCard.get("pace")?.value }}</label> PAC</div>
+          <div><label class="bold__numbers">{{ attributeCard.get("shooting")?.value }}</label> SHO</div>
+          <div><label class="bold__numbers">{{ attributeCard.get("passing")?.value }}</label> PAS</div>
+        </div>
+        <div class="attribute__right">
+          <div><label class="bold__numbers">{{ attributeCard.get("dribbling")?.value }}</label> DRI</div>
+          <div><label class="bold__numbers">{{ attributeCard.get("defending")?.value }}</label> DEF</div>
+          <div><label class="bold__numbers">{{ attributeCard.get("physicality")?.value }}</label> PHY</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

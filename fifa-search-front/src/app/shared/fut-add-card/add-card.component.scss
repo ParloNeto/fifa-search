@@ -1,3 +1,12 @@
 .background {
-    background-color: rebeccapurple;
+    background-color: rgb(25, 29, 88);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    #buttonBack {
+       position: absolute;
+       right: 15px;
+       top: 165px;
+    }
 }

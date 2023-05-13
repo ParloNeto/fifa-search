@@ -9,7 +9,7 @@
       }
       
     .input-box {
-        
+        color: var(--gray);
         width: calc(100% / 2 - 10px);
         .details {
           display: block;
@@ -17,6 +17,8 @@
           margin-bottom: 15px;
          
           input {
+            border-radius: 5px;
+            margin-top: 5px;
             height: 40px;
             width: 100%;
             outline: none;

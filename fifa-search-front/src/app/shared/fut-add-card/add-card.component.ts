@@ -21,7 +21,6 @@ export class AddCardComponent {
 
   public getInfoCardForm(event: FormGroup) {
     this.infoCardsForm = event;
-    console.log(event);
   }
 
 }
