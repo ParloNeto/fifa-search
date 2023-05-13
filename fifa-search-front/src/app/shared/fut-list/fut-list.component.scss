@@ -9,6 +9,7 @@ $padding: 45px;
         margin: 0px 25% ;
         padding: $padding 0;
         .card{
+            text-transform: capitalize;
             position:relative;
             display: flex;
             
@@ -29,6 +30,7 @@ $padding: 45px;
             }
 
             &__info{
+                
                 h2{
                     font-size: 22px;
                     font-style: italic;
@@ -36,6 +38,8 @@ $padding: 45px;
                     user-select: none;
                     text-transform: capitalize;
                     margin-bottom: 10px;
+
+                    
                 }
 
                 ul{
@@ -43,6 +47,7 @@ $padding: 45px;
                     flex-direction: column;
 
                     li{
+                    
                         background: var(--gray);
                         color: var(--primary-color);
                         font-size: 10px;

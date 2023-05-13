@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Card } from 'src/app/models/card';
 import { CardService } from 'src/app/service/card.service';
 import { FutApiService } from 'src/app/service/fut-api.service';
+import { NationService } from 'src/app/service/nation.service';
 
 @Component({
   selector: 'app-fut-list',
@@ -13,10 +14,12 @@ export class FutListComponent implements OnInit {
   private setCards: Card[] = [];
   public cards: Card[] = [];
   public apiError: boolean = false;
+  
+  nationUrl: string = '';
  
   constructor(
     private futApiService: FutApiService,
-    private cardService: CardService){
+    private nationService: NationService){
     
   }
   ngOnInit() {
@@ -41,6 +44,11 @@ export class FutListComponent implements OnInit {
       }, 
       error: () => this.apiError = true
     });
+  }
+
+  public formatUpperCase(option: string): string {
+    const formatted = option.replace(/-/g, ' ').toUpperCase();
+    return formatted;
   }
 }
 

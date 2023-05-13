@@ -18,15 +18,6 @@ export class FormPlayerComponent implements OnInit {
   @Input() attributeCard!: FormGroup;
   @Output() sendInfoCard = new EventEmitter<FormGroup>();
 
-  public photoUrl: string = '';
-  public nationUrl: string = '';
-  public clubUrl: string = '';
-
-  public colorOverall: string = '';
-  public colorFontName: string = '';
-  public colorPosition: string = '';
-  public colorAttributes: string = '';
-
   public versionInstanciado: ReadonlyArray<string> = ['fifa-16', 'fifa-17', 'fifa-18', 'fifa-19', 'fifa-20'];
   public selectedTypeCard: string[] = [];
   public selectedNationCard: string[] = [];
@@ -34,8 +25,6 @@ export class FormPlayerComponent implements OnInit {
 
   public infoCardsForm: FormGroup; 
 
-  
-  
   constructor(
     private futApiService: FutApiService,
     private formBuilder: FormBuilder,
