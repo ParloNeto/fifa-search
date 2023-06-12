@@ -87,7 +87,7 @@ public class CardResource {
         CardVO obj = service.create(card);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
                 .buildAndExpand(obj.getId()).toUri();
-        return ResponseEntity.created(uri).body(obj);
+        return ResponseEntity.created(uri).build();
     }
 
     @PutMapping("/{id}")
@@ -113,6 +113,7 @@ public class CardResource {
     @Operation(summary = "Delete a Card",
             description = "Delete a card",
             tags = {"Card"},
+            method = "DELETE",
             responses = {
                     @ApiResponse(description = "No Content", responseCode = "204", content = @Content),
                     @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
@@ -120,6 +121,7 @@ public class CardResource {
                     @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
             })
+
     public ResponseEntity<Void> delete(@PathVariable String id) {
         service.delete(id);
         return ResponseEntity.noContent().build();

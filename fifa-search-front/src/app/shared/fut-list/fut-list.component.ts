@@ -14,12 +14,9 @@ export class FutListComponent implements OnInit {
   private setCards: Card[] = [];
   public cards: Card[] = [];
   public apiError: boolean = false;
-  
-  nationUrl: string = '';
  
   constructor(
-    private futApiService: FutApiService,
-    private nationService: NationService){
+    private futApiService: FutApiService){
     
   }
   ngOnInit() {
