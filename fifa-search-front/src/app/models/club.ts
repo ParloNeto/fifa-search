@@ -1,4 +1,5 @@
 export interface Club {
-    club: string;
+    id: string;
+    name: string;
     clubUrl: string;
 }
