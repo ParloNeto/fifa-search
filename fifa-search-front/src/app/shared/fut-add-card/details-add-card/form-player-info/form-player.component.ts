@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
 import { FutApiService } from 'src/app/service/fut-api.service';
 import { CardService } from 'src/app/service/card.service';
 import { NationService } from 'src/app/service/nation.service';
@@ -21,7 +20,10 @@ export class FormPlayerComponent implements OnInit {
   public versionInstanciado: ReadonlyArray<string> = ['fifa-16', 'fifa-17', 'fifa-18', 'fifa-19', 'fifa-20'];
   public selectedTypeCard: string[] = [];
   public selectedNationCard: string[] = [];
-  public selectedClubCard: string[] = [];
+  public selectedClubCard: { name: string, id: string }[] = [];
+
+  public clubsId: string[] = [];
+
 
   public infoCardsForm: FormGroup; 
 
@@ -42,7 +44,7 @@ export class FormPlayerComponent implements OnInit {
       lastName: ['Messi', [Validators.required, Validators.maxLength(20)] ],
       nickName: ['', Validators.maxLength(30)],
       nationality: ['', Validators.required],
-      club: ['palmeiras', Validators.required],
+      club: ['', Validators.required],
       position: ['RW', [Validators.required, Validators.maxLength(3)]],
       photo: ['https://futhead.cursecdn.com/static/img/23/players/158023.png', Validators.required],
     });
@@ -55,7 +57,8 @@ export class FormPlayerComponent implements OnInit {
 
     this.infoCardsForm.patchValue({
       nationality: 'argentina',
-      typeCard: 'futties'
+      typeCard: 'futties',
+      club: 'palmeiras'
     });
 
     this.getAllNations();
@@ -104,7 +107,10 @@ export class FormPlayerComponent implements OnInit {
   
   public getAllClubs(): void {
     this.clubService.getAllClubs().forEach(res => {
-      res.map(card => this.addItemsInSelectArray(this.selectedClubCard, card.club));
+      res.map(card => {
+        const club = { name: card.name, id: card.id, clubUrl: card.clubUrl };
+        this.selectedClubCard.push(club);
+      });
     });
   }
   

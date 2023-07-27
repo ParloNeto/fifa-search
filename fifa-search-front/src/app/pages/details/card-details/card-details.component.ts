@@ -81,7 +81,7 @@ export class CardDetailsComponent implements OnInit {
    }
 
   public getClub(): void { 
-    const club = this.card.club;
+    const club = this.card.club.name;
       if (club) {
         this.clubService.getSpecificClub(club).subscribe(card => {
           this.clubUrl = card.clubUrl;

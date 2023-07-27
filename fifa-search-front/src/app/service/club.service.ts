@@ -2,8 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Club } from '../models/club';
-import { Nation } from '../models/nation';
-import { TypeCard } from '../models/typeCard';
 
 @Injectable({
   providedIn: 'root'

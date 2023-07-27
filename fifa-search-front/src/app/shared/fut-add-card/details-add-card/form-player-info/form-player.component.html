@@ -64,7 +64,7 @@
                   >Clube:
                   <select class="selectStyle" formControlName="club">
                     <option *ngFor="let OneClub of selectedClubCard" [ngValue]="OneClub">
-                      {{ formatWithoutHyphen(OneClub) }}
+                      {{ formatWithoutHyphen(OneClub.name) }}
                     </option>
                   </select>
                 </label>

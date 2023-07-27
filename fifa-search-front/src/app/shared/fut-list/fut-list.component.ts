@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Card } from 'src/app/models/card';
-import { CardService } from 'src/app/service/card.service';
 import { FutApiService } from 'src/app/service/fut-api.service';
-import { NationService } from 'src/app/service/nation.service';
 
 @Component({
   selector: 'app-fut-list',
@@ -30,7 +28,7 @@ export class FutListComponent implements OnInit {
    });
 
    this.cards = filter;
-  
+   this.cards.map
   }
 
   public getAllCards() {
@@ -38,6 +36,7 @@ export class FutListComponent implements OnInit {
       next: (res) => {
         this.setCards = res;
         this.cards = this.setCards;
+        console.log(this.cards)
       }, 
       error: () => this.apiError = true
     });

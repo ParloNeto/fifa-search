@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { CardService } from 'src/app/service/card.service';
 import { NationService } from 'src/app/service/nation.service';
@@ -15,7 +15,7 @@ export class AttributesDetailsAddCardComponent implements OnInit {
 
   photoUrl!: string;
   nationUrl!: string;
-  clubUrl!: string;
+  clubUrl: string = 'https://static.wefut.com/assets/images/fut16/clubbadges/383.png?21';
 
   colorOverall: string = '';
   colorFontName: string = '';
@@ -89,9 +89,12 @@ export class AttributesDetailsAddCardComponent implements OnInit {
 
   public getClub(): void { 
     const club = this.infoCardsForm.get('club')!.value;
+    const clubName = club.name;
+    
 
-    this.clubService.getSpecificClub(club).subscribe(card => {
-      if (club == card.club) this.clubUrl = card.clubUrl;
+    this.clubService.getSpecificClub(clubName).subscribe(card => {
+      if (club.clubUrl == card.clubUrl) this.clubUrl = card.clubUrl;
+      console.log(card.clubUrl)
     });
   }
 }
