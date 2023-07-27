@@ -1,5 +1,6 @@
 package com.br.paulo.futsearch.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,15 +8,17 @@ import jakarta.persistence.GenerationType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+import java.io.Serializable;
+
 @Document(collection = "club")
-public class Club {
+public class Club implements Serializable {
 
     @Id
     private String id;
-    @Column(nullable = false, length = 40)
+
+    @JsonProperty("name")
     private String club;
-    @Column(nullable = false, length = 100)
+
     private String clubUrl;
 
     public Club() {

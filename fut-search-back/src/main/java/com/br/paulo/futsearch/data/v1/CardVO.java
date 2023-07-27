@@ -1,6 +1,7 @@
 package com.br.paulo.futsearch.data.v1;
 
 import com.br.paulo.futsearch.domain.AttributeCard;
+import com.br.paulo.futsearch.domain.Club;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import org.springframework.hateoas.RepresentationModel;
@@ -27,7 +28,7 @@ public class CardVO extends RepresentationModel<CardVO> implements Serializable 
 
     private String nationality;
 
-    private String club;
+    private Club club;
 
     private String position;
 
@@ -39,7 +40,7 @@ public class CardVO extends RepresentationModel<CardVO> implements Serializable 
     }
 
     public CardVO(String id, String versionFifa, String typeCard, String firstName, String lastName, String nickName, String nationality,
-                  String club, String position, String photo, AttributeCard attributeCard) {
+                  Club club, String position, String photo, AttributeCard attributeCard) {
         this.id = id;
         this.versionFifa = versionFifa;
         this.typeCard = typeCard;
@@ -101,11 +102,11 @@ public class CardVO extends RepresentationModel<CardVO> implements Serializable 
         this.nationality = nationality;
     }
 
-    public String getClub() {
+    public Club getClub() {
         return club;
     }
 
-    public void setClub(String club) {
+    public void setClub(Club club) {
         this.club = club;
     }
 

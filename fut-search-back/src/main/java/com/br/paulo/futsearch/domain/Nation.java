@@ -7,15 +7,16 @@ import jakarta.persistence.GenerationType;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
+import java.io.Serializable;
+
 @Document(collection = "nation")
-public class Nation {
+public class Nation implements Serializable {
 
     @Id
     private String id;
-    @Column(nullable = false, length = 30)
+
     private String nation;
-    @Column(nullable = false, length = 100)
+
     private String nationUrl;
 
     public Nation() {

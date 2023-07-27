@@ -1,34 +1,31 @@
 package com.br.paulo.futsearch.domain;
 
+import jakarta.validation.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
-import jakarta.persistence.*;
 import java.util.Objects;
 
-@Entity
 @Document(collection = "card")
 public class Card implements Serializable {
     @Id
     private String id;
-    @Column(nullable = false)
     private String versionFifa;
 
-    @Column(nullable = false, length = 50)
     private String typeCard;
-    @Column(nullable = false, length = 20)
+
     private String firstName;
-    @Column(nullable = false, length = 20)
+
     private String lastName;
-    @Column(nullable = true, length = 30)
+    @NotBlank(message = "cannot be null")
     private String nickName;
-    @Column(nullable = false, length = 30)
     private String nationality;
-    @Column(nullable = false, length = 30)
-    private String club;
-    @Column(nullable = false, length = 3)
+    @DBRef
+    private Club club;
+
     private String position;
-    @Column(nullable = false, length = 150)
+
     private String photo;
 
     private AttributeCard attributeCard;
@@ -37,7 +34,7 @@ public class Card implements Serializable {
     }
 
     public Card(String id, String versionFifa, String typeCard, String firstName, String lastName, String nickName, String nationality,
-                String club, String position, String photo, AttributeCard attributeCard) {
+                Club club, String position, String photo, AttributeCard attributeCard) {
         this.id = id;
         this.versionFifa = versionFifa;
         this.typeCard = typeCard;
@@ -99,11 +96,11 @@ public class Card implements Serializable {
         this.nationality = nationality;
     }
 
-    public String getClub() {
+    public Club getClub() {
         return club;
     }
 
-    public void setClub(String club) {
+    public void setClub(Club club) {
         this.club = club;
     }
 

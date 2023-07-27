@@ -7,19 +7,18 @@ import java.io.Serializable;
 
 public class AttributeCard implements Serializable {
 
-    @Column(nullable = false, length = 3)
     private int overall;
-    @Column(nullable = false, length = 3)
+
     private int pace;
-    @Column(nullable = false, length = 3)
+
     private int shooting;
-    @Column(nullable = false, length = 3)
+
     private int passing;
-    @Column(nullable = false, length = 3)
+
     private int dribbling;
-    @Column(nullable = false, length = 3)
+
     private int defending;
-    @Column(nullable = false, length = 3)
+
     private int physicality;
 
     public AttributeCard() {
