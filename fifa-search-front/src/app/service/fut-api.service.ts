@@ -16,9 +16,9 @@ export class FutApiService {
     return this.http.get<Card[]>(this.apiUrl);
   }
 
-  getCard(url: string): Observable<Card[]> {
+  getCard(url: string): Observable<Card> {
     const url2 = `${this.apiUrl}/${url}`;
-    return this.http.get<Card[]>(url2);
+    return this.http.get<Card>(url2);
   }
 
   addCard(card: Card): Observable<Card> {
