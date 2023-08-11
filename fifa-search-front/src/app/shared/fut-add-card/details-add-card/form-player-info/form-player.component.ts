@@ -10,22 +10,26 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-form-player',
   templateUrl: './form-player.component.html',
-  styleUrls: ['./form-player.component.scss']
+  styleUrls: ['./form-player.component.scss'],
 })
 export class FormPlayerComponent implements OnInit {
-
   @Input() attributeCard!: FormGroup;
   @Output() sendInfoCard = new EventEmitter<FormGroup>();
 
-  public versionInstanciado: ReadonlyArray<string> = ['fifa-16', 'fifa-17', 'fifa-18', 'fifa-19', 'fifa-20'];
+  public versionInstanciado: ReadonlyArray<string> = [
+    'fifa-16',
+    'fifa-17',
+    'fifa-18',
+    'fifa-19',
+    'fifa-20',
+  ];
   public selectedTypeCard: string[] = [];
   public selectedNationCard: string[] = [];
-  public selectedClubCard: { name: string, id: string }[] = [];
+  public selectedClubCard: { name: string; id: string }[] = [];
 
   public clubsId: string[] = [];
 
-
-  public infoCardsForm: FormGroup; 
+  public infoCardsForm: FormGroup;
 
   constructor(
     private futApiService: FutApiService,
@@ -36,21 +40,23 @@ export class FormPlayerComponent implements OnInit {
     private router: Router,
     private snackBar: MatSnackBar
   ) {
-     this.infoCardsForm = this.formBuilder.group({
-   
+    this.infoCardsForm = this.formBuilder.group({
       versionFifa: ['', Validators.required],
       typeCard: ['', [Validators.required, Validators.maxLength(50)]],
-      firstName: ['Lionel' , [Validators.required, Validators.maxLength(20)] ],
-      lastName: ['Messi', [Validators.required, Validators.maxLength(20)] ],
+      firstName: ['Lionel', [Validators.required, Validators.maxLength(20)]],
+      lastName: ['Messi', [Validators.required, Validators.maxLength(20)]],
       nickName: ['', Validators.maxLength(30)],
       nationality: ['', Validators.required],
       club: ['', Validators.required],
       position: ['RW', [Validators.required, Validators.maxLength(3)]],
-      photo: ['https://futhead.cursecdn.com/static/img/23/players/158023.png', Validators.required],
+      photo: [
+        'https://futhead.cursecdn.com/static/img/23/players/158023.png',
+        Validators.required,
+      ],
     });
 
     this.infoCardsForm.valueChanges.subscribe(() => this.emitsFormValue());
-    }
+  }
 
   ngOnInit(): void {
     this.emitsFormValue();
@@ -58,7 +64,7 @@ export class FormPlayerComponent implements OnInit {
     this.infoCardsForm.patchValue({
       nationality: 'argentina',
       typeCard: 'futties',
-      club: 'palmeiras'
+      club: 'palmeiras',
     });
 
     this.getAllNations();
@@ -77,15 +83,18 @@ export class FormPlayerComponent implements OnInit {
 
   public submitForm() {
     if (this.infoCardsForm.valid) {
-      const data = Object.assign({}, this.infoCardsForm.value, { attributeCard: this.attributeCard.value });
+      const data = Object.assign({}, this.infoCardsForm.value, {
+        attributeCard: this.attributeCard.value,
+      });
       this.futApiService.addCard(data).subscribe({
         next: () => {
           this.router.navigateByUrl('');
           this.snackBar.open('Jogador adicionado com sucesso!', 'Fechar', {
-            duration: 3000
+            duration: 3000,
           });
         },
-        error: (error: Error) => console.error('Erro ao adicionar carta de jogador:', error)
+        error: (error: Error) =>
+          console.error('Erro ao adicionar carta de jogador:', error),
       });
     }
   }
@@ -94,33 +103,37 @@ export class FormPlayerComponent implements OnInit {
     this.selectedTypeCard = [];
     const version = this.infoCardsForm.get('versionFifa')!.value;
 
-    this.cardService.getVersionCards(version).forEach(res => {
-     res.map(card => this.addItemsInSelectArray(this.selectedTypeCard, card.cardType));
+    this.cardService.getVersionCards(version).forEach((res) => {
+      res.forEach((card) => {
+        this.addItemsInSelectArray(this.selectedTypeCard, card.cardType);
+      });
     });
-   }
+    
+  }
 
   public getAllNations(): void {
-    this.nationService.getAllNations().forEach(res => {
-     res.map(card => this.addItemsInSelectArray(this.selectedNationCard, card.nation));
+    this.nationService.getAllNations().forEach((res) => {
+      res.forEach((card) =>
+        this.addItemsInSelectArray(this.selectedNationCard, card.nation)
+      );
     });
   }
-  
+
   public getAllClubs(): void {
-    this.clubService.getAllClubs().forEach(res => {
-      res.map(card => {
+    this.clubService.getAllClubs().forEach((res) => {
+      res.forEach((card) => {
         const club = { name: card.name, id: card.id, clubUrl: card.clubUrl };
         this.selectedClubCard.push(club);
       });
     });
   }
-  
-    public addItemsInSelectArray(arraySelect: string[] ,item: string): string[] {
-    arraySelect.push(item);
-      return arraySelect.sort();
-    }
 
-    public emitsFormValue(): void {
-      return this.sendInfoCard.emit(this.infoCardsForm);
-    }
-  
+  public addItemsInSelectArray(arraySelect: string[], item: string): string[] {
+    arraySelect.push(item);
+    return arraySelect.sort((a, b) => a.localeCompare(b));
+  }
+
+  public emitsFormValue(): void {
+    return this.sendInfoCard.emit(this.infoCardsForm);
+  }
 }

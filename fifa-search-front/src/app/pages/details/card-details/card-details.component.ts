@@ -27,8 +27,6 @@ export class CardDetailsComponent implements OnInit {
   public colorPosition: string = '';
   public colorAttributes: string = '';
 
-  public isLoading: boolean = false;
-
   public cardTypeAdjustmentCss = this.cardService.cardTypeAdjustmentCss;
 
   constructor(
@@ -40,6 +38,7 @@ export class CardDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+   
     this.activatedRoute.params.subscribe((params) => {
       const id = params['id'];
       this.futApiService.getCard(`${id}`).subscribe({
@@ -48,11 +47,11 @@ export class CardDetailsComponent implements OnInit {
           this.getPhotoType();
           this.getNation();
           this.getClub();
-          this.dataCard.emit((this.card = res));
-          this.InformLoading.emit((this.isLoading = true));
+          this.dataCard.emit((res));
+          this.InformLoading.emit(true);
           this.informId.emit(this.card.id);
         },
-        error: () => this.InformLoading.emit((this.isLoading = false)),
+        error: () => this.InformLoading.emit(false),
       });
     });
   }

@@ -6,6 +6,7 @@
     <img width="100%"
     class="type__card__image" 
     [src]="photoUrl"
+    [alt]="infoCardsForm.value.typeCard"
     />
   </ng-container>
 
@@ -14,6 +15,7 @@
       class="type__card__image"
       *ngIf="!photoUrl"
       src="../../../../../assets/images/cards/card-default.png"
+      alt="Default CardType"
     />
   </ng-container>
 
@@ -28,11 +30,13 @@
                 <img
                   class="playercard__top__icons"
                   [src]="clubUrl"
+                  [alt]="infoCardsForm.value.club.name"
                 />
                 <img
                   class="playercard__top__icons"
                   id="nation"
                   [src]="nationUrl"
+                  [alt]="infoCardsForm.value.nationality"
                 />
           </div>
       </div>
@@ -40,7 +44,7 @@
           id="photo__card"
           [src]="infoCardsForm.value!.photo"
           width="75%"
-          alt="card.photo"
+          alt="URL to a real player image"
         />
     </div>
 

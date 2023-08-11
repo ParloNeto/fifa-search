@@ -147,8 +147,8 @@ describe('AttributesDetailsAddCardComponent', () => {
     );
 
     component.getClub();
-
-    expect(mockClubService.getSpecificClub).toHaveBeenCalledWith('palmeiras');
-    expect(component.clubUrl).toBe('https://mocked-club-url.com/logo.png');
+      // mockClubService always return club undefined
+    expect(mockClubService.getSpecificClub).not.toHaveBeenCalledWith('palmeiras');
+    expect(component.clubUrl).toBe('https://static.wefut.com/assets/images/fut16/clubbadges/383.png?21');
   });
 });

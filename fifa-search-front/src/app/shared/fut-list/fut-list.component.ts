@@ -28,7 +28,7 @@ export class FutListComponent implements OnInit {
    });
 
    this.cards = filter;
-   this.cards.map
+
   }
 
   public getAllCards() {

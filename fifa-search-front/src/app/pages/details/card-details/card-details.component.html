@@ -1,5 +1,5 @@
-<div *ngIf="card"
-  [ngClass]="cardTypeAdjustmentCss[card.versionFifa]"
+<div *ngIf="card && card.versionFifa"
+  [ngClass]="cardTypeAdjustmentCss[card.versionFifa || 'fifa-16']"
  
   class="card__header flipInY"
 >
@@ -7,6 +7,7 @@
     <img width="100%"
     class="type__card__image" 
     [src]="photoUrl"
+    [alt]="card.typeCard"
     />
   </ng-container>
 
@@ -14,6 +15,7 @@
     class="type__card__image"
     *ngIf="!photoUrl"
     src="../../../../../assets/images/cards/card-default.png"
+    alt="Default CardType"
   />
 
   <div class="playercard">
@@ -28,18 +30,20 @@
             <img
               class="playercard__top__icons"
               [src]="clubUrl"
+              [alt]="card.club.name"
             />
             <img
               class="playercard__top__icons"
               id="nation"
               [src]="nationUrl"
+              [alt]="card.nationality"
             />
       </div>
       </div>
       <img
         id="photo__card"
         [src]="card.photo"
-        alt="card.photo"
+        alt="image of a real player card"
         width="75%"
       />
     </div>

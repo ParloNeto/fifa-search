@@ -7,7 +7,7 @@ import { NationService } from 'src/app/service/nation.service';
 import { ClubService } from 'src/app/service/club.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { clubMock, clubsMock } from 'src/app/models/test/mock-models';
+import { clubMock, clubsMock, mockListClub, mockListNation, mockListTypeCard } from 'src/app/models/test/mock-models';
 
 // Stub do serviço FutApiService
 class FutApiServiceStub {
@@ -21,19 +21,19 @@ class FutApiServiceStub {
 // Stub dos serviços CardService, NationService e ClubService
 class CardServiceStub {
   getVersionCards() {
-    return [[]];
+    return [mockListTypeCard];
   }
 }
 
 class NationServiceStub {
   getAllNations() {
-    return [[]];
+    return [mockListNation];
   }
 }
 
 class ClubServiceStub {
   getAllClubs() {
-    return [[]];
+    return [mockListClub];
   }
 }
 
@@ -103,9 +103,9 @@ describe('FormPlayerComponent', () => {
   it('should call addCard method from FutApiService when form is valid', fakeAsync(() => {
     spyOn(futApiService, 'addCard').and.callThrough();
   
-    // Inicialize o attributeCard como um FormGroup vazio ou preenchido com valores válidos
+    
     component.attributeCard = formBuilder.group({
-      // defina os controles do FormGroup aqui
+      
     });
   
     component.infoCardsForm.patchValue({

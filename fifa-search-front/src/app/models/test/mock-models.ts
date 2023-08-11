@@ -1,10 +1,12 @@
 import { AttributeCard } from '../attributeCard';
 import { Card } from '../card';
 import { Club } from '../club';
+import { Nation } from '../nation';
+import { TypeCard } from '../typeCard';
 
 export const cardMock: Card = {
   id: '1111',
-  versionFifa: 'fifa-16',
+  versionFifa: 'fifa-17',
   typeCard: 'futties',
   firstName: 'Neymar',
   lastName: 'Jr',
@@ -138,3 +140,84 @@ export const attributesMock: AttributeCard = {
   defending: 34,
   physicality: 67,
 };
+
+export const mockTypeCard: TypeCard = {
+  fifaVersion: 'fifa-17',
+  cardType: 'futties',
+  photoUrl: 'url/photo/futties',
+  colorText: {
+    colorOverall: '#FFFFFF',
+    colorFontName: '#FFFFFF',
+    colorPosition: '#FFFFFF',
+    colorAttributes: '#FFFFFF',
+  },
+};
+
+export const mockListTypeCard: TypeCard[] = [
+  {
+    fifaVersion: 'fifa-16',
+    cardType: 'futties',
+    photoUrl: 'url/photo/futties',
+    colorText: {
+      colorOverall: '#FFFFFF',
+      colorFontName: '#FFFFFF',
+      colorPosition: '#FFFFFF',
+      colorAttributes: '#FFFFFF',
+    },
+  },
+  {
+    fifaVersion: 'fifa-17',
+    cardType: 'futties',
+    photoUrl: 'url/photo/futties',
+    colorText: {
+      colorOverall: '#FFFFFF',
+      colorFontName: '#FFFFFF',
+      colorPosition: '#FFFFFF',
+      colorAttributes: '#FFFFFF',
+    },
+  },
+  {
+    fifaVersion: 'fifa-18',
+    cardType: 'futties',
+    photoUrl: 'url/photo/futties',
+    colorText: {
+      colorOverall: '#FFFFFF',
+      colorFontName: '#FFFFFF',
+      colorPosition: '#FFFFFF',
+      colorAttributes: '#FFFFFF',
+    },
+  },
+];
+
+export const mockListNation: Nation[] = [
+  {
+    nation: 'brazil',
+    nationUrl: 'url/brazil',
+  },
+  {
+    nation: 'argentina',
+    nationUrl: 'url/argentina',
+  },
+  {
+    nation: 'france',
+    nationUrl: 'url/france',
+  },
+];
+
+export const mockListClub: Club[] = [
+  {
+    id: '1111',
+    name: 'palmeiras',
+    clubUrl: 'url/palmeiras',
+  },
+  {
+    id: '2222',
+    name: 'real-madrid',
+    clubUrl: 'url/real-madrid',
+  },
+  {
+    id: '3333',
+    name: 'barcelona',
+    clubUrl: 'url/barcelona',
+  },
+];

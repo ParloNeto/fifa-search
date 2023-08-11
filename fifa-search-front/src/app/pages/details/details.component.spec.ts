@@ -10,6 +10,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { cardMock } from 'src/app/models/test/mock-models';
 
 describe('DetailsComponent', () => {
   let component: DetailsComponent;
@@ -47,5 +48,28 @@ describe('DetailsComponent', () => {
 
     const errorImage = debugElement.query(By.css('img[src="assets/images/error.png"]'));
     expect(errorImage).toBeTruthy();
+  });
+
+  it('should set loading correctly', () => {
+    const event = true;
+    component.getInfoLoading(event);
+    expect(component.loading).toBe(event);
+  });
+
+  it('should set id correctly', () => {
+    const eventId = '1111';
+    component.getId(eventId);
+    expect(component.id).toBe(eventId);
+  })
+
+  it('should set description correctly', () => {
+    const event = cardMock;
+
+    component.getDescriptionCard(event);
+    expect(component.description.nickName).toBe(event.nickName);
+    expect(component.description.firstName).toBe(event.firstName);
+    expect(component.description.lastName).toBe(event.lastName);
+    expect(component.description.nationality).toBe(event.nationality);
+    expect(component.description.clubName).toBe(event.club.name);
   });
 });
