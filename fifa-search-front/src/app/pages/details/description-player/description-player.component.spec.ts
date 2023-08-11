@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { InformationPlayerComponent } from './description-player.component';
+import { DescriptionPlayerComponent } from './description-player.component';
 
-describe('InformationPlayerComponent', () => {
-  let component: InformationPlayerComponent;
-  let fixture: ComponentFixture<InformationPlayerComponent>;
+describe('DescriptionPlayerComponent', () => {
+  let component: DescriptionPlayerComponent;
+  let fixture: ComponentFixture<DescriptionPlayerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InformationPlayerComponent ]
+      declarations: [ DescriptionPlayerComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(InformationPlayerComponent);
+    fixture = TestBed.createComponent(DescriptionPlayerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -20,4 +20,10 @@ describe('InformationPlayerComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should capitalize first letter', () => {
+    const result = component.capitalizeFirstLetter('dybala');
+    expect(result).toBe('Dybala');
+  });
+
 });

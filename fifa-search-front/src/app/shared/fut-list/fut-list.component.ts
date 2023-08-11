@@ -36,7 +36,6 @@ export class FutListComponent implements OnInit {
       next: (res) => {
         this.setCards = res;
         this.cards = this.setCards;
-        console.log(this.cards)
       }, 
       error: () => this.apiError = true
     });

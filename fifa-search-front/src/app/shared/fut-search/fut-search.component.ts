@@ -5,7 +5,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
   templateUrl: './fut-search.component.html',
   styleUrls: ['./fut-search.component.scss']
 })
-export class FutSearchComponent{
+export class FutSearchComponent {
   
   @Output() public emmitSearch: EventEmitter<string> = new EventEmitter();
 

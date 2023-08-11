@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FutHeaderComponent } from './fut-header.component';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 
 describe('FutHeaderComponent', () => {
   let component: FutHeaderComponent;
@@ -8,7 +9,17 @@ describe('FutHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FutHeaderComponent ]
+      declarations: [ FutHeaderComponent ],
+      imports: [ RouterModule ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+            }
+          }
+        }
+      ]
     })
     .compileComponents();
 
