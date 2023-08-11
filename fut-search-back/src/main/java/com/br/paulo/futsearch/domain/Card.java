@@ -18,7 +18,7 @@ public class Card implements Serializable {
     private String firstName;
 
     private String lastName;
-    @NotBlank(message = "cannot be null")
+    
     private String nickName;
     private String nationality;
     @DBRef
