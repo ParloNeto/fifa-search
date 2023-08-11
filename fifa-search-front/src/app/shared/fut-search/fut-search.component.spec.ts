@@ -20,4 +20,17 @@ describe('FutSearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should emit search value', () => {
+    const searchValue = 'messi';
+    let emittedValue: string | undefined;
+
+    component.emmitSearch.subscribe((value) => {
+      emittedValue = value;
+    });
+
+    component.search(searchValue);
+
+    expect(emittedValue).toBe(searchValue);
+  });
 });
