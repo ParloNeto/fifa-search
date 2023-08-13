@@ -1,27 +1,41 @@
 <app-fut-search (emmitSearch)="getSearch($event)"></app-fut-search>
 
 <section class="list">
-<ng-template ngFor let-cards [ngForOf] ="cards">
-  <a [routerLink]="['details', cards.id]" class="card fadeIn">
-    <section class="card__info">
-      <h2>
-        {{ cards.firstName }} {{ cards.lastName }}
-      </h2>
+  <ng-template ngFor let-cards [ngForOf]="cards">
+    <a [routerLink]="['details', cards.id]" class="card fadeIn">
+      <section class="card__info">
+        <p>{{ formatUpperCase(cards.position) }}</p>
+        <h2>{{ cards.firstName }} {{ cards.lastName }}</h2>
 
-      <ul>
-        <li>{{ cards.nationality  }}</li>
-        <li>{{ formatUpperCase(cards.position) }}</li>
-        <li>{{ cards.club.name }}</li>
-      </ul>
-    </section>
+        <ul>
+          <li>
+            <img
+              [src]="nationUrl[cards.nationality]"
+              [alt]="cards.nationality"
+            />
+          </li>
+          <li>
+            <img [src]="cards.club.clubUrl" [alt]="cards.club.name" />
+            <h4>{{ formatWithoutHyphen(cards.nationality) }}</h4>
+            <h4>{{ formatWithoutHyphen(cards.club.name) }}</h4>
+          </li>
+        </ul>
+      </section>
 
-    <section class="card__image">
-      <img class="card__image__player-photo" [src]="cards.photo" alt="{{cards.firstName}} photo">
-    </section>
-  </a>
-</ng-template>
+      <section class="card__image">
+        <img
+          class="card__image__player-photo"
+          [src]="cards.photo"
+          alt="{{ cards.firstName }} photo"
+        />
+      </section>
+    </a>
+  </ng-template>
 </section>
 
-
-
-<img src="assets/images/error.png" alt="Erro ao carregar Cards" width="50%" *ngIf="apiError">
+<img
+  src="assets/images/error.png"
+  alt="Erro ao carregar Cards"
+  width="50%"
+  *ngIf="apiError"
+/>

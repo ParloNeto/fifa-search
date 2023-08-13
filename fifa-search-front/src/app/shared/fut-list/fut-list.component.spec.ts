@@ -5,12 +5,14 @@ import { Card } from 'src/app/models/card';
 import { HttpClientModule } from '@angular/common/http';
 import { FutSearchComponent } from '../fut-search/fut-search.component';
 import { of, throwError } from 'rxjs';
-import { cardMock, cardsMock } from 'src/app/models/test/mock-models';
+import { cardMock, cardsMock, mockListNation } from 'src/app/models/test/mock-models';
+import { NationService } from 'src/app/service/nation.service';
 
 describe('FutListComponent', () => {
   let component: FutListComponent;
   let fixture: ComponentFixture<FutListComponent>;
   let futApiService: FutApiService;
+  let nationService: NationService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -24,6 +26,7 @@ describe('FutListComponent', () => {
     fixture = TestBed.createComponent(FutListComponent);
     component = fixture.componentInstance;
     futApiService = TestBed.inject(FutApiService);
+    nationService = TestBed.inject(NationService);
     fixture.detectChanges();
   });
 
@@ -67,21 +70,29 @@ describe('FutListComponent', () => {
 
       expect(component['setCards']).toEqual(mockCards);
       expect(component.cards).toEqual(mockCards);
-    }));
+    }))});
+
+    describe('getAllNations', () => {
+      it('should activate the getAllNations method', fakeAsync(() => {
+        spyOn(nationService, 'getAllNations').and.returnValue(of(mockListNation));
+  
+        component.getAllNations();
+  
+        tick();
+  
+        expect(nationService.getAllNations).toHaveBeenCalled();
+        expect(component.nationUrl).toBeTruthy();
+      }));
 
     it('should handle API error correctly', fakeAsync(() => {
       spyOn(futApiService, 'getAllCards').and.returnValue(throwError({}));
 
-      // Call the getAllCards method
       component.getAllCards();
 
-      // Use tick() to simulate the passage of time and resolve the observable
       tick();
 
-      // Expect that futApiService.getAllCards was called
       expect(futApiService.getAllCards).toHaveBeenCalled();
 
-      // Expect that the apiError property was set to true
       expect(component.apiError).toBeTrue();
     }));
   });
@@ -91,4 +102,11 @@ describe('FutListComponent', () => {
     component.formatUpperCase(position);
     expect(component.formatUpperCase(position)).toEqual("LW")
   })
+
+  it('should expected "manchester-united" without hyphen', () => {
+    const club = "manchester-united";
+    component.formatWithoutHyphen(club);
+    expect(component.formatWithoutHyphen(club)).toEqual("manchester united")
+  })
+
 });
