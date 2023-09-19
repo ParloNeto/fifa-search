@@ -12,6 +12,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -25,7 +26,7 @@ public class NationResource {
 
     @Autowired
     private NationService service;
-
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     @GetMapping
     @Operation(summary = "Finds all Nations", description = "Finds all Nations",
             tags = {"Nation"},
@@ -48,6 +49,8 @@ public class NationResource {
 
         return ResponseEntity.ok().body(list);
     }
+
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     @GetMapping("/{nation}")
     @Operation(summary = "Finds a Nation by Name", description = "Finds Nation by Name",
             tags = {"Nation"},
@@ -68,6 +71,7 @@ public class NationResource {
         return ResponseEntity.ok().body(obj);
     }
 
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     @PostMapping
     @Operation(summary = "Create a new Nation",
             description = "Create a new Nation",
@@ -88,6 +92,7 @@ public class NationResource {
         return ResponseEntity.created(uri).build();
     }
 
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     @PutMapping("/{id}")
     @Operation(summary = "Edit a existing Nation by ID",
             description = "Edit a existing Nation by ID",
@@ -110,6 +115,7 @@ public class NationResource {
         return ResponseEntity.noContent().build();
     }
 
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a Nation by ID",
             description = "Delete a Nation by ID",

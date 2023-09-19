@@ -10,12 +10,12 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
-
 
 @RestController
 @RequestMapping(value = "/cards")
@@ -24,9 +24,7 @@ public class CardResource {
 
     @Autowired
     private CardService service;
-
-
-
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     @GetMapping
     @Operation(summary = "Finds all Cards", description = "Finds all Cards",
             tags = {"Card"},
@@ -48,7 +46,7 @@ public class CardResource {
         List<CardVO> listCard = service.findAll();
         return ResponseEntity.ok().body(listCard);
     }
-
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     @GetMapping("/{id}")
     @Operation(summary = "Finds a Card", description = "Finds a Card",
             tags = {"Card"},
@@ -69,7 +67,7 @@ public class CardResource {
         return ResponseEntity.ok().body(obj);
     }
 
-
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     @PostMapping
     @Operation(summary = "Create a new Card",
             description = "Create a new Card",
@@ -89,7 +87,7 @@ public class CardResource {
                 .buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
-
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     @PutMapping("/{id}")
     @Operation(summary = "Edit a existing Card",
     description = "Edit a existing Card",
@@ -121,15 +119,9 @@ public class CardResource {
                     @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
             })
-
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public ResponseEntity<Void> delete(@PathVariable String id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
-
-
-
-
-
-
 }

@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -25,6 +26,7 @@ public class TypeCardResource {
     @Autowired
     private TypeCardService service;
 
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     @GetMapping
     @Operation(summary = "Find all Type Cards!", description = "Find all Type Cards!",
             tags = {"TypeCard"},
@@ -46,6 +48,7 @@ public class TypeCardResource {
         return ResponseEntity.ok().body(types);
     }
 
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     @GetMapping("/{id}")
     @Operation(summary = "Finds a Type Card by ID", description = "Finds a Type Card by ID",
             tags = {"TypeCard"},
@@ -66,6 +69,7 @@ public class TypeCardResource {
         return ResponseEntity.ok().body(obj);
     }
 
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     @GetMapping("/version/{fifaVersion}")
     @Operation(summary = "Finds a Type Card by FifaVersion", description = "Finds a Type Card by FifaVersion",
             tags = {"TypeCard"},
@@ -86,6 +90,7 @@ public class TypeCardResource {
         return ResponseEntity.ok().body(listTypeCard);
     }
 
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     @GetMapping("/version/{fifaVersion}/{cardType}")
     @Operation(summary = "Finds a Type Card by FifaVersion and CardType", description = "Finds a Type Card by FifaVersion and CardType",
             tags = {"TypeCard"},
@@ -110,7 +115,7 @@ public class TypeCardResource {
         }
         return ResponseEntity.ok().body(obj);
     }
-
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     @PostMapping
     @Operation(summary = "Create a new TypeCard",
             description = "Create a new TypeCard",
@@ -131,7 +136,7 @@ public class TypeCardResource {
         return ResponseEntity.created(uri).body(obj);
     }
 
-
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     @PutMapping("/{id}")
     @Operation(summary = "Edit a existing TypeCard",
             description = "Edit a existing TypeCard",
@@ -152,7 +157,7 @@ public class TypeCardResource {
         return ResponseEntity.ok().body(obj);
     }
 
-
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     @Operation(summary = "Deletes a TypeCard",
             description = "Delete a TypeCard by your ID.",

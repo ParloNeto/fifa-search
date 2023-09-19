@@ -14,6 +14,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -28,6 +29,7 @@ public class ClubResource {
     @Autowired
     private ClubService service;
 
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     @GetMapping
     @Operation(summary = "Finds all Clubs", description = "Finds all Clubs",
             tags = {"Clubs"},
@@ -50,6 +52,7 @@ public class ClubResource {
 
         return ResponseEntity.ok().body(list);
     }
+    @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     @GetMapping("/{club}")
     @Operation(summary = "Finds a Club by Name", description = "Finds Club by Name",
             tags = {"Clubs"},
@@ -69,7 +72,7 @@ public class ClubResource {
         Club obj = service.findByNation(club);
         return ResponseEntity.ok().body(obj);
     }
-
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     @PostMapping
     @Operation(summary = "Insert a new Club",
             description = "Insert a new Club",
@@ -89,7 +92,7 @@ public class ClubResource {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
-
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     @PutMapping("/{id}")
     @Operation(summary = "Edit a existing Club by ID",
             description = "Edit a existing by ID",
@@ -111,7 +114,7 @@ public class ClubResource {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.noContent().build();
     }
-
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     @Operation(summary = "Delete a Club by ID",
             description = "Delete a Club by ID",
