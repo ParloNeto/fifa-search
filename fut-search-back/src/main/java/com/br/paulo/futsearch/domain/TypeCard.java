@@ -15,7 +15,6 @@ public class TypeCard implements Serializable {
     @Id
     private String id;
 
-
     private String fifaVersion;
 
     private String cardType;
