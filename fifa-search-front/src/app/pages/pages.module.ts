@@ -14,12 +14,16 @@ import { DescriptionPlayerComponent } from './details/description-player/descrip
 import { InformationButtonsComponent } from './details/information-buttons/information-buttons.component';
 import { CardDetailsComponent } from './details/card-details/card-details.component';
 
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+
 
 
 
 @NgModule({
   declarations: [
     HomeComponent,
+    LoginComponent,
     DetailsComponent,
     DescriptionPlayerComponent,
     InformationButtonsComponent,
@@ -29,7 +33,10 @@ import { CardDetailsComponent } from './details/card-details/card-details.compon
     CommonModule,
     RoutingModule,
     SharedModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule
+  
   ]
 })
 export class PagesModule { }

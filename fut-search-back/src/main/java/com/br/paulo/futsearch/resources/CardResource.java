@@ -24,6 +24,7 @@ public class CardResource {
 
     @Autowired
     private CardService service;
+
     @PreAuthorize("hasRole('USER') or hasRole('MODERATOR') or hasRole('ADMIN')")
     @GetMapping
     @Operation(summary = "Finds all Cards", description = "Finds all Cards",
