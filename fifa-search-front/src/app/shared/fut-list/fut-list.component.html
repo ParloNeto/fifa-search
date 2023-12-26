@@ -4,7 +4,7 @@
   <ng-template ngFor let-cards [ngForOf]="cards">
     <a [routerLink]="['details', cards.id]" class="card fadeIn">
       <section class="card__info">
-        <p>{{ formatUpperCase(cards.position) }}</p>
+        <p>{{ cards.position }}</p>
         <h2>{{ cards.firstName }} {{ cards.lastName }}</h2>
 
         <ul>
@@ -36,6 +36,6 @@
 <img
   src="assets/images/error.png"
   alt="Erro ao carregar Cards"
-  width="50%"
+  width="20%"
   *ngIf="apiError"
 />

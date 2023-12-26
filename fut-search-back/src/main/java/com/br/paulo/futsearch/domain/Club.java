@@ -1,6 +1,7 @@
 package com.br.paulo.futsearch.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,7 +10,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
-
+@JsonPropertyOrder({"id", "name", "clubUrl"})
 @Document(collection = "club")
 public class Club implements Serializable {
 

@@ -10,6 +10,7 @@ import { NationService } from 'src/app/service/nation.service';
   styleUrls: ['./fut-list.component.scss'],
 })
 export class FutListComponent implements OnInit {
+
   private setCards: Card[] = [];
   public cards: Card[] = [];
   public nationUrl: { [ nationName: string ]: string } = {};
@@ -24,6 +25,12 @@ export class FutListComponent implements OnInit {
     this.getAllNations();
   }
 
+  /**
+ * Filtra todas as cartas pelo nome colocado no input da Home.
+ *
+ * @param {string} value - Nome pesquisado no input.
+ * @returns {Card[]} - Retorna um array filtrado com o nome passado no input.
+ */
   public getSearch(value: string) {
     const filter = this.setCards.filter((res: Card) => {
       return (
@@ -41,7 +48,7 @@ export class FutListComponent implements OnInit {
         this.setCards = res;
         this.cards = this.setCards;
       },
-      error: () => (this.apiError = true),
+      error: () => this.apiError = true
     });
   }
 
@@ -55,11 +62,13 @@ export class FutListComponent implements OnInit {
     });
   }
 
-  public formatUpperCase(option: string): string {
-    const formatted = option.replace(/-/g, ' ').toUpperCase();
-    return formatted;
-  }
 
+/**
+ * Remove todos os hífens dos valores que vem do Back-end.
+ *
+ * @param {string} option - Valor com hífen a ser removido.
+ * @returns {string} - Retorna o valor formatado sem o hífen.
+ */
   public formatWithoutHyphen(option: string): string {
     const formatted = option.replace(/-/g, ' ');
     return formatted;
