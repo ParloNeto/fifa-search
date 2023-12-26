@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { CardService } from './card.service';
 import { TypeCard } from '../models/typeCard';
+import { environment } from 'src/environments/environment.development';
 
 describe('CardService', () => {
   let cardService: CardService;
@@ -44,7 +45,7 @@ describe('CardService', () => {
       expect(versionCards).toEqual(mockVersionCards);
     });
 
-    const req = httpMock.expectOne('http://localhost:8080/types/version');
+    const req = httpMock.expectOne(`${environment.apiUrl}/types/version`);
     expect(req.request.method).toBe('GET');
     req.flush(mockVersionCards);
   });
@@ -69,7 +70,7 @@ describe('CardService', () => {
       expect(versionCards).toEqual(mockVersionCards);
     });
 
-    const req = httpMock.expectOne(`http://localhost:8080/types/version/${fifaVersion}`);
+    const req = httpMock.expectOne(`${environment.apiUrl}/types/version/${fifaVersion}`);
     expect(req.request.method).toBe('GET');
     req.flush(mockVersionCards);
   });
@@ -93,7 +94,7 @@ describe('CardService', () => {
       expect(typeCard).toEqual(mockTypeCard);
     });
 
-    const req = httpMock.expectOne(`http://localhost:8080/types/version/${fifaVersion}/${cardType}`);
+    const req = httpMock.expectOne(`${environment.apiUrl}/types/version/${fifaVersion}/${cardType}`);
     expect(req.request.method).toBe('GET');
     req.flush(mockTypeCard);
   });

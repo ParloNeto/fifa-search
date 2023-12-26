@@ -2,12 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Nation } from '../models/nation';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NationService {
-  private readonly apiUrl = 'http://localhost:8080/nations';
+  private readonly apiUrl = `${environment.apiUrl}/nations`;
 
   constructor(private http: HttpClient) {}
 

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { Card } from 'src/app/models/card';
@@ -12,7 +12,7 @@ import { NationService } from 'src/app/service/nation.service';
   templateUrl: './card-details.component.html',
   styleUrls: ['./card-details.component.scss'],
 })
-export class CardDetailsComponent implements OnInit {
+export class CardDetailsComponent implements OnInit, OnDestroy {
   @Output() public InformLoading = new EventEmitter();
   @Output() public informId = new EventEmitter();
   @Output() public dataCard = new EventEmitter();
@@ -36,6 +36,9 @@ export class CardDetailsComponent implements OnInit {
     private nationService: NationService,
     private clubService: ClubService
   ) {}
+  ngOnDestroy(): void {
+    
+  }
 
   ngOnInit(): void {
    

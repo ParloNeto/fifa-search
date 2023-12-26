@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { TypeCard } from '../models/typeCard';
+import { environment } from 'src/environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardService {
 
-  private readonly apiUrl = 'http://localhost:8080/types/version';
+  private readonly apiUrl = `${environment.apiUrl}/types/version`;
 
   constructor(private http: HttpClient) {}
 

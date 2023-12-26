@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { NationService } from './nation.service';
 import { Nation } from '../models/nation';
+import { environment } from 'src/environments/environment.development';
 
 describe('NationService', () => {
   let nationService: NationService;
@@ -34,7 +35,7 @@ describe('NationService', () => {
       expect(nations).toEqual(mockNations);
     });
 
-    const req = httpMock.expectOne('http://localhost:8080/nations');
+    const req = httpMock.expectOne(`${environment.apiUrl}/nations`);
     expect(req.request.method).toBe('GET');
     req.flush(mockNations);
   });
@@ -47,7 +48,7 @@ describe('NationService', () => {
       expect(nation).toEqual(mockNation);
     });
 
-    const req = httpMock.expectOne(`http://localhost:8080/nations/${nationName}`);
+    const req = httpMock.expectOne(`${environment.apiUrl}/${nationName}`);
     expect(req.request.method).toBe('GET');
     req.flush(mockNation);
   });

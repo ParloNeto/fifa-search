@@ -1,0 +1,33 @@
+version: "3.9"
+services:
+  backend:
+    image: parloneto/fut-search-back:0.0.1
+    container_name: fut-search-back
+    build:
+      context: ./fut-search-back
+    ports:
+      - "9000:8080"
+    depends_on:
+      - mongo-on-docker
+
+  frontend:
+    image: parloneto/fut-search-front:0.0.1
+    container_name: fut-search-front
+    build:
+      context: ./fut-search-front
+    ports:
+      - "4200:80"
+    depends_on:
+      - backend
+
+  mongo-on-docker:
+    image: mongo:6.0
+    container_name: mongo-on-docker
+    ports:
+      - "27017:27017"
+    volumes:
+      - volume-mongo:/data/db
+      - ./scripts:/docker-entrypoint-initdb.d
+
+volumes:
+  volume-mongo:

@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { FutApiService } from './fut-api.service';
 import { Card } from '../models/card';
 import { attributesMock, clubMock } from '../models/test/mock-models';
+import { environment } from 'src/environments/environment.development';
 
 describe('FutApiService', () => {
   let futApiService: FutApiService;
@@ -35,7 +36,7 @@ describe('FutApiService', () => {
       expect(cards).toEqual(mockCards);
     });
 
-    const req = httpMock.expectOne('http://localhost:8080/cards');
+    const req = httpMock.expectOne(`${environment.apiUrl}/cards`);
     expect(req.request.method).toBe('GET');
     req.flush(mockCards);
   });
@@ -48,7 +49,7 @@ describe('FutApiService', () => {
       expect(card).not.toEqual(mockCard); // O método getCard retorna um array de Cards, então devemos passar o mockCard dentro de um array
     });
 
-    const req = httpMock.expectOne(`http://localhost:8080/cards/${cardId}`);
+    const req = httpMock.expectOne(`${environment.apiUrl}/cards/${cardId}`);
     expect(req.request.method).toBe('GET');
     req.flush([mockCard]); // O servidor retorna um array de Cards
   });
@@ -60,7 +61,7 @@ describe('FutApiService', () => {
       expect(addedCard).toEqual(newCard);
     });
 
-    const req = httpMock.expectOne('http://localhost:8080/cards');
+    const req = httpMock.expectOne(`${environment.apiUrl}/cards`);
     expect(req.request.method).toBe('POST');
     req.flush(newCard);
   });
@@ -72,7 +73,7 @@ describe('FutApiService', () => {
       expect(deletedCard).toBeNull();
     });
 
-    const req = httpMock.expectOne(`http://localhost:8080/cards/${cardId}`);
+    const req = httpMock.expectOne(`${environment.apiUrl}/cards/${cardId}`);
     expect(req.request.method).toBe('DELETE');
     req.flush(null); // O servidor retorna um objeto nulo após a exclusão
   });

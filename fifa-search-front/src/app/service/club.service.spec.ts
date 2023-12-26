@@ -3,6 +3,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { ClubService } from './club.service';
 import { Club } from '../models/club';
 import { clubsMock, clubMock } from '../models/test/mock-models';
+import { environment } from 'src/environments/environment.development';
 
 describe('ClubService', () => {
   let clubService: ClubService;
@@ -32,7 +33,7 @@ describe('ClubService', () => {
       expect(clubs).toEqual(mockClubs);
     });
 
-    const req = httpMock.expectOne('http://localhost:8080/clubs');
+    const req = httpMock.expectOne(`${environment.apiUrl}/clubs`);
     expect(req.request.method).toBe('GET');
     req.flush(mockClubs);
   });
@@ -45,7 +46,7 @@ describe('ClubService', () => {
       expect(club).toEqual(mockOneClub);
     });
 
-    const req = httpMock.expectOne(`http://localhost:8080/clubs/${clubId}`);
+    const req = httpMock.expectOne(`${environment.apiUrl}/clubs/${clubId}`);
     expect(req.request.method).toBe('GET');
     req.flush(mockOneClub);
   });
