@@ -1,26 +1,4 @@
-<mat-sidenav-container autosize>
-  <mat-sidenav class="slideInLeft" mode="over" opened="false">
-    <img
-      src="assets/images/logo-fut-search.png"
-      alt="Logo Fut Search Sidenav"
-    />
-    <span class="entry">
-      <app-fut-add-card-button></app-fut-add-card-button>
-    </span>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <button
-      id="button-menu-sidebar"
-      (click)="sidenav.toggle()"
-      mat-icon-button
-      aria-label="Menu icon"
-    >
-      <mat-icon>menu</mat-icon>
-    </button>
-    <app-fut-header></app-fut-header>
-
-    <main>
-      <app-fut-list></app-fut-list>
-    </main>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+<app-fut-header></app-fut-header>
+<main>
+  <app-fut-list></app-fut-list>
+</main>

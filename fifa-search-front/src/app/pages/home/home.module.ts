@@ -17,5 +17,6 @@ import { CommonModule } from '@angular/common';
     SharedModule,
     RoutingModule,
   ],
+  exports: [FutListComponent]
 })
 export class HomeModule {}

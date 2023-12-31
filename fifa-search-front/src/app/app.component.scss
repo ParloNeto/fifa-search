@@ -1,0 +1,36 @@
+@import "../config-scss/variables.scss";
+
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav {
+  padding-top: 3.5rem;
+  width: 15%;
+  @media screen and (min-width: 600px) {
+    padding-top: 4rem;
+  }
+
+  .entry {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0.75rem;
+  }
+}
+
+mat-sidenav-content {
+  background-color: var(--primary-color);
+}
+
+#button-menu-sidebar {
+  background-color: $bluish-gray;
+  color: white;
+  position: fixed;
+  left: 20%;
+  top: 4%;
+  @media screen and (max-width: 650px) {
+    left: 82%;
+  }
+}

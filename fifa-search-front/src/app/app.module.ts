@@ -7,6 +7,10 @@ import { AppComponent } from './app.component';
 //Modules
 import { PagesModule } from './pages/pages.module';
 import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './shared/material/material.module';
+import { SharedModule } from './shared/shared.module';
+import { HomeModule } from './pages/home/home.module';
+import { FutAddCardComponent } from './shared/components/buttons/fut-add-card-button.component';
 
 
 
@@ -24,7 +28,11 @@ import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform
     AppRoutingModule,
     PagesModule,
     HttpClientModule,
-    NoopAnimationsModule
+    NoopAnimationsModule,
+    MaterialModule,
+    SharedModule,
+    HomeModule,
+    FutAddCardComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

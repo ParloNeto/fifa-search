@@ -23,6 +23,6 @@ import { MaterialModule } from '../shared/material/material.module';
     DetailsModule,
     MaterialModule,
     SharedModule,
-  ],
+  ]
 })
 export class PagesModule {}
