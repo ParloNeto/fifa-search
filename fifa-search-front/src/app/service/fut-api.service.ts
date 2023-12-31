@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Card } from '../models/card';
+import { Card } from '../core/models/card';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -22,7 +22,7 @@ export class FutApiService {
     return this.http.get<Card>(url2);
   }
 
-  addCard(card: Card): Observable<Card> {
+  createCard(card: Card): Observable<Card> {
     return this.http.post<Card>(this.apiUrl, card);
   }
 

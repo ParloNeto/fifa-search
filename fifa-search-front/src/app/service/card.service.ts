@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TypeCard } from '../models/typeCard';
+import { TypeCard } from '../core/models/typeCard';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({

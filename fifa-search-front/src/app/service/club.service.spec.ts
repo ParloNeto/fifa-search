@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ClubService } from './club.service';
-import { Club } from '../models/club';
-import { clubsMock, clubMock } from '../models/test/mock-models';
+import { Club } from '../core/models/club';
+import { clubsMock, clubMock } from '../core/models/test/mock-models';
 import { environment } from 'src/environments/environment.development';
 
 describe('ClubService', () => {

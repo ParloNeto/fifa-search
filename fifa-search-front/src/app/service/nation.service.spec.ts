@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { NationService } from './nation.service';
-import { Nation } from '../models/nation';
+import { Nation } from '../core/models/nation';
 import { environment } from 'src/environments/environment.development';
 
 describe('NationService', () => {
@@ -48,7 +48,7 @@ describe('NationService', () => {
       expect(nation).toEqual(mockNation);
     });
 
-    const req = httpMock.expectOne(`${environment.apiUrl}/${nationName}`);
+    const req = httpMock.expectOne(`${environment.apiUrl}/nations/${nationName}`);
     expect(req.request.method).toBe('GET');
     req.flush(mockNation);
   });

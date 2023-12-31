@@ -1,0 +1,96 @@
+@import '../../../../../config-scss/variables.scss';
+
+$padding: 45px;
+:host {
+  .list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 0px 25%;
+    padding: $padding 0;
+    .card {
+      text-transform: capitalize;
+      position: relative;
+      display: flex;
+
+      width: calc(46% - 2.813rem);
+      height: 157px;
+      background: var(--secundary-color);
+
+      margin-bottom: 10px;
+      padding: 20px;
+
+      border-radius: 10px;
+
+      text-decoration: none;
+      color: var(--primary-color);
+
+      &:hover {
+        background-color: var(--selected-gray);
+      }
+
+      &__info {
+        font-style: italic;
+        h2 {
+          font-size: 26px;
+          font-weight: 700;
+          user-select: none;
+          text-transform: capitalize;
+          margin-bottom: 15px;
+        }
+
+        p {
+          position: absolute;
+          right: 20px;
+          color: var(--primary-color);
+          font-size: 20px;
+          font-weight: 700;
+        }
+
+        ul {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          img {
+            max-width: 50px;
+          }
+
+          li {
+            margin-bottom: 10px;
+            h4 {
+              display: flex;
+              flex-direction: row;
+              align-items: flex-end;
+              justify-content: flex-start;
+              font-size: 12px;
+              opacity: 40%;
+            }
+          }
+        }
+      }
+
+      &__image {
+        position: absolute;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        height: 90px;
+        width: 110px;
+        right: $padding;
+        bottom: $padding;
+        top: 50px;
+
+        &__player-photo {
+          position: absolute;
+        }
+
+        img {
+          width: 125px;
+          pointer-events: none;
+        }
+      }
+    }
+  }
+}

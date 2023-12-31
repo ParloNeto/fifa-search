@@ -1,13 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
-import { FutListComponent } from 'src/app/shared/fut-list/fut-list.component';
-import { FutAddCardComponent } from 'src/app/shared/fut-add-card/fut-add-card-button/fut-add-card-button.component';
+import { FutListComponent } from 'src/app/pages/home/components/fut-list/fut-list.component';
+import { FutAddCardComponent } from 'src/app/shared/components/buttons/fut-add-card-button.component';
 import { FutHeaderComponent } from 'src/app/shared/fut-header/fut-header.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MatIconModule } from '@angular/material/icon';
-import { FutSearchComponent } from 'src/app/shared/fut-search/fut-search.component';
+import { FutSearchComponent } from 'src/app/pages/home/components/fut-search/fut-search.component';
 import { ActivatedRoute, RouterModule } from '@angular/router';
+import { MaterialModule } from 'src/app/shared/material/material.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -15,8 +16,8 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent, FutHeaderComponent, FutAddCardComponent, FutListComponent, FutSearchComponent ],
-      imports: [HttpClientModule, MatIconModule, RouterModule],
+      declarations: [ HomeComponent, FutHeaderComponent, FutListComponent, FutSearchComponent ],
+      imports: [HttpClientModule, RouterModule, FutAddCardComponent, MaterialModule, BrowserAnimationsModule],
       providers: [
         {
           provide: ActivatedRoute, // Provide a mock for ActivatedRoute

@@ -1,0 +1,195 @@
+@import '../../../../../config-scss/mixin.scss';
+@import '../../../../../config-scss/mixin-version-fifa.scss';
+
+:host{
+  
+    .card__header {
+       display: flex;
+       flex-direction: column;
+       justify-content: space-between;
+       width: 230px;
+       height: 340px;
+      }
+
+      .playercard {
+        display: flex;
+        align-items: flex-start;
+        text-align: center;
+        margin-top: 39px;
+        margin-right: 2px;
+        font-size: 30px;
+        z-index: 2;
+        &__top{
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          width: 100%;
+          height: 140px;
+          margin-left: 30px;
+          &__icons{
+            width: 48px;
+            margin-top: 3px;
+            z-index: 2;
+          }
+        }
+      }
+
+      .icon__and__nation{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+       
+      }
+    
+      #photo__card{
+        width: auto;
+        height: auto;
+        margin-left: 10px;
+        margin-bottom: 3px;
+        z-index: 2;
+      }
+
+      #nation { 
+        margin-top: 6px;
+      }
+      
+      #card__content__name {
+        position: absolute;
+        bottom: 127px;
+        width: 100%;
+        color: #000000e6;
+        text-transform: uppercase;
+        font-size: 19px;
+        line-height: 33.6px;
+        font-weight: 500;
+        text-shadow: 1px 1px 1px rgb(255 255 255 / 30%);
+        z-index: 2;
+      }
+
+      .type__card__image{
+        position:absolute;
+        z-index: 1;
+      }
+    
+      #overral {
+        font-size: 25px;
+      }
+
+      .card__body__position{
+        width: 100%;
+        height: 138px;
+        z-index: 2;
+      }
+
+      .card__body{
+        width: 100%;
+        display: flex;
+      }
+
+      .card__attributes {
+        font-weight: 300;
+        display: flex;
+        justify-content: space-evenly;
+        width: 100%;
+        padding: 5%;
+        font-size: 18px;
+      }
+      
+      .attribute__left {
+       display: flex;
+       flex-direction: column;
+       line-height: 1.5;
+      }
+      
+      .attribute__right {
+        display: flex;
+        flex-direction: column;
+        line-height: 1.5;
+      }
+
+      .bold__numbers {
+        font-weight: 400;
+      }
+  }
+    
+//different types of cards gold
+
+.card-fifa-16 {
+  .playercard {
+    &__top{
+      margin-left: rem-calc(33);
+    }
+  }
+
+  .cardAttributes {
+    padding: rem-calc(15);
+  }
+
+  #photo__card{
+    margin-bottom: -4px;
+  }
+}
+    
+.card-fifa-18 {
+  .playercard {
+    margin-top: 29px;
+    &__top {
+      &__icons {
+        width: 37px;
+      }
+    }
+    &__details__icons {
+      margin-right: 13px;
+      margin-top: 18px;
+    }
+  }
+  .card__body {
+    margin-left: 22px;
+  }
+
+  #card__content__name {
+    bottom: 136px;
+    left: 20px;
+  }
+
+  #photo__card {
+    margin-right: 60px;
+  }
+}
+
+.card-fifa-19 {
+  .playercard {
+    margin-top: rem-calc(47);
+    &__top{
+      &__icons{
+        width: rem-calc(44);
+       
+      }
+    }
+    &__details__icons{
+     
+      margin-left: rem-calc(15);
+      
+    }
+  }
+  .card__body{
+    margin-top: rem-calc(13);
+  }
+
+  #card__content__name {
+    bottom: rem-calc(116);
+    
+  }
+
+  .iconAndNation{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  #nation { 
+    margin-top: rem-calc(9); 
+  }
+}
+
+

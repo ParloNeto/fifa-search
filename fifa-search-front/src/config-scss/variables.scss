@@ -1,4 +1,4 @@
-:root{
+:root {
     //Colors
     --white: #eee8e8;
     --gray: #EFEFEF;
@@ -14,5 +14,6 @@
     --secundary-color: var(--white);
 }
 
+$bluish-gray:  rgb(255, 255, 255, 0.2);
 // Ajustmants
 $defaultBorderRadius: rem-calc(55);

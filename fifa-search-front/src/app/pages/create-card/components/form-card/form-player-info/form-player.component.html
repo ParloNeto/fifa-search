@@ -1,0 +1,101 @@
+<div class="card">
+  <div class="card-background">
+    <div class="container">
+      <form [formGroup]="infoCardsForm" (ngSubmit)="submitForm()">
+        <div class="form-details" >
+
+            <div class="input-box">
+                <label class="details" for="versionFifa"
+                >Versão do FIFA:
+              <select (change)="filterTypeByVersion()" formControlName="versionFifa">
+                <option *ngFor="let versions of versionInstanciado" [ngValue]="versions" >
+                  {{ formatUpperCase(versions) }}
+                </option>
+              </select>
+            </label>
+            </div>
+
+            <div class="input-box">
+              <label class="details" for="types"
+              >Tipo de Carta:
+            <select class="selectStyle" formControlName="typeCard">
+              <option *ngFor="let types of selectedTypeCard" [ngValue]="types">
+                {{ formatWithoutHyphen(types) }}
+              </option>
+            </select>
+          </label>
+
+          </div>
+
+              <div class="input-box">
+                <label class="details" for="firstName"
+                  >Nome:
+                  <input type="text" placeholder="Insira o nome"  maxlength="14" formControlName="firstName"/>
+                </label>
+              </div>
+
+                <div class="input-box">
+                  <label class="details" for="lastName"
+                    >Sobrenome:
+                    <input type="text" placeholder="Insira o sobrenome" formControlName="lastName" maxlength="14"/>
+                  </label>
+                </div>
+
+                  <div class="input-box">
+                    <label class="details" for="nickName"
+                      >Apelido: (Opcional)
+                      <input type="text" placeholder="Insira o apelido" formControlName="nickName"/>
+                    </label>
+                  </div>
+
+                <div class="input-box">
+                  <label class="details" for="nationality"
+                    >Nacionalidade:
+                    <select class="selectStyle" formControlName="nationality">
+                      @for (nations of selectedNationCard; track $index) {
+                        <option [ngValue]="nations">
+                          {{ formatWithoutHyphen(nations) }}
+                        </option>
+                      }
+                    </select>
+                  </label>
+                </div>
+
+              <div class="input-box">
+                <label class="details" for="club"
+                  >Clube:
+                  <select class="selectStyle" formControlName="club">
+                    @for (OneClub of selectedClubCard; track $index) {
+                      <option [ngValue]="OneClub">
+                        {{ formatWithoutHyphen(OneClub.name) }}
+                      </option>
+                    }
+                  
+                  </select>
+                </label>
+              </div>
+
+            <div class="input-box">
+              <label class="details" for="position"
+                >Posição:
+                <input type="text" placeholder="Insira a posição" formControlName="position" maxlength="3" appUpperCase />
+              </label>
+            </div>
+
+          <div class="input-box">
+            <label class="details" for="photo">
+              Foto (URL):
+              <input type="text" placeholder="Insira a URL" formControlName="photo" />
+            </label>
+          </div>
+
+          <button id="buttonForm" [disabled]="infoCardsForm.invalid">Enviar</button>
+        </div>
+      </form>
+   </div>
+</div>
+
+
+
+
+

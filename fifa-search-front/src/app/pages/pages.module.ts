@@ -1,35 +1,28 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-//Module Routing
+// Module Routing
 import { RoutingModule } from './routing.module';
+
+// Shared
 import { SharedModule } from '../shared/shared.module';
 
-//Pages
-import { HomeComponent } from './home/home.component';
-import { DetailsComponent } from './details/details.component';
+// Pages Module
+import { HomeModule } from './home/home.module';
+import { DetailsModule } from './details/details.module';
 
+// Material
 import { MaterialModule } from '../shared/material/material.module';
-import { DescriptionPlayerComponent } from './details/description-player/description-player.component';
-import { InformationButtonsComponent } from './details/information-buttons/information-buttons.component';
-import { CardDetailsComponent } from './details/card-details/card-details.component';
-
-
-
 
 @NgModule({
-  declarations: [
-    HomeComponent,
-    DetailsComponent,
-    DescriptionPlayerComponent,
-    InformationButtonsComponent,
-    CardDetailsComponent
-  ],
+  declarations: [],
   imports: [
     CommonModule,
     RoutingModule,
+    HomeModule,
+    DetailsModule,
+    MaterialModule,
     SharedModule,
-    MaterialModule
-  ]
+  ],
 })
-export class PagesModule { }
+export class PagesModule {}
