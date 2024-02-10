@@ -4,28 +4,29 @@ import { RouterModule, Routes } from '@angular/router';
 //Components
 import { DetailsComponent } from './details/details.component';
 import { HomeComponent } from './home/home.component';
-import { AddCardComponent } from '../shared/fut-add-card/add-card.component';
+import { AddCardComponent } from './create-card/add-card.component';
 
 const routes: Routes = [
   {
-  path: '',
-  component: HomeComponent,
-  
+    path: '',
+    component: HomeComponent,
   },
   {
     path: 'details/:id',
-    component: DetailsComponent
-  
-    },
-    {
-      path: 'addcard',
-      component:  AddCardComponent,
-      loadChildren: () => import('../shared/fut-add-card/card.module').then(p => p.CardModule)
-      }
+    component: DetailsComponent,
+  },
+  {
+    path: 'create-card',
+    component: AddCardComponent,
+    loadChildren: () =>
+      import('./create-card/create-card.module').then(
+        (p) => p.CreateCardModule
+      ),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class RoutingModule { }
+export class RoutingModule {}

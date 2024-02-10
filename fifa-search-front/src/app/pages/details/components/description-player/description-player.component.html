@@ -1,0 +1,14 @@
+
+<div class="menuDetails" *ngIf="cardInformation">
+  <img id="photo_player_background" [src]="cardInformation.photo" [alt]="cardInformation.firstName">
+    <div class="detailsPlayer">
+      <h1 *ngIf="cardInformation.nickName == '' " id="nameInBackground"> {{ cardInformation.firstName | uppercase}} {{ cardInformation.lastName | uppercase}} </h1>
+      <h1 *ngIf="cardInformation.nickName" id="nameInBackground"> {{ cardInformation.nickName }} </h1>
+      <h2 class="card__title">Detalhes do jogador</h2>
+      <p>Nome: {{ cardInformation.firstName }} </p>
+      <p>Sobrenome: {{ cardInformation.lastName }}</p>
+      <p *ngIf="cardInformation.nickName">Apelido: {{ cardInformation.nickName }}</p>
+      <p>Nacionalidade: {{ cardInformation.nationality }}</p>
+      <p>Clube: {{ cardInformation.clubName }}</p>
+    </div>
+  </div>

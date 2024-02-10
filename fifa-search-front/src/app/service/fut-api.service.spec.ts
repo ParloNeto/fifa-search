@@ -1,8 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { FutApiService } from './fut-api.service';
-import { Card } from '../models/card';
-import { attributesMock, clubMock } from '../models/test/mock-models';
+import { Card } from '../core/models/card';
+import { attributesMock, clubMock } from '../core/models/test/mock-models';
 import { environment } from 'src/environments/environment.development';
 
 describe('FutApiService', () => {
@@ -57,7 +57,7 @@ describe('FutApiService', () => {
   it('should add a new card', () => {
     const newCard: Card = { id: '3', versionFifa: 'FIFA 21', typeCard: 'Rare Gold', firstName: 'New', lastName: 'Player', nationality: 'Spain', club: clubMock, position: 'Midfielder', photo: 'https://example.com/new-player.jpg', attributeCard: attributesMock };
 
-    futApiService.addCard(newCard).subscribe((addedCard) => {
+    futApiService.createCard(newCard).subscribe((addedCard: Card) => {
       expect(addedCard).toEqual(newCard);
     });
 

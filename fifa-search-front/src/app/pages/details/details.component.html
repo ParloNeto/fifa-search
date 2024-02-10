@@ -4,11 +4,11 @@
 <ng-template [ngIf]="loading" >
   <div class="background">
 
-  <app-card-details (InformLoading)="getInfoLoading($event)" (informId)="getId($event)" (dataCard)="getDescriptionCard($event)"></app-card-details>
+  <app-card-details (InformLoading)="getInfoLoading($event)" (informId)="getId($event)" (dataCard)="getDescriptionCard($event)" id="card-details"></app-card-details>
 
   <div class="descriptionAndInformations">
     <app-description-player id="textInfo" [cardInformation]="description"></app-description-player>
-    <app-information-buttons [getId]="id"></app-information-buttons>
+    <app-information-buttons id="buttonsInfo" [getId]="id"></app-information-buttons>
   </div>
 
 </div>

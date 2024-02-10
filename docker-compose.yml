@@ -1,7 +1,7 @@
 version: "3.9"
 services:
   backend:
-    image: parloneto/fut-search-back:0.0.1
+    image: parloneto/fut-search-back:0.0.2
     container_name: fut-search-back
     build:
       context: ./fut-search-back
@@ -11,7 +11,7 @@ services:
       - mongo-on-docker
 
   frontend:
-    image: parloneto/fut-search-front:0.0.1
+    image: parloneto/fut-search-front:0.0.2
     container_name: fut-search-front
     build:
       context: ./fut-search-front
@@ -27,7 +27,6 @@ services:
       - "27017:27017"
     volumes:
       - volume-mongo:/data/db
-      - ./scripts:/docker-entrypoint-initdb.d
 
 volumes:
   volume-mongo:

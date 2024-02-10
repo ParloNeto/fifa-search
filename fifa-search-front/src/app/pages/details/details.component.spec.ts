@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DetailsComponent } from './details.component';
-import { FutHeaderComponent } from 'src/app/shared/fut-header/fut-header.component';
-import { CardDetailsComponent } from './card-details/card-details.component';
-import { DescriptionPlayerComponent } from './description-player/description-player.component';
-import { InformationButtonsComponent } from './information-buttons/information-buttons.component';
+import { FutHeaderComponent } from 'src/app/shared/components/fut-header/fut-header.component';
+import { CardDetailsComponent } from './components/card-details/card-details.component';
+import { DescriptionPlayerComponent } from './components/description-player/description-player.component';
+import { InformationButtonsComponent } from './components/information-buttons/information-buttons.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { cardMock } from 'src/app/models/test/mock-models';
+import { cardMock } from 'src/app/core/models/test/mock-models';
 
 describe('DetailsComponent', () => {
   let component: DetailsComponent;

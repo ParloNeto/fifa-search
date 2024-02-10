@@ -21,8 +21,8 @@ public class Card implements Serializable {
     
     private String nickName;
     private String nationality;
-    @DBRef
-    private Club club;
+
+    private String club;
 
     private String position;
 
@@ -34,7 +34,7 @@ public class Card implements Serializable {
     }
 
     public Card(String id, String versionFifa, String typeCard, String firstName, String lastName, String nickName, String nationality,
-                Club club, String position, String photo, AttributeCard attributeCard) {
+                String club, String position, String photo, AttributeCard attributeCard) {
         this.id = id;
         this.versionFifa = versionFifa;
         this.typeCard = typeCard;
@@ -96,11 +96,11 @@ public class Card implements Serializable {
         this.nationality = nationality;
     }
 
-    public Club getClub() {
+    public String getClub() {
         return club;
     }
 
-    public void setClub(Club club) {
+    public void setClub(String club) {
         this.club = club;
     }
 

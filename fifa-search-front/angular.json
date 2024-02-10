@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "fifa-search:build:production"
+              "buildTarget": "fifa-search:build:production"
             },
             "development": {
-              "browserTarget": "fifa-search:build:development"
+              "buildTarget": "fifa-search:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "fifa-search:build"
+            "buildTarget": "fifa-search:build"
           }
         },
         "test": {
