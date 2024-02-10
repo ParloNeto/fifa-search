@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HomeComponent } from './home.component';
 import { FutListComponent } from 'src/app/pages/home/components/fut-list/fut-list.component';
 import { FutAddCardComponent } from 'src/app/shared/components/buttons/fut-add-card-button.component';
-import { FutHeaderComponent } from 'src/app/shared/fut-header/fut-header.component';
+import { FutHeaderComponent } from 'src/app/shared/components/fut-header/fut-header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FutSearchComponent } from 'src/app/pages/home/components/fut-search/fut-search.component';
 import { ActivatedRoute, RouterModule } from '@angular/router';

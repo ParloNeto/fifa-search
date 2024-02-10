@@ -16,6 +16,7 @@ import { CommonModule } from '@angular/common';
     MaterialModule,
     SharedModule,
     RoutingModule,
+    FutAddCardComponent
   ],
   exports: [FutListComponent]
 })
