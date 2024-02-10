@@ -33,7 +33,9 @@ public class NationService {
     }
 
     public Nation insert(Nation obj) {
-       return repository.insert(obj);
+       List<Nation> listOfCards = findAll();
+
+        return repository.insert(obj);
     }
 
     public void delete(String id){
