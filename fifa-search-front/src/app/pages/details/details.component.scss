@@ -3,19 +3,24 @@
   .background {
     background-color: rgba(251, 253, 247, 0.897);
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
     height: 25rem;
+    padding: 50px;
+    @media screen and (max-width: 450px) {
+      flex-direction: column;
+      height: auto;
+      #card-details {
+       z-index: 1;
+      }
+    }
   }
 
   .descriptionAndInformations {
-    display: flex;
-    justify-content: space-evenly !important;
-    flex-direction: column;
-    width: 340px;
-    height: 25rem;
-    max-width: 400px;
+    @media screen and (max-width: 450px) {
+      margin-top: 50px;
+    }
 
     #textInfo {
       display: flex;

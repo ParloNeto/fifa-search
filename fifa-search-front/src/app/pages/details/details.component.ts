@@ -28,7 +28,8 @@ export class DetailsComponent {
       firstName: event.firstName,
       lastName: event.lastName,
       nationality: event.nationality,
-      clubName: event.club.name,
+      clubName: event.club,
+      photo: event.photo,
     };
   }
 }

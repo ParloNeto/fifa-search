@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DetailsComponent } from './details.component';
-import { FutHeaderComponent } from 'src/app/shared/fut-header/fut-header.component';
+import { FutHeaderComponent } from 'src/app/shared/components/fut-header/fut-header.component';
 import { CardDetailsComponent } from './components/card-details/card-details.component';
 import { DescriptionPlayerComponent } from './components/description-player/description-player.component';
 import { InformationButtonsComponent } from './components/information-buttons/information-buttons.component';
