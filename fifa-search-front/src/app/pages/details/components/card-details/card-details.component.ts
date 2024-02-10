@@ -3,7 +3,6 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { ActivatedRoute } from '@angular/router';
 import { Card } from 'src/app/core/models/card';
 import { CardService } from 'src/app/service/card.service';
-import { ClubService } from 'src/app/service/club.service';
 import { FutApiService } from 'src/app/service/fut-api.service';
 import { NationService } from 'src/app/service/nation.service';
 
@@ -17,9 +16,9 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
   @Output() public informId = new EventEmitter();
   @Output() public dataCard = new EventEmitter();
 
-  public photoUrl: string = '';
-  public clubUrl: string = '';
-  public nationUrl: string = '';
+  public photoUrl: string | undefined  = '';
+  public clubUrl?: string = '';
+  public nationUrl?: string = '';
   public card!: Card;
 
   public colorOverall: string = '';
@@ -34,7 +33,6 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
     private futApiService: FutApiService,
     private cardService: CardService,
     private nationService: NationService,
-    private clubService: ClubService
   ) {}
   ngOnDestroy(): void {
     
@@ -82,11 +80,11 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
   }
 
   public getClub(): void {
-    const club = this.card.club.name;
-    if (club) {
-      this.clubService.getSpecificClub(club).subscribe((card) => {
-        this.clubUrl = card.clubUrl;
-      });
-    }
+    const club = this.card.club;
+    // if (club) {
+    //   this.clubService.getSpecificClub(club).subscribe((card) => {
+    //     if(card.clubUrl) this.clubUrl = card.clubUrl;
+    //   });
+    // }
   }
 }
