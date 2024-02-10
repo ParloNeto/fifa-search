@@ -15,7 +15,6 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatButtonModule,
     MatIconModule,
     MatSelectModule,
-    MatSidenavModule,
     MatToolbarModule,
   ]
 })

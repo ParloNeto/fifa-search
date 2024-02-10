@@ -5,7 +5,7 @@ import { AttributesDetailsAddCardComponent } from './components/card-fifa-model/
 import { FormAttributesComponent } from './components/form-card/form-attributes/form-attributes.component';
 import { FormPlayerComponent } from './components/form-card/form-player-info/form-player.component';
 import { FutGoBackButtonComponent } from '../../shared/components/buttons/fut-go-back-button.component';
-import { FutHeaderComponent } from '../../shared/fut-header/fut-header.component';
+import { FutHeaderComponent } from '../../shared/components/fut-header/fut-header.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MaterialModule } from '../../shared/material/material.module';
 import { RouterTestingModule } from '@angular/router/testing';

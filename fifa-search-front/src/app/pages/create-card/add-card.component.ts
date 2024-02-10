@@ -1,15 +1,16 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ColorText } from 'src/app/core/models/colorText';
 
 @Component({
   selector: 'app-add-card',
   templateUrl: './add-card.component.html',
-  styleUrls: ['./add-card.component.scss']
+  styleUrls: ['./add-card.component.scss'],
 })
 export class AddCardComponent {
-
   public attributeCard: FormGroup;
-  public infoCardsForm: FormGroup; 
+  public infoCardsForm: FormGroup;
+  public colorText!: ColorText;
 
   constructor() {
     this.attributeCard = new FormGroup({});
@@ -23,4 +24,8 @@ export class AddCardComponent {
     this.infoCardsForm = event;
   }
 
+  public getColorText(event: ColorText) {
+    this.colorText = event;
+    console.log(event)
+  }
 }

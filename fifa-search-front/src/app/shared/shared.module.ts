@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 //Components
-import { FutHeaderComponent } from './fut-header/fut-header.component';
+import { FutHeaderComponent } from './components/fut-header/fut-header.component';
 
 //Routes
 import { RouterModule } from '@angular/router';

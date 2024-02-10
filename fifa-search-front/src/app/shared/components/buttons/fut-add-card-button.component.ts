@@ -1,18 +1,18 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MaterialModule } from '../../material/material.module';
+import { MatSidenav } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-fut-add-card-button',
   standalone: true,
   template: `
-    <div class="addPlayer">
-      <button mat-raised-button [routerLink]="['create-card']">
-        <mat-icon>add_box</mat-icon>
-        Adicionar Jogador
-      </button>
-    </div>
+    <button color="primary" mat-flat-button [routerLink]="['create-card']">
+      <mat-icon>add_box</mat-icon>
+      Adicionar Jogador
+    </button>
   `,
-  imports: [RouterModule, MaterialModule],
+  imports: [RouterModule, MatIconModule, MatButtonModule],
 })
 export class FutAddCardComponent {}

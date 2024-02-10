@@ -93,4 +93,36 @@ $padding: 45px;
       }
     }
   }
+
+  @media screen and (max-width: 1020px) {
+   
+
+   p {
+    right: 20px;
+    bottom: 20px;
+   }
+
+   .list {
+    .card {
+      width: calc(100% - 2.813rem);
+     }
+   }
+  }
+
+  @media screen and (max-width: 475px) {
+    .list {
+      .card {
+        &__image {
+          display: none;
+        }
+
+        
+      }
+    }
+    #card__name-club-and-nation {
+      h4 {
+        display: none;
+      }
+    }
+  }
 }

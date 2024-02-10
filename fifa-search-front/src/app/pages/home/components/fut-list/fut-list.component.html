@@ -10,14 +10,16 @@
         <ul>
           <li>
             <img
-              [src]="nationUrl[cards.nationality]"
+              [src]="imagePath(cards.nationality)"
               [alt]="cards.nationality"
             />
           </li>
-          <li>
-            <img [src]="cards.club.clubUrl" [alt]="cards.club.name" />
+          <li id="card__name-club-and-nation">
+            <img 
+              [src]="imagePath('', cards.club)" 
+              [alt]="cards.club" />
             <h4>{{ formatWithoutHyphen(cards.nationality) }}</h4>
-            <h4>{{ formatWithoutHyphen(cards.club.name) }}</h4>
+            <h4>{{ formatWithoutHyphen(cards.club) }}</h4>
           </li>
         </ul>
       </section>
