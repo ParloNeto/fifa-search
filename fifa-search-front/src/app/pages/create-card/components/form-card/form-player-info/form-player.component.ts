@@ -1,11 +1,28 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { environment } from './../../../../../../environments/environment.development';
+import { ColorText } from './../../../../../core/models/colorText';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnInit,
+  Output,
+  inject,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FutApiService } from 'src/app/service/fut-api.service';
 import { CardService } from 'src/app/service/card.service';
 import { NationService } from 'src/app/service/nation.service';
-import { ClubService } from 'src/app/service/club.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Nation } from 'src/app/core/models/nation';
+import { TypeCard } from 'src/app/core/models/typeCard';
+import {
+  FIFA_16,
+  FIFA_17,
+  FIFA_18,
+  FIFA_19,
+} from 'src/app/service/mocks/utils';
+import { EMPTY, Observable, Subscription, catchError, take } from 'rxjs';
 
 @Component({
   selector: 'app-form-player',
@@ -13,8 +30,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./form-player.component.scss'],
 })
 export class FormPlayerComponent implements OnInit {
+  #fb = inject(FormBuilder);
+
   @Input() attributeCard!: FormGroup;
   @Output() sendInfoCard = new EventEmitter<FormGroup>();
+  @Output() sendColorText = new EventEmitter<ColorText>();
 
   public versionInstanciado: ReadonlyArray<string> = [
     'fifa-16',
@@ -25,23 +45,20 @@ export class FormPlayerComponent implements OnInit {
   ];
   public selectedTypeCard: string[] = [];
   public selectedNationCard: string[] = [];
-  public selectedNationCardAndImage!: Map<string, string>;
-  public selectedClubCard: { name: string; id: string, clubUrl:string }[] = [];
-
-  public clubsId: string[] = [];
+  public selectedClubCard: string[] = [];
+  public colorTextCard!: ColorText;
 
   public infoCardsForm: FormGroup;
+  isMocked: boolean = environment.isMocked;
 
   constructor(
     private futApiService: FutApiService,
-    private formBuilder: FormBuilder,
     private cardService: CardService,
     private nationService: NationService,
-    private clubService: ClubService,
     private router: Router,
     private snackBar: MatSnackBar
   ) {
-    this.infoCardsForm = this.formBuilder.group({
+    this.infoCardsForm = this.#fb.group({
       versionFifa: ['', Validators.required],
       typeCard: ['', [Validators.required, Validators.maxLength(50)]],
       firstName: ['Lionel', [Validators.required, Validators.maxLength(20)]],
@@ -56,20 +73,22 @@ export class FormPlayerComponent implements OnInit {
       ],
     });
 
-    this.infoCardsForm.valueChanges.subscribe(() => this.emitsFormValue());
-
+    this.infoCardsForm.valueChanges.subscribe(() => {
+      this.emitsFormValue();
+      this.executeBasedOnMockStatus();
+    });
   }
 
   ngOnInit(): void {
     this.emitsFormValue();
+    this.getAllClubs();
 
     this.infoCardsForm.patchValue({
       nationality: 'argentina',
-      typeCard: 'futties',
+      club: 'arsenal',
     });
 
     this.getAllNations();
-    this.getAllClubs();
   }
 
   public formatUpperCase(option: string): string {
@@ -104,27 +123,123 @@ export class FormPlayerComponent implements OnInit {
     this.selectedTypeCard = [];
     const version = this.infoCardsForm.get('versionFifa')!.value;
 
-    this.cardService.getVersionCards(version).forEach((res) => {
-      res.forEach((card) => {
-        this.addItemsInSelectArray(this.selectedTypeCard, card.cardType);
-      });
+    this.cardService.getVersionCards(version).subscribe({
+      next: (res: TypeCard[]) => {
+        if (res.length === 0) {
+          this.getAllTypeCardsMock(version);
+        }
+        res.forEach((typeCard) => {
+          this.addItemsInSelectArray(this.selectedTypeCard, typeCard.cardType);
+        });
+      },
     });
+  }
+
+  private getAllTypeCardsMock(version: string): void {
+    this.selectedTypeCard = [];
+      this.cardService.getVersionCardsMock().subscribe({
+        next: (types) => {
+          const filteredTypesByVersion = types.filter((res) => res.fifaVersion === version);
+
+          filteredTypesByVersion.forEach((res) => {
+            this.addItemsInSelectArray(this.selectedTypeCard, res.cardType);
+          });
+        },
+      });
     
   }
 
+  getAllTypeCardMock(): void {
+    const version = this.infoCardsForm.get('versionFifa')!.value;
+    return this.getAllTypeCardsMock(version);
+  }
+
   public getAllNations(): void {
-    this.nationService.getAllNations().forEach((res) => {
-      res.forEach((card) =>
-        this.addItemsInSelectArray(this.selectedNationCard, card.nation))
+    this.nationService.getAllNations().subscribe({
+      next: (res: Nation[]) => {
+        if (res.length === 0) {
+          this.getAllNationsMock();
+        }
+        res.forEach((card) => {
+          this.addItemsInSelectArray(this.selectedNationCard, card.nation);
+        });
+      },
+      error: () => {
+        console.error('Iniciando dados de nacionalidade mockados.');
+        this.getAllNationsMock();
+      },
+    });
+  }
+
+  private getAllNationsMock(): void {
+    this.nationService.getAllNationsMock().forEach((card) => {
+      this.addItemsInSelectArray(this.selectedNationCard, card.nation);
     });
   }
 
   public getAllClubs(): void {
-    this.clubService.getAllClubs().forEach((res) => {
-      res.forEach((card) => {
-        const club = { name: card.name, id: card.id, clubUrl: card.clubUrl };
-        this.selectedClubCard.push(club);
+    this.getAllClubsMock();
+  }
+
+  private getAllClubsMock(): void {
+    this.cardService.getAllClubsMock().subscribe({
+      next: (clubs: { club: string }[]) => {
+        clubs.forEach((res) => {
+          this.addItemsInSelectArray(this.selectedClubCard, res.club);
+        });
+      },
+    });
+  }
+
+  public executeBasedOnMockStatus(): void {
+    const version = this.infoCardsForm.get('versionFifa')!.value;
+
+    if (environment.isMocked === true) {
+      this.getTypesColorMock();
+      this.getAllTypeCardsMock(version);
+    }
+    return this.getTypesColor();
+  }
+
+  public getTypesColor(): void {
+    const version = this.infoCardsForm.get('versionFifa')!.value;
+    const typeCard = this.infoCardsForm.get('typeCard')!.value;
+
+    if (version && typeCard) {
+      this.cardService.getSpecificType(version, typeCard).subscribe({
+        next: (card) => {
+          let obj: ColorText = {
+            colorAttributes: card.colorText.colorAttributes,
+            colorFontName: card.colorText.colorFontName,
+            colorPosition: card.colorText.colorPosition,
+            colorOverall: card.colorText.colorOverall,
+          };
+
+          this.colorTextCard = obj;
+          this.sendColorText.emit(this.colorTextCard);
+        },
       });
+    }
+  }
+
+  getTypesColorMock(): void {
+    const version = this.infoCardsForm.get('versionFifa')!.value;
+    const typeCard = this.infoCardsForm.get('typeCard')!.value;
+    this.cardService.getVersionCardsMock().subscribe({
+      next: (types) => {
+        types.forEach((res) => {
+          if (version === res.fifaVersion && typeCard === res.cardType) {
+            let obj: ColorText = {
+              colorAttributes: res.colorText.colorAttributes,
+              colorFontName: res.colorText.colorFontName,
+              colorPosition: res.colorText.colorPosition,
+              colorOverall: res.colorText.colorOverall,
+            };
+            this.colorTextCard = obj;
+            this.sendColorText.emit(this.colorTextCard);
+          }
+        });
+      },
     });
   }
 

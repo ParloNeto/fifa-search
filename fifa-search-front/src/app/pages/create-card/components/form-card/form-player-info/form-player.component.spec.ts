@@ -3,11 +3,10 @@ import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { FormPlayerComponent } from './form-player.component';
 import { FutApiService } from 'src/app/service/fut-api.service';
 import { CardService } from 'src/app/service/card.service';
-import { NationService } from 'src/app/service/nation.service';
-import { ClubService } from 'src/app/service/club.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { clubMock, clubsMock, mockListClub, mockListNation, mockListTypeCard } from 'src/app/core/models/test/mock-models';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 // Stub do serviço FutApiService
 class FutApiServiceStub {
@@ -25,18 +24,6 @@ class CardServiceStub {
   }
 }
 
-class NationServiceStub {
-  getAllNations() {
-    return [mockListNation];
-  }
-}
-
-class ClubServiceStub {
-  getAllClubs() {
-    return [mockListClub];
-  }
-}
-
 describe('FormPlayerComponent', () => {
   let component: FormPlayerComponent;
   let fixture: ComponentFixture<FormPlayerComponent>;
@@ -47,14 +34,12 @@ describe('FormPlayerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule],
+      imports: [ReactiveFormsModule, HttpClientTestingModule],
       declarations: [FormPlayerComponent],
       providers: [
         FormBuilder,
         { provide: FutApiService, useClass: FutApiServiceStub },
         { provide: CardService, useClass: CardServiceStub },
-        { provide: NationService, useClass: NationServiceStub },
-        { provide: ClubService, useClass: ClubServiceStub },
         { provide: Router, useValue: { navigateByUrl: () => {} } },
         { provide: MatSnackBar, useValue: { open: () => {} } }
       ],
@@ -130,10 +115,11 @@ describe('FormPlayerComponent', () => {
     component.getAllClubs();
 
     clubsMock.forEach((club) => {
-      component.selectedClubCard.push(club);
+      if (club) component.selectedClubCard.push(club.name);
+      
     });
     
-    expect(component.selectedClubCard).not.toEqual([ clubMock ]);
+    expect(component.selectedClubCard).not.toEqual([ clubMock.name ]);
   });
 
   it('should add item to arraySelect', () => {
