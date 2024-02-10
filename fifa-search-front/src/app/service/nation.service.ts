@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Nation } from '../core/models/nation';
 import { environment } from 'src/environments/environment.development';
+import { nationsMockService } from './mocks/nation-mocks';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +15,10 @@ export class NationService {
 
   getAllNations(): Observable<Nation[]> {
     return this.http.get<Nation[]>(this.apiUrl);
+  }
+
+  getAllNationsMock(): Nation[] {
+    return nationsMockService;
   }
 
   getSpecificNation(nation: string): Observable<Nation> {

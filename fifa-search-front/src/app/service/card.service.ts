@@ -1,13 +1,18 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { TypeCard } from '../core/models/typeCard';
 import { environment } from 'src/environments/environment.development';
+import { typeCardsMockService } from './mocks/typeCard-mocks';
+import { clubsMockService } from './mocks/club-mocks';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardService {
+
+  private $clubs = of(clubsMockService);
+  private $typeCards = of(typeCardsMockService);
 
   private readonly apiUrl = `${environment.apiUrl}/types/version`;
 
@@ -22,9 +27,17 @@ export class CardService {
     return this.http.get<TypeCard[]>(url);
   }
 
+  getVersionCardsMock(): Observable<TypeCard[]> {
+    return this.$typeCards;
+  }
+
   getSpecificType(fifaVersion: string, cardType: string): Observable<TypeCard> {
     const url = `${this.apiUrl}/${fifaVersion}/${cardType}`;
     return this.http.get<TypeCard>(url);
+  }
+
+  getAllClubsMock(): Observable<{ club: string; }[]> {
+    return this.$clubs;
   }
 
   cardTypeAdjustmentCss: { [key: string]: string } = {
