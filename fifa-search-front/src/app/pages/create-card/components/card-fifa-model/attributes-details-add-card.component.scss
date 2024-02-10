@@ -56,7 +56,7 @@
       
       #card__content__name {
         position: absolute;
-        bottom: 127px;
+        bottom: 130px;
         width: 100%;
         color: #000000e6;
         text-transform: uppercase;
@@ -70,6 +70,7 @@
       .type__card__image{
         position:absolute;
         z-index: 1;
+        width: 100%;
       }
     
       #overral {
@@ -94,6 +95,7 @@
         width: 100%;
         padding: 5%;
         font-size: 18px;
+        margin-top: -4px;
       }
       
       .attribute__left {
