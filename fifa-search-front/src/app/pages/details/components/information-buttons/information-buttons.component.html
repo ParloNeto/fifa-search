@@ -1,11 +1,11 @@
 <div class="menuButton">
-    <button mat-flat-button color="warn" (click)="dialogDeletePlayer(getId)">
+    <button id="menuButton__delete" mat-flat-button color="warn" (click)="dialogDeletePlayer(getId)">
 
       Deletar Jogador
       
       <mat-icon>delete</mat-icon>
     </button>
-    <button [routerLink]="['']" mat-flat-button color="primary">
+    <button id="menuButton__goBack" [routerLink]="['']" mat-flat-button>
       <mat-icon>forward</mat-icon>
       Voltar
     </button>

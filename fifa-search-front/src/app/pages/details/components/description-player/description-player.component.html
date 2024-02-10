@@ -1,5 +1,6 @@
 
 <div class="menuDetails" *ngIf="cardInformation">
+  <img id="photo_player_background" [src]="cardInformation.photo" [alt]="cardInformation.firstName">
     <div class="detailsPlayer">
       <h1 *ngIf="cardInformation.nickName == '' " id="nameInBackground"> {{ cardInformation.firstName | uppercase}} {{ cardInformation.lastName | uppercase}} </h1>
       <h1 *ngIf="cardInformation.nickName" id="nameInBackground"> {{ cardInformation.nickName }} </h1>
