@@ -4,5 +4,6 @@ export interface DescriptionPlayer {
     lastName: string;
     nationality: string;
     clubName: string;
+    photo: string;
 }
   
