@@ -1,4 +1,4 @@
-import { ColorText } from "./colorText";
+import { ColorText } from "./colorText.interface";
 
 export interface TypeCard {
   fifaVersion: string;

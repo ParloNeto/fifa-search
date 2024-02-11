@@ -1,4 +1,4 @@
-import { AttributeCard } from "./attributeCard";
+import { AttributeCard } from "./attributeCard.interface";
 
 export interface Card {
     id: string;
