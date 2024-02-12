@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Card } from 'src/app/core/models/card';
+import { Card } from 'src/app/core/models/card.interface';
 import { FutApiService } from 'src/app/service/fut-api.service';
-import { NationService } from 'src/app/service/nation.service';
 
 @Component({
   selector: 'app-fut-list',
@@ -15,12 +14,10 @@ export class FutListComponent implements OnInit {
   public apiError: boolean = false;
 
   constructor(
-    private futApiService: FutApiService,
-    private nationService: NationService
-  ) {}
+    private futApiService: FutApiService
+  ){}
   ngOnInit() {
     this.getAllCards();
-    this.getAllNations();
   }
 
   
@@ -49,18 +46,6 @@ export class FutListComponent implements OnInit {
         this.cards = this.setCards;
       },
       error: () => (this.apiError = true),
-    });
-  }
-
-  public getAllNations() {
-    this.nationService.getAllNations().subscribe({
-      next: (nations) => {
-        nations.forEach((nation) => {
-          if (nation.nationUrl) {
-            this.nationUrl[nation.nation] = nation.nationUrl;
-          }
-        });
-      },
     });
   }
 

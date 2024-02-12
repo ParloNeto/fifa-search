@@ -1,24 +1,21 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
-import { Card } from 'src/app/core/models/card';
+import { Card } from 'src/app/core/models/card.interface';
 import { CardService } from 'src/app/service/card.service';
 import { FutApiService } from 'src/app/service/fut-api.service';
-import { NationService } from 'src/app/service/nation.service';
 
 @Component({
   selector: 'app-card-details',
   templateUrl: './card-details.component.html',
   styleUrls: ['./card-details.component.scss'],
 })
-export class CardDetailsComponent implements OnInit, OnDestroy {
+export class CardDetailsComponent implements OnInit {
   @Output() public InformLoading = new EventEmitter();
   @Output() public informId = new EventEmitter();
   @Output() public dataCard = new EventEmitter();
 
   public photoUrl: string | undefined  = '';
-  public clubUrl?: string = '';
-  public nationUrl?: string = '';
   public card!: Card;
 
   public colorOverall: string = '';
@@ -32,11 +29,7 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
     private activatedRoute: ActivatedRoute,
     private futApiService: FutApiService,
     private cardService: CardService,
-    private nationService: NationService,
   ) {}
-  ngOnDestroy(): void {
-    
-  }
 
   ngOnInit(): void {
    
@@ -46,8 +39,6 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
         next: (res) => {
           this.card = res;
           this.getPhotoType();
-          this.getNation();
-          this.getClub();
           this.dataCard.emit((res));
           this.InformLoading.emit(true);
           this.informId.emit(this.card.id);
@@ -68,23 +59,5 @@ export class CardDetailsComponent implements OnInit, OnDestroy {
       this.colorPosition = card.colorText.colorPosition;
       this.colorAttributes = card.colorText.colorAttributes;
     });
-  }
-
-  public getNation(): void {
-    const nation = this.card.nationality;
-    if (nation) {
-      this.nationService.getSpecificNation(nation).subscribe((card) => {
-        this.nationUrl = card.nationUrl;
-      });
-    }
-  }
-
-  public getClub(): void {
-    const club = this.card.club;
-    // if (club) {
-    //   this.clubService.getSpecificClub(club).subscribe((card) => {
-    //     if(card.clubUrl) this.clubUrl = card.clubUrl;
-    //   });
-    // }
   }
 }

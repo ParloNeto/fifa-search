@@ -1,8 +1,8 @@
-import { AttributeCard } from '../attributeCard';
-import { Card } from '../card';
+import { AttributeCard } from '../attributeCard.interface';
+import { Card } from '../card.interface';
 import { Club } from '../club';
 import { Nation } from '../nation';
-import { TypeCard } from '../typeCard';
+import { TypeCard } from '../typeCard.interface';
 
 export const cardMock: Card = {
   id: '1111',

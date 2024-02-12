@@ -6,30 +6,13 @@
           <div class="input-box">
             <label class="details" for="versionFifa"
               >Versão do FIFA:
-              @if (isMocked === true) {
-                <select
-                (change)="getAllTypeCardMock()"
-                formControlName="versionFifa"
-              >
+              <select formControlName="versionFifa">
                 @for (versions of versionInstanciado; track versions) {
                 <option [ngValue]="versions">
                   {{ formatUpperCase(versions) }}
                 </option>
                 }
               </select>
-              } @else {
-                <select
-                (change)="filterTypeByVersion()"
-                formControlName="versionFifa"
-              >
-                @for (versions of versionInstanciado; track versions) {
-                <option [ngValue]="versions">
-                  {{ formatUpperCase(versions) }}
-                </option>
-                }
-              </select>
-              }
-              
             </label>
           </div>
 
@@ -48,7 +31,10 @@
           </div>
 
           <div class="input-box">
-            <label class="details" for="firstName"
+            <label
+              class="details"
+              for="firstName"
+              [ngClass]="checkValidateAttributes(firstName)"
               >Nome:
               <input
                 type="text"
@@ -60,7 +46,10 @@
           </div>
 
           <div class="input-box">
-            <label class="details" for="lastName"
+            <label
+              class="details"
+              for="lastName"
+              [ngClass]="checkValidateAttributes(lastName)"
               >Sobrenome:
               <input
                 type="text"
@@ -109,7 +98,10 @@
           </div>
 
           <div class="input-box">
-            <label class="details" for="position"
+            <label
+              class="details"
+              for="position"
+              [ngClass]="checkValidateAttributes(position)"
               >Posição:
               <input
                 type="text"
@@ -122,7 +114,11 @@
           </div>
 
           <div class="input-box">
-            <label class="details" for="photo">
+            <label
+              class="details"
+              for="photo"
+              [ngClass]="checkValidateAttributes(photo)"
+            >
               Foto (URL):
               <input
                 type="text"
@@ -132,7 +128,12 @@
             </label>
           </div>
 
-          <button id="buttonForm" [disabled]="infoCardsForm.invalid">
+          <button
+            type="submit"
+            id="buttonForm"
+            [disabled]="infoCardsForm.invalid"
+            (click)="submitForm()"
+          >
             Enviar
           </button>
         </div>

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { DescriptionPlayer } from 'src/app/core/models/descriptionCard';
+import { DescriptionPlayer } from 'src/app/core/models/descriptionCard.interface';
 
 @Component({
   selector: 'app-description-player',

@@ -7,7 +7,7 @@ import { CardService } from 'src/app/service/card.service';
 import { ClubService } from 'src/app/service/club.service';
 import { NationService } from 'src/app/service/nation.service';
 import { FutApiService } from 'src/app/service/fut-api.service';
-import { Card } from 'src/app/core/models/card';
+import { Card } from 'src/app/core/models/card.interface';
 import { cardMock, clubMock, mockTypeCard } from 'src/app/core/models/test/mock-models';
 
 describe('CardDetailsComponent', () => {

@@ -6,14 +6,14 @@
     @include flex-justify-center;
     border-radius: 5px;
     margin: 0px 20px 0px 20px;
-  
+
     &-background {
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
       border-radius: $defaultBorderRadius;
-      margin: 30px 50px ;
+      margin: 30px 50px;
       padding: 10px;
       color: var(--gray);
     }
@@ -26,7 +26,6 @@
     }
 
     .form-details {
-      
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
@@ -48,11 +47,10 @@
           transition: all 0.3s ease;
         }
         .details {
-          
           display: block;
           font-weight: 500;
           margin-bottom: 9px;
-         
+
           .selectStyle {
             text-transform: capitalize;
           }
@@ -68,25 +66,37 @@
             border: 1px solid #ccc;
             border-bottom-width: 2px;
             transition: all 0.3s ease;
-            &[type=number]::-webkit-inner-spin-button { 
+            &[type="number"]::-webkit-inner-spin-button {
               -webkit-appearance: none;
             }
           }
         }
       }
     }
-  
+
     #buttonForm {
       @include buttonDefault;
       padding: 25px 35px 25px 35px;
     }
-  
-   
   }
 
   #imageSelectClub {
-   position: fixed;
-  width: 20px;
-  height: 20px;
+    position: fixed;
+    width: 20px;
+    height: 20px;
+  }
+
+  .input-error {
+    color: var(--medium-dark-red);
+    input {
+      transition: 0.5s;
+
+      border-color: var(--medium-dark-red) !important;
+      border-bottom-width: 2px;
+
+      &::placeholder {
+        color: var(--medium-dark-red);
+      }
+    }
   }
 }

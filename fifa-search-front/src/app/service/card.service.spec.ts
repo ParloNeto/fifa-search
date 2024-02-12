@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { CardService } from './card.service';
-import { TypeCard } from '../core/models/typeCard';
+import { TypeCard } from '../core/models/typeCard.interface';
 import { environment } from 'src/environments/environment.development';
 
 describe('CardService', () => {

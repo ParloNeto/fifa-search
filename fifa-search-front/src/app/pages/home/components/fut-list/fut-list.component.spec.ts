@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 import { FutListComponent } from './fut-list.component';
 import { FutApiService } from 'src/app/service/fut-api.service';
-import { Card } from 'src/app/core/models/card';
+import { Card } from 'src/app/core/models/card.interface';
 import { HttpClientModule } from '@angular/common/http';
 import { FutSearchComponent } from '../fut-search/fut-search.component';
 import { of, throwError } from 'rxjs';

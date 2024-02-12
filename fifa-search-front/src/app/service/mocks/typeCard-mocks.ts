@@ -1,5 +1,5 @@
 
-import { TypeCard } from 'src/app/core/models/typeCard';
+import { TypeCard } from 'src/app/core/models/typeCard.interface';
 import { COLOR_TEXT_BLACK, COLOR_TEXT_FUTTIES_FIFA_17, COLOR_TEXT_FUT_CHAMPIONS_REWARD, COLOR_TEXT_LEGEND, COLOR_TEXT_MOTM, COLOR_TEXT_SILVER, COLOR_TEXT_TOTW, COLOR_TEXT_TOTY, COLOR_TEXT_WHITE, COLOR_TEXT_YELLOW } from './colorText';
 import { FIFA_16, FIFA_17, NATIONS } from './utils';
 

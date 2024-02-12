@@ -1,6 +1,5 @@
-import { Nation } from "src/app/core/models/nation";
 
-export const nationsMockService: Nation[] = [
+export const nationsMockService: { nation: string }[] = [
   { nation: 'angola' },
   { nation: 'argelia' },
   { nation: 'argentina' },
@@ -48,5 +47,5 @@ export const nationsMockService: Nation[] = [
   { nation: 'ukraine' },
   { nation: 'united-states' },
   { nation: 'uruguay' },
-  { nation: 'wales' }
+  { nation: 'wales' },
 ];

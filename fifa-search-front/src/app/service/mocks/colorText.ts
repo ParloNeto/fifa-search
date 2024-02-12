@@ -1,4 +1,4 @@
-import { ColorText } from './../../core/models/colorText';
+import { ColorText } from '../../core/models/colorText.interface';
 
 const BLACK = '#433111';
 const BLACK_PADRAO = '#000000';

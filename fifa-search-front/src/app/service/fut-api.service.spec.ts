@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { FutApiService } from './fut-api.service';
-import { Card } from '../core/models/card';
+import { Card } from '../core/models/card.interface';
 import { attributesMock, clubMock } from '../core/models/test/mock-models';
 import { environment } from 'src/environments/environment.development';
 

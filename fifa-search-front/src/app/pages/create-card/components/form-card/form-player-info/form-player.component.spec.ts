@@ -28,8 +28,7 @@ describe('FormPlayerComponent', () => {
   let component: FormPlayerComponent;
   let fixture: ComponentFixture<FormPlayerComponent>;
   let futApiService: FutApiService;
-  let router: Router;
-  let snackBar: MatSnackBar;
+
   let formBuilder: FormBuilder;
 
   beforeEach(async () => {
@@ -50,8 +49,6 @@ describe('FormPlayerComponent', () => {
     fixture = TestBed.createComponent(FormPlayerComponent);
     component = fixture.componentInstance;
     futApiService = TestBed.inject(FutApiService);
-    router = TestBed.inject(Router);
-    snackBar = TestBed.inject(MatSnackBar);
     formBuilder = TestBed.inject(FormBuilder);
 
     component.infoCardsForm = formBuilder.group({
@@ -110,17 +107,6 @@ describe('FormPlayerComponent', () => {
   
     expect(futApiService.createCard).toHaveBeenCalled();
   }));
-
-  it('should set selectedClubCard based on allClubs', () => {
-    component.getAllClubs();
-
-    clubsMock.forEach((club) => {
-      if (club) component.selectedClubCard.push(club.name);
-      
-    });
-    
-    expect(component.selectedClubCard).not.toEqual([ clubMock.name ]);
-  });
 
   it('should add item to arraySelect', () => {
     const arraySelect: string[] = [];

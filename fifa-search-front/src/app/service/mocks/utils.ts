@@ -2,6 +2,7 @@ export const FIFA_16 = 'fifa-16';
 export const FIFA_17 = 'fifa-17';
 export const FIFA_18 = 'fifa-18';
 export const FIFA_19 = 'fifa-19';
+export const FIFA_20 = 'fifa-19';
 
 export const NATIONS = {
     FUTTIES: "futties",

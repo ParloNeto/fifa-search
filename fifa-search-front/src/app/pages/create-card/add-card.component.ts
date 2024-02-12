@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ColorText } from 'src/app/core/models/colorText';
+import { ColorText } from 'src/app/core/models/colorText.interface';
 
 @Component({
   selector: 'app-add-card',

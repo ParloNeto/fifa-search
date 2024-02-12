@@ -27,13 +27,6 @@
         </p>
 
         <div class="iconAndNation">
-          @if (clubUrl) {
-          <img
-            class="playercard__top__icons playercard__club__img"
-            [src]="clubUrl"
-            [alt]="card.club"
-          />
-          } @else {
           <img
             class="playercard__top__icons playercard__club__img"
             [src]="
@@ -41,14 +34,7 @@
             "
             [alt]="card.club"
           />
-          } @if (nationUrl) {
-          <img
-            class="playercard__top__icons"
-            id="nation"
-            [src]="nationUrl"
-            [alt]="card.nationality"
-          />
-          } @else {
+
           <img
             class="playercard__top__icons"
             id="nation"
@@ -57,7 +43,6 @@
             "
             [alt]="card.nationality"
           />
-          }
         </div>
       </div>
       <img

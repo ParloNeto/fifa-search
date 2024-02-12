@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Card } from 'src/app/core/models/card';
-import { DescriptionPlayer } from 'src/app/core/models/descriptionCard';
+import { Card } from 'src/app/core/models/card.interface';
+import { DescriptionPlayer } from 'src/app/core/models/descriptionCard.interface';
 
 @Component({
   selector: 'app-details',

@@ -49,6 +49,7 @@ fifa-search-back/target/**
 
 # Miscellaneous
 fifa-search-front/.angular/cache
+*-lock.json
 
 .sass-cache/
 fifa-search-front/connect.lock

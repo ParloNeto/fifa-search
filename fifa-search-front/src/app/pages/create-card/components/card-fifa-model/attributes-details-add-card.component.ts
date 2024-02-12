@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { CardService } from 'src/app/service/card.service';
-import { ColorText } from 'src/app/core/models/colorText';
+import { ColorText } from 'src/app/core/models/colorText.interface';
 
 @Component({
   selector: 'app-attributes-details-add-card',
