@@ -1,7 +1,10 @@
-@import '../../../../../config-scss/variables.scss';
+@import "../../../../../config-scss/variables.scss";
 
 $padding: 45px;
 :host {
+  p {
+    color: var(--secundary-color);
+  }
   .list {
     display: flex;
     justify-content: space-between;
@@ -95,18 +98,16 @@ $padding: 45px;
   }
 
   @media screen and (max-width: 1020px) {
-   
+    p {
+      right: 20px;
+      bottom: 20px;
+    }
 
-   p {
-    right: 20px;
-    bottom: 20px;
-   }
-
-   .list {
-    .card {
-      width: calc(100% - 2.813rem);
-     }
-   }
+    .list {
+      .card {
+        width: calc(100% - 2.813rem);
+      }
+    }
   }
 
   @media screen and (max-width: 475px) {
@@ -115,8 +116,6 @@ $padding: 45px;
         &__image {
           display: none;
         }
-
-        
       }
     }
     #card__name-club-and-nation {

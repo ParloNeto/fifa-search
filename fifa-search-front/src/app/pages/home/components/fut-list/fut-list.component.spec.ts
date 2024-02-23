@@ -16,10 +16,9 @@ describe('FutListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FutListComponent, FutSearchComponent],
-      imports: [HttpClientModule],
-      providers: [FutApiService],
-    }).compileComponents();
+    imports: [HttpClientModule, FutListComponent, FutSearchComponent],
+    providers: [FutApiService],
+}).compileComponents();
   });
 
   beforeEach(() => {
