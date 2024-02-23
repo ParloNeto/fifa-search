@@ -12,7 +12,11 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { cardsMock } from 'src/app/core/models/test/mock-models';
 
-@Component({ selector: 'app-test', template: '' }) // Mock component for MatDialog
+@Component({
+    selector: 'app-test', template: '',
+    standalone: true,
+    imports: [MatSnackBarModule, MatDialogModule, MatIconModule, RouterTestingModule, HttpClientTestingModule]
+}) // Mock component for MatDialog
 class TestComponent { }
 
 describe('InformationButtonsComponent', () => {
@@ -25,10 +29,9 @@ describe('InformationButtonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [InformationButtonsComponent, TestComponent],
-      imports: [MatSnackBarModule, MatDialogModule, MatIconModule, RouterTestingModule, HttpClientTestingModule],
-      providers: [FutApiService]
-    }).compileComponents();
+    imports: [MatSnackBarModule, MatDialogModule, MatIconModule, RouterTestingModule, HttpClientTestingModule, InformationButtonsComponent, TestComponent],
+    providers: [FutApiService]
+}).compileComponents();
   });
 
   beforeEach(() => {

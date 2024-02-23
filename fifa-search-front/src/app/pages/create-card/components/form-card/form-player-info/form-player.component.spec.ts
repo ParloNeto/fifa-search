@@ -33,16 +33,15 @@ describe('FormPlayerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, HttpClientTestingModule],
-      declarations: [FormPlayerComponent],
-      providers: [
+    imports: [ReactiveFormsModule, HttpClientTestingModule, FormPlayerComponent],
+    providers: [
         FormBuilder,
         { provide: FutApiService, useClass: FutApiServiceStub },
         { provide: CardService, useClass: CardServiceStub },
-        { provide: Router, useValue: { navigateByUrl: () => {} } },
-        { provide: MatSnackBar, useValue: { open: () => {} } }
-      ],
-    }).compileComponents();
+        { provide: Router, useValue: { navigateByUrl: () => { } } },
+        { provide: MatSnackBar, useValue: { open: () => { } } }
+    ],
+}).compileComponents();
   });
 
   beforeEach(() => {

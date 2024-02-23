@@ -9,12 +9,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { MaterialModule } from 'src/app/shared/material/material.module';
 
 @NgModule({
-  declarations: [
-    DetailsComponent,
-    DescriptionPlayerComponent,
-    InformationButtonsComponent,
-    CardDetailsComponent,
-  ],
-  imports: [CommonModule, RoutingModule, SharedModule, MaterialModule],
+    imports: [CommonModule, RoutingModule, SharedModule, MaterialModule, DetailsComponent,
+        DescriptionPlayerComponent,
+        InformationButtonsComponent,
+        CardDetailsComponent],
 })
 export class DetailsModule {}

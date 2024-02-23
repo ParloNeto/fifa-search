@@ -9,18 +9,16 @@ describe('FutHeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FutHeaderComponent ],
-      imports: [ RouterModule ],
-      providers: [
+    imports: [RouterModule, FutHeaderComponent],
+    providers: [
         {
-          provide: ActivatedRoute,
-          useValue: {
-            snapshot: {
+            provide: ActivatedRoute,
+            useValue: {
+                snapshot: {}
             }
-          }
         }
-      ]
-    })
+    ]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(FutHeaderComponent);

@@ -1,10 +1,13 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ClearFieldDirective } from '../../../../../shared/directives/clear-field.directive';
 
 @Component({
-  selector: 'app-form-attributes',
-  templateUrl: './form-attributes.component.html',
-  styleUrls: ['./form-attributes.component.scss']
+    selector: 'app-form-attributes',
+    templateUrl: './form-attributes.component.html',
+    styleUrls: ['./form-attributes.component.scss'],
+    standalone: true,
+    imports: [ReactiveFormsModule, ClearFieldDirective]
 })
 export class FormAttributesComponent implements OnInit {
 

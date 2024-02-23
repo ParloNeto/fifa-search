@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
-  selector: 'app-fut-search',
-  templateUrl: './fut-search.component.html',
-  styleUrls: ['./fut-search.component.scss']
+    selector: 'app-fut-search',
+    templateUrl: './fut-search.component.html',
+    styleUrls: ['./fut-search.component.scss'],
+    standalone: true
 })
 export class FutSearchComponent {
   

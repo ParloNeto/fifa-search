@@ -14,11 +14,6 @@ import { MaterialModule } from './material/material.module';
 import { ClearFieldDirective } from './directives/clear-field.directive';
 
 @NgModule({
-    declarations: [
-        FutHeaderComponent,
-        ConfirmDialogComponent,
-        ClearFieldDirective
-    ],
     exports: [
         FutHeaderComponent,
         ClearFieldDirective
@@ -27,6 +22,9 @@ import { ClearFieldDirective } from './directives/clear-field.directive';
         CommonModule,
         MaterialModule,
         RouterModule,
+        FutHeaderComponent,
+        ConfirmDialogComponent,
+        ClearFieldDirective,
     ]
 })
 export class SharedModule { }

@@ -28,15 +28,14 @@ describe('CardDetailsComponent', () => {
     mockClubService = jasmine.createSpyObj('ClubService', ['getSpecificClub']);
 
     await TestBed.configureTestingModule({
-      declarations: [CardDetailsComponent],
-      imports: [RouterTestingModule, HttpClientTestingModule],
-      providers: [
+    imports: [RouterTestingModule, HttpClientTestingModule, CardDetailsComponent],
+    providers: [
         { provide: FutApiService, useValue: mockFutApiService },
         { provide: CardService, useValue: mockCardService },
         { provide: NationService, useValue: mockNationService },
         { provide: ClubService, useValue: mockClubService }
-      ]
-    }).compileComponents();
+    ]
+}).compileComponents();
 
     fixture = TestBed.createComponent(CardDetailsComponent);
     component = fixture.componentInstance;

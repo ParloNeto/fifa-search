@@ -12,35 +12,32 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of } from 'rxjs';
 import { AttributesDetailsAddCardComponent } from './attributes-details-add-card.component';
 import { CardService } from 'src/app/service/card.service';
-import { ClubService } from 'src/app/service/club.service';
-import { NationService } from 'src/app/service/nation.service';
+
 
 describe('AttributesDetailsAddCardComponent', () => {
   let component: AttributesDetailsAddCardComponent;
   let fixture: ComponentFixture<AttributesDetailsAddCardComponent>;
   let mockCardService: CardService;
-  let mockClubService: ClubService;
-  let mockNationService: NationService;
+
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         MatIconModule,
         HttpClientTestingModule,
         ReactiveFormsModule,
         FormsModule,
-      ],
-      declarations: [AttributesDetailsAddCardComponent],
-      providers: [FormBuilder],
-    }).compileComponents();
+        AttributesDetailsAddCardComponent,
+    ],
+    providers: [FormBuilder],
+}).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AttributesDetailsAddCardComponent);
     component = fixture.componentInstance;
     mockCardService = TestBed.inject(CardService);
-    mockClubService = TestBed.inject(ClubService);
-    mockNationService = TestBed.inject(NationService);
+
     component.infoCardsForm = new FormGroup({
       versionFifa: new FormControl('fifa-16', Validators.required),
       typeCard: new FormControl('futties', Validators.required),

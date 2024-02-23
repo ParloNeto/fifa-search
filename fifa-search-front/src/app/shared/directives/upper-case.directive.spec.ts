@@ -6,9 +6,11 @@ import { UpperCaseDirective } from './upper-case.directive';
 import { FormGroup, FormsModule, NgModel } from '@angular/forms';
 
 @Component({
-  template: `
+    template: `
     <input type="text" appUpperCase [(ngModel)]="inputValue">
-  `
+  `,
+    standalone: true,
+    imports: [FormsModule]
 })
 class TestComponent {
   inputValue!: string;
@@ -21,9 +23,8 @@ describe('UpperCaseDirective', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [UpperCaseDirective, TestComponent],
-      imports: [ FormsModule ]
-    });
+    imports: [FormsModule, UpperCaseDirective, TestComponent]
+});
 
     fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;

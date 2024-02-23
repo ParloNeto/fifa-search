@@ -7,11 +7,14 @@ import {
 import { FormGroup } from '@angular/forms';
 import { CardService } from 'src/app/service/card.service';
 import { ColorText } from 'src/app/core/models/colorText.interface';
+import { NgClass, NgStyle } from '@angular/common';
 
 @Component({
-  selector: 'app-attributes-details-add-card',
-  templateUrl: './attributes-details-add-card.component.html',
-  styleUrls: ['./attributes-details-add-card.component.scss'],
+    selector: 'app-attributes-details-add-card',
+    templateUrl: './attributes-details-add-card.component.html',
+    styleUrls: ['./attributes-details-add-card.component.scss'],
+    standalone: true,
+    imports: [NgClass, NgStyle],
 })
 export class AttributesDetailsAddCardComponent implements OnInit, OnChanges {
   @Input() infoCardsForm!: FormGroup;

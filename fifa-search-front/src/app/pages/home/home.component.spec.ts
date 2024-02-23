@@ -16,20 +16,19 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent, FutHeaderComponent, FutListComponent, FutSearchComponent ],
-      imports: [HttpClientModule, RouterModule, FutAddCardComponent, MaterialModule, BrowserAnimationsModule],
-      providers: [
+    imports: [HttpClientModule, RouterModule, FutAddCardComponent, MaterialModule, BrowserAnimationsModule, HomeComponent, FutHeaderComponent, FutListComponent, FutSearchComponent],
+    providers: [
         {
-          provide: ActivatedRoute, // Provide a mock for ActivatedRoute
-          useValue: {
-            snapshot: {
-              // Add any properties or methods used by the HomeComponent here.
-              // Example: paramMap or queryParamMap if used by HomeComponent.
+            provide: ActivatedRoute,
+            useValue: {
+                snapshot: {
+                // Add any properties or methods used by the HomeComponent here.
+                // Example: paramMap or queryParamMap if used by HomeComponent.
+                }
             }
-          }
         }
-      ]
-    })
+    ]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(HomeComponent);

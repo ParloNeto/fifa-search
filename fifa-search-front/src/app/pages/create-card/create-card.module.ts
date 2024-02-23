@@ -12,21 +12,19 @@ import { FormAttributesComponent } from 'src/app/pages/create-card/components/fo
 import { FormPlayerComponent } from 'src/app/pages/create-card/components/form-card/form-player-info/form-player.component';
 
 @NgModule({
-  declarations: [
-    AddCardComponent,
-    UpperCaseDirective,
-    FormPlayerComponent,
-    AttributesDetailsAddCardComponent,
-    FormAttributesComponent,
-  ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    FutGoBackButtonComponent,
-    ReactiveFormsModule,
-    FormsModule,
-    MaterialModule,
-    SharedModule,
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        FutGoBackButtonComponent,
+        ReactiveFormsModule,
+        FormsModule,
+        MaterialModule,
+        SharedModule,
+        AddCardComponent,
+        UpperCaseDirective,
+        FormPlayerComponent,
+        AttributesDetailsAddCardComponent,
+        FormAttributesComponent,
+    ],
 })
 export class CreateCardModule {}

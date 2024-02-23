@@ -19,9 +19,8 @@ describe('DetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ DetailsComponent, FutHeaderComponent, CardDetailsComponent, DescriptionPlayerComponent, InformationButtonsComponent ],
-      imports: [ HttpClientTestingModule, RouterTestingModule, MaterialModule ]
-    })
+    imports: [HttpClientTestingModule, RouterTestingModule, MaterialModule, DetailsComponent, FutHeaderComponent, CardDetailsComponent, DescriptionPlayerComponent, InformationButtonsComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(DetailsComponent);

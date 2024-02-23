@@ -4,11 +4,14 @@ import { ActivatedRoute } from '@angular/router';
 import { Card } from 'src/app/core/models/card.interface';
 import { CardService } from 'src/app/service/card.service';
 import { FutApiService } from 'src/app/service/fut-api.service';
+import { NgClass, NgStyle } from '@angular/common';
 
 @Component({
-  selector: 'app-card-details',
-  templateUrl: './card-details.component.html',
-  styleUrls: ['./card-details.component.scss'],
+    selector: 'app-card-details',
+    templateUrl: './card-details.component.html',
+    styleUrls: ['./card-details.component.scss'],
+    standalone: true,
+    imports: [NgClass, NgStyle],
 })
 export class CardDetailsComponent implements OnInit {
   @Output() public InformLoading = new EventEmitter();

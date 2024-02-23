@@ -1,14 +1,18 @@
 import { Component, Input } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FutApiService } from 'src/app/service/fut-api.service';
 import { ConfirmDialogComponent } from 'src/app/shared/material/confirm-dialog/confirm-dialog.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
-  selector: 'app-information-buttons',
-  templateUrl: './information-buttons.component.html',
-  styleUrls: ['./information-buttons.component.scss']
+    selector: 'app-information-buttons',
+    templateUrl: './information-buttons.component.html',
+    styleUrls: ['./information-buttons.component.scss'],
+    standalone: true,
+    imports: [MatButtonModule, MatIconModule, RouterLink]
 })
 export class InformationButtonsComponent {
 

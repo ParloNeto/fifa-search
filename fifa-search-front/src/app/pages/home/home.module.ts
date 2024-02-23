@@ -9,15 +9,15 @@ import { FutListComponent } from './components/fut-list/fut-list.component';
 import { CommonModule } from '@angular/common';
 
 @NgModule({
-  declarations: [HomeComponent, FutSearchComponent, FutListComponent],
-  imports: [
-    CommonModule,
-    FutAddCardComponent,
-    MaterialModule,
-    SharedModule,
-    RoutingModule,
-    FutAddCardComponent
-  ],
-  exports: [FutListComponent]
+    imports: [
+        CommonModule,
+        FutAddCardComponent,
+        MaterialModule,
+        SharedModule,
+        RoutingModule,
+        FutAddCardComponent,
+        HomeComponent, FutSearchComponent, FutListComponent
+    ],
+    exports: [FutListComponent]
 })
 export class HomeModule {}

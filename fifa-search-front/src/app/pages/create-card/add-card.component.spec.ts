@@ -17,9 +17,8 @@ describe('AddCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AddCardComponent, FormPlayerComponent, FormAttributesComponent, FutHeaderComponent, AttributesDetailsAddCardComponent ],
-      imports: [ HttpClientTestingModule, MaterialModule, RouterTestingModule, FormsModule, ReactiveFormsModule, FutGoBackButtonComponent]
-    })
+    imports: [HttpClientTestingModule, MaterialModule, RouterTestingModule, FormsModule, ReactiveFormsModule, FutGoBackButtonComponent, AddCardComponent, FormPlayerComponent, FormAttributesComponent, FutHeaderComponent, AttributesDetailsAddCardComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(AddCardComponent);

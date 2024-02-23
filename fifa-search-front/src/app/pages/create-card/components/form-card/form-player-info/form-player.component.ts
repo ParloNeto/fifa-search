@@ -8,12 +8,7 @@ import {
   Output,
   inject,
 } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { FutApiService } from 'src/app/service/fut-api.service';
 import { CardService } from 'src/app/service/card.service';
 import { Router } from '@angular/router';
@@ -26,11 +21,20 @@ import {
   FIFA_19,
   FIFA_20,
 } from 'src/app/service/mocks/utils';
+import { UpperCaseDirective } from '../../../../../shared/directives/upper-case.directive';
+import { NgFor, NgClass } from '@angular/common';
 
 @Component({
-  selector: 'app-form-player',
-  templateUrl: './form-player.component.html',
-  styleUrls: ['./form-player.component.scss'],
+    selector: 'app-form-player',
+    templateUrl: './form-player.component.html',
+    styleUrls: ['./form-player.component.scss'],
+    standalone: true,
+    imports: [
+        ReactiveFormsModule,
+        NgFor,
+        NgClass,
+        UpperCaseDirective,
+    ],
 })
 export class FormPlayerComponent implements OnInit {
   #fb = inject(FormBuilder);
