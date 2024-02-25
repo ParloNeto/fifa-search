@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { FutApiService } from './fut-api.service';
 import { Card } from '../core/models/card.interface';
-import { attributesMock, clubMock } from '../core/models/test/mock-models';
+import { attributesMock, clubNameMock } from '../core/models/test/mock-models';
 import { environment } from 'src/environments/environment.development';
 
 describe('FutApiService', () => {
@@ -28,11 +28,11 @@ describe('FutApiService', () => {
 
   it('should retrieve all cards', () => {
     const mockCards: Card[] = [
-      { id: '1', versionFifa: 'FIFA 21', typeCard: 'Rare Gold', firstName: 'John', lastName: 'Doe', nationality: 'England', club: clubMock, position: 'Forward', photo: 'https://example.com/player.jpg', attributeCard: attributesMock },
-      { id: '2', versionFifa: 'FIFA 21', typeCard: 'Rare Gold', firstName: 'Jane', lastName: 'Smith', nationality: 'USA', club: clubMock, position: 'Midfielder', photo: 'https://example.com/player2.jpg', attributeCard: attributesMock },
+      { id: '1', versionFifa: 'FIFA 21', typeCard: 'Rare Gold', firstName: 'John', lastName: 'Doe', nationality: 'England', club: clubNameMock, position: 'Forward', photo: 'https://example.com/player.jpg', attributeCard: attributesMock },
+      { id: '2', versionFifa: 'FIFA 21', typeCard: 'Rare Gold', firstName: 'Jane', lastName: 'Smith', nationality: 'USA', club: clubNameMock, position: 'Midfielder', photo: 'https://example.com/player2.jpg', attributeCard: attributesMock },
     ];
 
-    futApiService.getAllCards().subscribe((cards) => {
+    futApiService.httpListCards$().subscribe((cards) => {
       expect(cards).toEqual(mockCards);
     });
 
@@ -43,9 +43,9 @@ describe('FutApiService', () => {
 
   it('should retrieve a specific card', () => {
     const cardId = '1';
-    const mockCard: Card = { id: cardId, versionFifa: 'FIFA 21', typeCard: 'Rare Gold', firstName: 'John', lastName: 'Doe', nationality: 'England', club: clubMock, position: 'Forward', photo: 'https://example.com/player.jpg', attributeCard: attributesMock };
+    const mockCard: Card = { id: cardId, versionFifa: 'FIFA 21', typeCard: 'Rare Gold', firstName: 'John', lastName: 'Doe', nationality: 'England', club: clubNameMock, position: 'Forward', photo: 'https://example.com/player.jpg', attributeCard: attributesMock };
 
-    futApiService.getCard(cardId).subscribe((card) => {
+    futApiService.httpCardId$(cardId).subscribe((card) => {
       expect(card).not.toEqual(mockCard); // O método getCard retorna um array de Cards, então devemos passar o mockCard dentro de um array
     });
 
@@ -55,9 +55,9 @@ describe('FutApiService', () => {
   });
 
   it('should add a new card', () => {
-    const newCard: Card = { id: '3', versionFifa: 'FIFA 21', typeCard: 'Rare Gold', firstName: 'New', lastName: 'Player', nationality: 'Spain', club: clubMock, position: 'Midfielder', photo: 'https://example.com/new-player.jpg', attributeCard: attributesMock };
+    const newCard: Card = { id: '3', versionFifa: 'FIFA 21', typeCard: 'Rare Gold', firstName: 'New', lastName: 'Player', nationality: 'Spain', club: clubNameMock, position: 'Midfielder', photo: 'https://example.com/new-player.jpg', attributeCard: attributesMock };
 
-    futApiService.createCard(newCard).subscribe((addedCard: Card) => {
+    futApiService.httpCardCreate$(newCard).subscribe((addedCard: Card) => {
       expect(addedCard).toEqual(newCard);
     });
 

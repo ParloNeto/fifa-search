@@ -13,6 +13,9 @@ import { FutSearchComponent } from '../fut-search/fut-search.component';
   imports: [FutSearchComponent, NgFor, RouterLink, NgIf, AsyncPipe],
 })
 export class FutListComponent implements OnInit {
+  OnInit() {
+    throw new Error('Method not implemented.');
+  }
   #futApiService = inject(FutApiService);
   private setCards = signal<Card[]>([]);
   public cards = computed(() => this.setCards());

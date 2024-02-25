@@ -1,42 +1,26 @@
-import {
-  Component,
-  Input,
-  OnChanges,
-  OnInit,
-} from '@angular/core';
+import { Component, Input, OnChanges, OnInit, inject } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { CardService } from 'src/app/service/card.service';
 import { ColorText } from 'src/app/core/models/colorText.interface';
 import { NgClass, NgStyle } from '@angular/common';
 
 @Component({
-    selector: 'app-attributes-details-add-card',
-    templateUrl: './attributes-details-add-card.component.html',
-    styleUrls: ['./attributes-details-add-card.component.scss'],
-    standalone: true,
-    imports: [NgClass, NgStyle],
+  selector: 'app-attributes-details-add-card',
+  templateUrl: './attributes-details-add-card.component.html',
+  styleUrls: ['./attributes-details-add-card.component.scss'],
+  standalone: true,
+  imports: [NgClass, NgStyle],
 })
 export class AttributesDetailsAddCardComponent implements OnInit, OnChanges {
   @Input() infoCardsForm!: FormGroup;
   @Input() attributeCard!: FormGroup;
   @Input() cardColorText!: ColorText;
 
-  photoUrl!: string;
+  constructor() {}
 
-  public cardTypeAdjustmentCss = this.cardService.cardTypeAdjustmentCss;
-  cardTypeAdjust: string = '';
-
-  public cardImage: string = '';
-
-  constructor(
-    private cardService: CardService
-  ) {}
-  ngOnChanges(): void {
-    console.log(this.cardColorText)
-  }
+  ngOnChanges(): void {}
 
   ngOnInit(): void {
-    this.watchTheSelectChanges();
     this.cardColorText = {
       colorOverall: '#000000e6',
       colorFontName: '#000000e6',
@@ -67,7 +51,7 @@ export class AttributesDetailsAddCardComponent implements OnInit, OnChanges {
     return srcPath!;
   }
 
-  public watchTheSelectChanges(): void {
-    this.infoCardsForm.valueChanges.subscribe( () => (this.cardTypeAdjust = this.infoCardsForm.get('versionFifa')!.value));
+  public changeStyleByVersion(): string {
+    return this.infoCardsForm.value.versionFifa + ': card-' + this.infoCardsForm.value.versionFifa;
   }
 }

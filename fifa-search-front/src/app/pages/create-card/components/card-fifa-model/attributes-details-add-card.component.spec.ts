@@ -68,83 +68,36 @@ describe('AttributesDetailsAddCardComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize values in select', () => {
-    spyOn(component, 'getPhotoType');
-    spyOn(component, 'getNation');
-    spyOn(component, 'getClub');
 
-    component.ngOnInit();
+  // it('should update photoUrl when getPhotoType is called', () => {
+  //   const mockCardResponse = {
+  //     fifaVersion: 'fifa-16',
+  //     cardType: 'futties',
+  //     photoUrl: 'https://mocked-photo-url.com/image.png',
+  //     colorText: {
+  //       colorOverall: '#FFFFFF',
+  //       colorFontName: '#FFFFFF',
+  //       colorPosition: '#FFFFFF',
+  //       colorAttributes: '#FFFFFF',
+  //     },
+  //   };
 
-    expect(component.getNation).toHaveBeenCalled();
-    expect(component.getClub).toHaveBeenCalled();
-  });
+  //   spyOn(mockCardService, 'getSpecificType').and.returnValue(
+  //     of(mockCardResponse)
+  //   );
 
-  it('should update photoUrl when getPhotoType is called', () => {
-    const mockCardResponse = {
-      fifaVersion: 'fifa-16',
-      cardType: 'futties',
-      photoUrl: 'https://mocked-photo-url.com/image.png',
-      colorText: {
-        colorOverall: '#FFFFFF',
-        colorFontName: '#FFFFFF',
-        colorPosition: '#FFFFFF',
-        colorAttributes: '#FFFFFF',
-      },
-    };
+  //   component.infoCardsForm.patchValue({
+  //     versionFifa: 'fifa-16',
+  //     typeCard: 'futties',
+  //   });
 
-    spyOn(mockCardService, 'getSpecificType').and.returnValue(
-      of(mockCardResponse)
-    );
+  //   component.getPhotoType();
 
-    component.infoCardsForm.patchValue({
-      versionFifa: 'fifa-16',
-      typeCard: 'futties',
-    });
+  //   expect(mockCardService.getSpecificType).toHaveBeenCalledWith(
+  //     'fifa-16',
+  //     'futties'
+  //   );
+  //   expect(component.photoUrl).toBe('https://mocked-photo-url.com/image.png');
+  // });
 
-    component.getPhotoType();
-
-    expect(mockCardService.getSpecificType).toHaveBeenCalledWith(
-      'fifa-16',
-      'futties'
-    );
-    expect(component.photoUrl).toBe('https://mocked-photo-url.com/image.png');
-  });
-
-
-  it('should update nationUrl when getNation is called', () => {
-    const mockNationResponse = {
-      nation: 'brazil',
-      nationUrl: 'https://mocked-nation-url.com/flag.png',
-    };
-
-    spyOn(mockNationService, 'getSpecificNation').and.returnValue(
-      of(mockNationResponse)
-    );
-
-    component.infoCardsForm.patchValue({
-      nationality: 'brazil',
-    });
-
-    component.getNation();
-
-    expect(mockNationService.getSpecificNation).toHaveBeenCalledWith('brazil');
-    expect(component.nationUrl).toBe('https://mocked-nation-url.com/flag.png');
-  });
-  
-
-  it('should update clubUrl when getClub is called', () => {
-    const mockClubResponse = {
-      id: '1111',
-      name: 'palmeiras',
-      clubUrl: 'https://mocked-club-url.com/logo.png',
-    };
-
-    spyOn(mockClubService, 'getSpecificClub').and.returnValue(
-      of(mockClubResponse)
-    );
-
-    component.getClub();
-      // mockClubService always return club undefined
-    expect(mockClubService.getSpecificClub).not.toHaveBeenCalledWith('palmeiras');
-  });
 });

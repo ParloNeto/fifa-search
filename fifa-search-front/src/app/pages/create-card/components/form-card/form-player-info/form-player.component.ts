@@ -1,4 +1,3 @@
-import { environment } from './../../../../../../environments/environment.development';
 import { ColorText } from '../../../../../core/models/colorText.interface';
 import {
   Component,
@@ -8,12 +7,17 @@ import {
   Output,
   inject,
 } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { FutApiService } from 'src/app/service/fut-api.service';
 import { CardService } from 'src/app/service/card.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { TypeCard } from 'src/app/core/models/typeCard.interface';
 import {
   FIFA_16,
   FIFA_17,
@@ -22,22 +26,23 @@ import {
   FIFA_20,
 } from 'src/app/service/mocks/utils';
 import { UpperCaseDirective } from '../../../../../shared/directives/upper-case.directive';
-import { NgFor, NgClass } from '@angular/common';
+import { NgFor, NgClass, AsyncPipe } from '@angular/common';
+import { environment } from 'src/environments/environment';
+import { concatMap } from 'rxjs';
 
 @Component({
-    selector: 'app-form-player',
-    templateUrl: './form-player.component.html',
-    styleUrls: ['./form-player.component.scss'],
-    standalone: true,
-    imports: [
-        ReactiveFormsModule,
-        NgFor,
-        NgClass,
-        UpperCaseDirective,
-    ],
+  selector: 'app-form-player',
+  templateUrl: './form-player.component.html',
+  styleUrls: ['./form-player.component.scss'],
+  standalone: true,
+  imports: [ReactiveFormsModule, NgFor, NgClass, UpperCaseDirective, AsyncPipe],
 })
 export class FormPlayerComponent implements OnInit {
   #fb = inject(FormBuilder);
+  #futApiService = inject(FutApiService);
+
+  public getClubs = this.#futApiService.getClubs;
+  public getNations = this.#futApiService.getNations;
 
   @Input() attributeCard!: FormGroup;
   @Output() sendInfoCard = new EventEmitter<FormGroup>();
@@ -56,14 +61,11 @@ export class FormPlayerComponent implements OnInit {
   public colorTextCard!: ColorText;
 
   public infoCardsForm: FormGroup;
-  isMocked: boolean = environment.isMocked;
   constructor(
-    private futApiService: FutApiService,
     private cardService: CardService,
     private router: Router,
     private snackBar: MatSnackBar
   ) {
-    console.log(this.isMocked);
     this.infoCardsForm = this.#fb.group({
       versionFifa: ['', Validators.required],
       typeCard: ['', [Validators.required, Validators.maxLength(50)]],
@@ -124,13 +126,15 @@ export class FormPlayerComponent implements OnInit {
 
   ngOnInit(): void {
     this.emitsFormValue();
-    this.getAllNationsMock();
-    this.getAllClubsMock();
-    console.log(this.isMocked);
+
+    this.#futApiService.getAllClubsMock().subscribe();
+    this.#futApiService.getAllNationsMock().subscribe();
 
     this.infoCardsForm.patchValue({
       nationality: 'argentina',
       club: 'arsenal',
+      versionFifa: 'fifa-17',
+      typeCard: 'gold-rare',
     });
   }
 
@@ -151,14 +155,14 @@ export class FormPlayerComponent implements OnInit {
       const data = Object.assign({}, this.infoCardsForm.value, {
         attributeCard: this.attributeCard.value,
       });
-      this.futApiService.createCard(data).subscribe({
+      this.#futApiService.httpCardCreate$(data).subscribe({
         next: () => {
           this.router.navigateByUrl('');
           this.snackBar.open('Jogador adicionado com sucesso!', 'Fechar', {
             duration: 3000,
           });
         },
-        error: (error: Error) =>
+        error: () =>
           this.snackBar.open(
             'Não foi possível adicionar esse jogador. Tente novamente mais tarde.',
             'Fechar',
@@ -175,9 +179,11 @@ export class FormPlayerComponent implements OnInit {
   public filterTypeByVersion(): void {
     this.selectedTypeCard = [];
 
-    if (this.isMocked === true)
+    if (environment.isMocked === true)
       this.getAllTypeCardsMock(this.versionFifa!.value);
-    if (this.isMocked === false) this.getAllTypeCards(this.versionFifa!.value);
+    else {
+      this.getAllTypeCards(this.versionFifa!.value);
+    }
   }
 
   private getAllTypeCardsMock(version: string): void {
@@ -202,32 +208,6 @@ export class FormPlayerComponent implements OnInit {
       res.forEach((card) => {
         this.addItemsInSelectArray(this.selectedTypeCard, card.cardType);
       });
-    });
-  }
-
-  getAllTypeCardMockInSelect(): void {
-    if (this.isMocked === true)
-      this.getAllTypeCardsMock(this.versionFifa!.value);
-    if (this.isMocked === false) this.getAllTypeCards(this.versionFifa!.value);
-  }
-
-  private getAllNationsMock(): void {
-    this.futApiService.getAllNationsMock().subscribe({
-      next: (nations: { nation: string }[]) => {
-        nations.forEach((res) => {
-          this.addItemsInSelectArray(this.selectedNationCard, res.nation);
-        });
-      },
-    });
-  }
-
-  private getAllClubsMock(): void {
-    this.futApiService.getAllClubsMock().subscribe({
-      next: (clubs: { club: string }[]) => {
-        clubs.forEach((res) => {
-          this.addItemsInSelectArray(this.selectedClubCard, res.club);
-        });
-      },
     });
   }
 

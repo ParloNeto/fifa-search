@@ -38,7 +38,7 @@ export class InformationButtonsComponent {
   }
 
   public deletePlayer(id: string): void {
-    this.futApiService.deleteCardById(id).subscribe({
+    this.futApiService.httpDeleteCardById(id).subscribe({
       next: () => {
         this.router.navigateByUrl('');
         this.snackBar.open('Jogador deletado com sucesso!', 'Fechar', {

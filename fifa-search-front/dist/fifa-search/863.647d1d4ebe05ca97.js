@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkfifa_search=self.webpackChunkfifa_search||[]).push([[863],{863:(D,E,a)=>{a.r(E),a.d(E,{CardModule:()=>_});var M=a(6895),l=a(4006),d=a(9030),n=a(6867),r=a(4466),o=a(4650);class _{}_.\u0275fac=function(s){return new(s||_)},_.\u0275mod=o.oAB({type:_}),_.\u0275inj=o.cJS({imports:[M.ez,d.Bz,l.UX,l.u5,n.q,r.m]})}}]);

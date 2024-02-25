@@ -1,13 +1,4 @@
-<div
-  [ngClass]="cardTypeAdjustmentCss[cardTypeAdjust]"
-  class="card__header flipInY"
->
-  @if (photoUrl) {
-  <div>
-    <img class="type__card__image" [src]="photoUrl" />
-  </div>
-  } @else {
-
+<div [ngClass]="changeStyleByVersion()" class="card__header flipInY">
   <img
     class="type__card__image"
     [src]="
@@ -18,17 +9,6 @@
     "
   />
 
-  } @if (infoCardsForm.value.versionFifa == '') {
-  <img
-    class="type__card__image"
-    [src]="imagePathCard('fifa-16', 'card-default')"
-  />
-  } @else if (infoCardsForm.value.typeCard == '') {
-  <img
-    class="type__card__image"
-    [src]="imagePathCard('fifa-16', 'card-default')"
-  />
-  }
   <div class="playercard">
     <div class="playercard__top">
       <div class="playercard__details__icons">

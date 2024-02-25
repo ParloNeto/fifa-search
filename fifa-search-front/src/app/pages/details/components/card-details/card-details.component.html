@@ -1,8 +1,5 @@
-@if (card && card.versionFifa) {
-<div
-  [ngClass]="cardTypeAdjustmentCss[card.versionFifa || 'fifa-16']"
-  class="card__header flipInY"
->
+@if (getCardById(); as card) {
+<div [ngClass]="changeStyleByVersion()" class="card__header flipInY">
   <img
     width="100%"
     class="type__card__image"
@@ -26,7 +23,7 @@
           {{ card.position }}
         </p>
 
-        <div class="iconAndNation">
+        <div class="icon__and__nation">
           <img
             class="playercard__top__icons playercard__club__img"
             [src]="
@@ -60,8 +57,8 @@
 
   <div [ngStyle]="{ color: colorAttributes }" class="card__body__position">
     <div class="card__body">
-      <div class="cardAttributes">
-        <div class="attributeLeft">
+      <div class="card__attributes">
+        <div class="attribute__left">
           <div>
             <label class="bold__numbers">{{ card.attributeCard.pace }}</label>
             PAC
@@ -79,7 +76,7 @@
             PAS
           </div>
         </div>
-        <div class="attributeRight">
+        <div class="attribute__right">
           <div>
             <label class="bold__numbers">{{
               card.attributeCard.dribbling

@@ -7,7 +7,6 @@ import { FormPlayerComponent } from './components/form-card/form-player-info/for
 import { FutGoBackButtonComponent } from '../../shared/components/buttons/fut-go-back-button.component';
 import { FutHeaderComponent } from '../../shared/components/fut-header/fut-header.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MaterialModule } from '../../shared/material/material.module';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -17,7 +16,7 @@ describe('AddCardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [HttpClientTestingModule, MaterialModule, RouterTestingModule, FormsModule, ReactiveFormsModule, FutGoBackButtonComponent, AddCardComponent, FormPlayerComponent, FormAttributesComponent, FutHeaderComponent, AttributesDetailsAddCardComponent]
+    imports: [HttpClientTestingModule, RouterTestingModule, FormsModule, ReactiveFormsModule, FutGoBackButtonComponent, AddCardComponent, FormPlayerComponent, FormAttributesComponent, FutHeaderComponent, AttributesDetailsAddCardComponent]
 })
     .compileComponents();
 

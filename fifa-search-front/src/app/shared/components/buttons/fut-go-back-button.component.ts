@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MaterialModule } from '../../material/material.module';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-fut-go-back-button',
@@ -13,6 +14,6 @@ import { MaterialModule } from '../../material/material.module';
     </div>
   `,
   standalone: true,
-  imports: [RouterModule, MaterialModule]
+  imports: [RouterModule, MatIconModule, MatButtonModule]
 })
 export class FutGoBackButtonComponent {}

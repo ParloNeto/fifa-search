@@ -18,10 +18,6 @@ const routes: Routes = [
   {
     path: 'create-card',
     component: AddCardComponent,
-    loadChildren: () =>
-      import('./create-card/create-card.module').then(
-        (p) => p.CreateCardModule
-      ),
   },
 ];
 

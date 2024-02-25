@@ -7,7 +7,6 @@ import { DescriptionPlayerComponent } from './components/description-player/desc
 import { InformationButtonsComponent } from './components/information-buttons/information-buttons.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { MaterialModule } from 'src/app/shared/material/material.module';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { cardMock } from 'src/app/core/models/test/mock-models';
@@ -19,7 +18,7 @@ describe('DetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [HttpClientTestingModule, RouterTestingModule, MaterialModule, DetailsComponent, FutHeaderComponent, CardDetailsComponent, DescriptionPlayerComponent, InformationButtonsComponent]
+    imports: [HttpClientTestingModule, RouterTestingModule, DetailsComponent, FutHeaderComponent, CardDetailsComponent, DescriptionPlayerComponent, InformationButtonsComponent]
 })
     .compileComponents();
 
@@ -69,6 +68,6 @@ describe('DetailsComponent', () => {
     expect(component.description.firstName).toBe(event.firstName);
     expect(component.description.lastName).toBe(event.lastName);
     expect(component.description.nationality).toBe(event.nationality);
-    expect(component.description.clubName).toBe(event.club.name);
+    expect(component.description.clubName).toBe(event.club);
   });
 });

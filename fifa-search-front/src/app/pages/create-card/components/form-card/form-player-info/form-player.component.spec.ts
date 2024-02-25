@@ -5,17 +5,8 @@ import { FutApiService } from 'src/app/service/fut-api.service';
 import { CardService } from 'src/app/service/card.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { clubMock, clubsMock, mockListClub, mockListNation, mockListTypeCard } from 'src/app/core/models/test/mock-models';
+import { clubNameMock, mockListTypeCard } from 'src/app/core/models/test/mock-models';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-
-// Stub do serviço FutApiService
-class FutApiServiceStub {
-  createCard() {
-    return {
-      subscribe: () => {}
-    };
-  }
-}
 
 // Stub dos serviços CardService, NationService e ClubService
 class CardServiceStub {
@@ -28,7 +19,6 @@ describe('FormPlayerComponent', () => {
   let component: FormPlayerComponent;
   let fixture: ComponentFixture<FormPlayerComponent>;
   let futApiService: FutApiService;
-
   let formBuilder: FormBuilder;
 
   beforeEach(async () => {
@@ -36,7 +26,7 @@ describe('FormPlayerComponent', () => {
     imports: [ReactiveFormsModule, HttpClientTestingModule, FormPlayerComponent],
     providers: [
         FormBuilder,
-        { provide: FutApiService, useClass: FutApiServiceStub },
+        FutApiService,
         { provide: CardService, useClass: CardServiceStub },
         { provide: Router, useValue: { navigateByUrl: () => { } } },
         { provide: MatSnackBar, useValue: { open: () => { } } }
@@ -82,7 +72,7 @@ describe('FormPlayerComponent', () => {
   });
 
   it('should call addCard method from FutApiService when form is valid', fakeAsync(() => {
-    spyOn(futApiService, 'createCard').and.callThrough();
+    spyOn(futApiService, 'httpCardCreate$').and.callThrough();
   
     
     component.attributeCard = formBuilder.group({
@@ -104,8 +94,12 @@ describe('FormPlayerComponent', () => {
     component.submitForm();
     tick();
   
-    expect(futApiService.createCard).toHaveBeenCalled();
+    expect(futApiService.httpCardCreate$).toHaveBeenCalled();
   }));
+
+  it('should call addCard method from FutApiService when form is valid', () => {
+    
+  })
 
   it('should add item to arraySelect', () => {
     const arraySelect: string[] = [];

@@ -1,46 +1,45 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { CardDetailsComponent } from './card-details.component';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { of, throwError } from 'rxjs';
+import { CardDetailsComponent } from './card-details.component';
 import { CardService } from 'src/app/service/card.service';
-import { ClubService } from 'src/app/service/club.service';
-import { NationService } from 'src/app/service/nation.service';
 import { FutApiService } from 'src/app/service/fut-api.service';
 import { Card } from 'src/app/core/models/card.interface';
-import { cardMock, clubMock, mockTypeCard } from 'src/app/core/models/test/mock-models';
+import {
+  cardMock,
+  clubNameMock,
+  mockTypeCard,
+} from 'src/app/core/models/test/mock-models';
 
 describe('CardDetailsComponent', () => {
   let component: CardDetailsComponent;
   let fixture: ComponentFixture<CardDetailsComponent>;
-  let mockFutApiService: any;
-  let mockCardService: any;
-  let mockNationService: any;
-  let mockClubService: any;
-
+  let futApiService: FutApiService;
+  let cardService: jasmine.SpyObj<CardService>;
   const mockCardData: Card = cardMock;
 
-  beforeEach(async () => {
+  beforeEach(waitForAsync(() => {
+    cardService = jasmine.createSpyObj('CardService', ['getSpecificType', 'cardTypeAdjustmentCss']);
     
-    mockFutApiService = jasmine.createSpyObj('FutApiService', ['getCard']);
-    mockCardService = jasmine.createSpyObj('CardService', ['getSpecificType', 'cardTypeAdjustmentCss']);
-    mockNationService = jasmine.createSpyObj('NationService', ['getSpecificNation']);
-    mockClubService = jasmine.createSpyObj('ClubService', ['getSpecificClub']);
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
+      providers: [
+        FutApiService,
+        { provide: CardService, useValue: cardService }
+      ],
+    }).compileComponents();
+  }));
 
-    await TestBed.configureTestingModule({
-    imports: [RouterTestingModule, HttpClientTestingModule, CardDetailsComponent],
-    providers: [
-        { provide: FutApiService, useValue: mockFutApiService },
-        { provide: CardService, useValue: mockCardService },
-        { provide: NationService, useValue: mockNationService },
-        { provide: ClubService, useValue: mockClubService }
-    ]
-}).compileComponents();
-
+  beforeEach(() => {
     fixture = TestBed.createComponent(CardDetailsComponent);
     component = fixture.componentInstance;
+    futApiService = TestBed.inject(FutApiService);
+    cardService.getSpecificType.and.returnValue(of(mockTypeCard));
 
-    mockFutApiService.getCard.and.returnValue(of(mockCardData));
     fixture.detectChanges();
   });
 
@@ -48,61 +47,45 @@ describe('CardDetailsComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set nationUrl when getNation is called', () => {
-    const mockNationCard = { nation: "brazil", nationUrl: 'mockNationUrl' };
-    mockNationService.getSpecificNation.and.returnValue(of(mockNationCard));
+  it('httpCardId$ should return stubbed value from a spy', () => {
+    spyOn(futApiService, 'httpCardId$').and.returnValue(of(mockCardData));
+    futApiService.httpCardId$(mockCardData.id);
+    spyOn(component, 'getPhotoType').and.returnValue();
+    spyOn(component.InformLoading, 'emit');
+    spyOn(component.dataCard, 'emit');
+    spyOn(component.informId, 'emit').and.returnValue();
 
-    component.card = mockCardData;
-    component.getNation();
-    expect(component.nationUrl).toBe(mockNationCard.nationUrl);
+    component.ngOnInit();
+
+    expect(component.card).toEqual(mockCardData);
+    expect(component.getPhotoType).toHaveBeenCalled();
+    expect(component.dataCard.emit).toHaveBeenCalledWith(mockCardData);
+    expect(component.InformLoading.emit).toHaveBeenCalledWith(true);
+    expect(component.informId.emit).toHaveBeenCalledWith(mockCardData.id);
+    expect(futApiService.httpCardId$).toHaveBeenCalledWith(cardMock.id);
   });
 
-  it('should set clubUrl when getClub is called', () => {
-    const mockClubCard = clubMock;
-    mockClubService.getSpecificClub.and.returnValue(of(mockClubCard));
-
-    component.card = mockCardData;
-    component.getClub();
-    expect(component.clubUrl).toBe(mockClubCard.clubUrl);
+  it('should emit InformLoading with false when httpCardId$ returns an error', () => {
+    spyOn(futApiService, 'httpCardId$').and.returnValue(throwError('Fake error'));
+  
+    spyOn(component.InformLoading, 'emit');
+  
+    component.ngOnInit();
+  
+    expect(futApiService.httpCardId$).toHaveBeenCalled();
+    expect(component.InformLoading.emit).toHaveBeenCalledWith(false);
   });
 
   it('should set properties from getSpecificType response', () => {
     const mockSpecificTypeResponse = mockTypeCard;
-
-    mockCardService.getSpecificType.and.returnValue(of(mockSpecificTypeResponse));
-
+  
+    component.card = mockCardData;
     component.getPhotoType();
-
+  
     expect(component.photoUrl).toBe(mockSpecificTypeResponse.photoUrl);
     expect(component.colorFontName).toBe(mockSpecificTypeResponse.colorText.colorFontName);
     expect(component.colorOverall).toBe(mockSpecificTypeResponse.colorText.colorOverall);
     expect(component.colorPosition).toBe(mockSpecificTypeResponse.colorText.colorPosition);
     expect(component.colorAttributes).toBe(mockSpecificTypeResponse.colorText.colorAttributes);
   });
-
-  it('should call methods when ngOnInit is called', () => {
-    const mockCardResponse = cardMock;
-
-    mockFutApiService.getCard.and.returnValue(of(mockCardResponse));
-    spyOn(component, 'getPhotoType');
-    spyOn(component, 'getNation');
-    spyOn(component, 'getClub');
-
-    component.ngOnInit();
-
-    expect(component.getPhotoType).toHaveBeenCalled();
-    expect(component.getNation).toHaveBeenCalled();
-    expect(component.getClub).toHaveBeenCalled();
-  });
-
-  it('should emit InformLoading with false when getCard returns an error', () => {
-    mockFutApiService.getCard.and.returnValue(throwError('Some error'));
-
-    spyOn(component.InformLoading, 'emit');
-
-    component.ngOnInit();
-
-    expect(component.InformLoading.emit).toHaveBeenCalledWith(false);
-  });
-
 });

@@ -1,17 +1,17 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output, inject } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 import { Card } from 'src/app/core/models/card.interface';
 import { CardService } from 'src/app/service/card.service';
 import { FutApiService } from 'src/app/service/fut-api.service';
-import { NgClass, NgStyle } from '@angular/common';
+import { JsonPipe, NgClass, NgStyle } from '@angular/common';
 
 @Component({
     selector: 'app-card-details',
     templateUrl: './card-details.component.html',
     styleUrls: ['./card-details.component.scss'],
     standalone: true,
-    imports: [NgClass, NgStyle],
+    imports: [NgClass, NgStyle, JsonPipe],
 })
 export class CardDetailsComponent implements OnInit {
   @Output() public InformLoading = new EventEmitter();
@@ -26,11 +26,12 @@ export class CardDetailsComponent implements OnInit {
   public colorPosition: string = '';
   public colorAttributes: string = '';
 
-  public cardTypeAdjustmentCss = this.cardService.cardTypeAdjustmentCss;
+  #futApiService = inject(FutApiService);
+
+  public getCardById = this.#futApiService.getCardId;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private futApiService: FutApiService,
     private cardService: CardService,
   ) {}
 
@@ -38,7 +39,7 @@ export class CardDetailsComponent implements OnInit {
    
     this.activatedRoute.params.subscribe((params) => {
       const id = params['id'];
-      this.futApiService.getCard(`${id}`).subscribe({
+      this.#futApiService.httpCardId$(id).subscribe({
         next: (res) => {
           this.card = res;
           this.getPhotoType();
@@ -62,5 +63,9 @@ export class CardDetailsComponent implements OnInit {
       this.colorPosition = card.colorText.colorPosition;
       this.colorAttributes = card.colorText.colorAttributes;
     });
+  }
+
+  public changeStyleByVersion(): string {
+    return this.card.versionFifa + ': card-' + this.card.versionFifa;
   }
 }

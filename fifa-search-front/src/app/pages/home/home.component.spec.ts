@@ -7,7 +7,6 @@ import { FutHeaderComponent } from 'src/app/shared/components/fut-header/fut-hea
 import { HttpClientModule } from '@angular/common/http';
 import { FutSearchComponent } from 'src/app/pages/home/components/fut-search/fut-search.component';
 import { ActivatedRoute, RouterModule } from '@angular/router';
-import { MaterialModule } from 'src/app/shared/material/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('HomeComponent', () => {
@@ -16,7 +15,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [HttpClientModule, RouterModule, FutAddCardComponent, MaterialModule, BrowserAnimationsModule, HomeComponent, FutHeaderComponent, FutListComponent, FutSearchComponent],
+    imports: [HttpClientModule, RouterModule, FutAddCardComponent, BrowserAnimationsModule, HomeComponent, FutHeaderComponent, FutListComponent, FutSearchComponent],
     providers: [
         {
             provide: ActivatedRoute,

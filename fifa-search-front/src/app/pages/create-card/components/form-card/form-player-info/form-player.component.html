@@ -20,12 +20,13 @@
             <label class="details" for="types"
               >Tipo de Carta:
               <select class="selectStyle" formControlName="typeCard">
+                @for (types of selectedTypeCard; track types) {
                 <option
-                  *ngFor="let types of selectedTypeCard"
                   [ngValue]="types"
                 >
                   {{ formatWithoutHyphen(types) }}
                 </option>
+              }
               </select>
             </label>
           </div>
@@ -75,9 +76,9 @@
             <label class="details" for="nationality"
               >Nacionalidade:
               <select class="selectStyle" formControlName="nationality">
-                @for (nations of selectedNationCard; track $index) {
-                <option [ngValue]="nations">
-                  {{ formatWithoutHyphen(nations) }}
+                @for (name of getNations(); track name.nation) {
+                <option [ngValue]="name.nation">
+                  {{ formatWithoutHyphen(name.nation) }}
                 </option>
                 }
               </select>
@@ -88,9 +89,9 @@
             <label class="details" for="club"
               >Clube:
               <select class="selectStyle" formControlName="club">
-                @for (clubs of selectedClubCard; track $index) {
-                <option [ngValue]="clubs">
-                  {{ formatWithoutHyphen(clubs) }}
+                @for (name of getClubs(); track name.club) {
+                <option [ngValue]="name.club">
+                  {{ formatWithoutHyphen(name.club) }}
                 </option>
                 }
               </select>

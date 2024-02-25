@@ -1,22 +1,16 @@
 import { AttributeCard } from '../attributeCard.interface';
 import { Card } from '../card.interface';
-import { Club } from '../club';
-import { Nation } from '../nation';
 import { TypeCard } from '../typeCard.interface';
 
 export const cardMock: Card = {
-  id: '1111',
+  id: '1',
   versionFifa: 'fifa-17',
   typeCard: 'futties',
   firstName: 'Neymar',
   lastName: 'Jr',
   nickName: '',
   nationality: 'Brazil',
-  club: {
-    id: '1111',
-    name: 'Santos',
-    clubUrl: 'https://example.com/club',
-  },
+  club: 'Santos',
   position: 'LW',
   photo: 'https://example.com/player.jpg',
   attributeCard: {
@@ -32,18 +26,14 @@ export const cardMock: Card = {
 
 export const cardsMock: Card[] = [
   {
-    id: '1111',
+    id: '2',
     versionFifa: 'fifa-16',
     typeCard: 'futties',
     firstName: 'Neymar',
     lastName: 'Jr',
     nickName: '',
     nationality: 'Brazil',
-    club: {
-      id: '1111',
-      name: 'Santos',
-      clubUrl: 'https://example.com/club',
-    },
+    club: 'Santos',
     position: 'LW',
     photo: 'https://example.com/player.jpg',
     attributeCard: {
@@ -57,18 +47,14 @@ export const cardsMock: Card[] = [
     },
   },
   {
-    id: '2222',
+    id: '3',
     versionFifa: 'fifa-17',
     typeCard: 'futties',
     firstName: 'Gabriel',
     lastName: 'Jesus',
     nickName: '',
     nationality: 'Brazil',
-    club: {
-      id: '2222',
-      name: 'Palmeiras',
-      clubUrl: 'https://example.com/club',
-    },
+    club: 'palmeiras',
     position: 'ST',
     photo: 'https://example.com/player.jpg',
     attributeCard: {
@@ -82,18 +68,14 @@ export const cardsMock: Card[] = [
     },
   },
   {
-    id: '3333',
+    id: '4',
     versionFifa: 'fifa-16',
     typeCard: 'futties',
     firstName: 'Yerry',
     lastName: 'Mina',
     nickName: '',
     nationality: 'Colombia',
-    club: {
-      id: '3333',
-      name: 'Everton',
-      clubUrl: 'https://example.com/club',
-    },
+    club: 'Everton',
     position: 'CB',
     photo: 'https://example.com/player.jpg',
     attributeCard: {
@@ -108,29 +90,25 @@ export const cardsMock: Card[] = [
   },
 ];
 
-export const clubMock: Club = {
-  id: '1111',
-  name: 'Palmeiras',
-  clubUrl: 'https://example.com/palmeiras',
-};
+export const clubNameMock = 'Palmeiras';
 
-export const clubsMock: Club[] = [
-  {
-    id: '1111',
-    name: 'Palmeiras',
-    clubUrl: 'https://example.com/palmeiras',
-  },
-  {
-    id: '2222',
-    name: 'Internacional',
-    clubUrl: 'https://example.com/internacional',
-  },
-  {
-    id: '3333',
-    name: 'Real Madrid',
-    clubUrl: 'https://example.com/realmadrid',
-  },
-];
+// export const clubsMock: Club[] = [
+//   {
+//     id: '1111',
+//     name: 'Palmeiras',
+//     clubUrl: 'https://example.com/palmeiras',
+//   },
+//   {
+//     id: '2222',
+//     name: 'Internacional',
+//     clubUrl: 'https://example.com/internacional',
+//   },
+//   {
+//     id: '3333',
+//     name: 'Real Madrid',
+//     clubUrl: 'https://example.com/realmadrid',
+//   },
+// ];
 export const attributesMock: AttributeCard = {
   overall: 89,
   pace: 90,
@@ -189,35 +167,35 @@ export const mockListTypeCard: TypeCard[] = [
   },
 ];
 
-export const mockListNation: Nation[] = [
-  {
-    nation: 'brazil',
-    nationUrl: 'url/brazil',
-  },
-  {
-    nation: 'argentina',
-    nationUrl: 'url/argentina',
-  },
-  {
-    nation: 'france',
-    nationUrl: 'url/france',
-  },
-];
+// export const mockListNation: Nation[] = [
+//   {
+//     nation: 'brazil',
+//     nationUrl: 'url/brazil',
+//   },
+//   {
+//     nation: 'argentina',
+//     nationUrl: 'url/argentina',
+//   },
+//   {
+//     nation: 'france',
+//     nationUrl: 'url/france',
+//   },
+// ];
 
-export const mockListClub: Club[] = [
-  {
-    id: '1111',
-    name: 'palmeiras',
-    clubUrl: 'url/palmeiras',
-  },
-  {
-    id: '2222',
-    name: 'real-madrid',
-    clubUrl: 'url/real-madrid',
-  },
-  {
-    id: '3333',
-    name: 'barcelona',
-    clubUrl: 'url/barcelona',
-  },
-];
+// export const mockListClub: Club[] = [
+//   {
+//     id: '1111',
+//     name: 'palmeiras',
+//     clubUrl: 'url/palmeiras',
+//   },
+//   {
+//     id: '2222',
+//     name: 'real-madrid',
+//     clubUrl: 'url/real-madrid',
+//   },
+//   {
+//     id: '3333',
+//     name: 'barcelona',
+//     clubUrl: 'url/barcelona',
+//   },
+// ];
