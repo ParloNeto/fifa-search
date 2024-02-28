@@ -10,10 +10,12 @@ export const PAGES_ROUTES: Routes = [
   },
   {
     path: 'details/:id',
+    title: 'Ver detalhes do jogador - FUT SEARCH',
     component: DetailsComponent,
   },
   {
     path: 'create-card',
+    title: 'Criar card - FUT SEARCH',
     component: AddCardComponent,
   },
 ];
