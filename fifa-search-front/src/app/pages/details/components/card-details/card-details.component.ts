@@ -2,7 +2,6 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output, inject } from '@ang
 
 import { ActivatedRoute } from '@angular/router';
 import { Card } from 'src/app/core/models/card.interface';
-import { CardService } from 'src/app/service/card.service';
 import { FutApiService } from 'src/app/service/fut-api.service';
 import { JsonPipe, NgClass, NgStyle } from '@angular/common';
 
@@ -18,13 +17,7 @@ export class CardDetailsComponent implements OnInit {
   @Output() public informId = new EventEmitter();
   @Output() public dataCard = new EventEmitter();
 
-  public photoUrl: string | undefined  = '';
   public card!: Card;
-
-  public colorOverall: string = '';
-  public colorFontName: string = '';
-  public colorPosition: string = '';
-  public colorAttributes: string = '';
 
   #futApiService = inject(FutApiService);
 
@@ -32,17 +25,15 @@ export class CardDetailsComponent implements OnInit {
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private cardService: CardService,
   ) {}
 
   ngOnInit(): void {
-   
+
     this.activatedRoute.params.subscribe((params) => {
       const id = params['id'];
       this.#futApiService.httpCardId$(id).subscribe({
         next: (res) => {
           this.card = res;
-          this.getPhotoType();
           this.dataCard.emit((res));
           this.InformLoading.emit(true);
           this.informId.emit(this.card.id);
@@ -52,20 +43,12 @@ export class CardDetailsComponent implements OnInit {
     });
   }
 
-  public getPhotoType(): void {
-    const version = this.card.versionFifa;
-    const typeCard = this.card.typeCard;
-
-    this.cardService.getSpecificType(version, typeCard).subscribe((card) => {
-      this.photoUrl = card.photoUrl;
-      this.colorFontName = card.colorText.colorFontName;
-      this.colorOverall = card.colorText.colorOverall;
-      this.colorPosition = card.colorText.colorPosition;
-      this.colorAttributes = card.colorText.colorAttributes;
-    });
-  }
-
   public changeStyleByVersion(): string {
     return this.card.versionFifa + ': card-' + this.card.versionFifa;
+  }
+
+  public changeStyleByTypeCard(): string {
+    console.log('card-'+ this.card.versionFifa + '-' + this.card.typeCard)
+    return 'card-'+ this.card.versionFifa + '-' + this.card.typeCard
   }
 }

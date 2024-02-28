@@ -1,0 +1,281 @@
+@mixin config-styles-typecard {
+  transition: 0.5s;
+  transition-timing-function: ease-out;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 110%;
+}
+
+@mixin setColorText(
+  $colorOverall,
+  $colorFontName,
+  $colorPosition,
+  $colorAttributes
+) {
+  #colorOverall {
+    color: $colorOverall;
+  }
+  #card__content__name {
+    color: $colorFontName;
+  }
+  #colorPosition {
+    color: $colorPosition;
+  }
+  .card__attributes {
+    color: $colorAttributes;
+  }
+}
+
+@mixin type-cards-fifa-18 {
+  .card-fifa-18-gold-rare {
+    @include config-styles-typecard;
+    @include setColorText(var(--black-padrao), var(--black-padrao), var(--black-padrao), var(--black-padrao));
+    background-image: url("./../assets/images/fifa-18/gold-rare.png");
+    background-repeat: no-repeat;
+  }
+  .card-fifa-18-toty {
+    @include config-styles-typecard;
+    @include setColorText(var(--toty-fifa-17-color), var(--toty-fifa-17-color), var(--toty-fifa-17-color), var(--toty-fifa-17-color));
+    background-image: url("./../assets/images/fifa-18/toty.png");
+    background-repeat: no-repeat;
+  }
+  .card-fifa-18-totw {
+    @include config-styles-typecard;
+    @include setColorText(var(--totw-fifa-18-color-overall), var(--totw-fifa-18-color-font-name), var(--totw-fifa-18-color-position), var(--totw-fifa-18-color-attributes));
+    background-image: url("./../assets/images/fifa-18/totw.png");
+    background-repeat: no-repeat;
+  }
+  .card-fifa-18-hero {
+    @include config-styles-typecard;
+    @include setColorText(var(--black-padrao), var(--hero-fifa-18-color), var(--black-padrao), var(--hero-fifa-18-color));
+    background-image: url("./../assets/images/fifa-18/hero.png");
+    background-repeat: no-repeat;
+  }
+  // .card-fifa-18-saint-patricks-day {
+  //   @include config-styles-typecard;
+  //   @include setColorText(var(--toty-fifa-17-color), var(--toty-fifa-17-color), var(--toty-fifa-17-color), var(--toty-fifa-17-color));
+  //   background-image: url("./../assets/images/fifa-18/saint-patricks-day.png");
+  //   background-repeat: no-repeat;
+  // }
+  // .card-fifa-18-motm {
+  //   @include config-styles-typecard;
+  //   @include setColorText(var(--toty-fifa-17-color), var(--toty-fifa-17-color), var(--toty-fifa-17-color), var(--toty-fifa-17-color));
+  //   background-image: url("./../assets/images/fifa-18/motm.png");
+  //   background-repeat: no-repeat;
+  // }
+}
+
+@mixin type-cards-fifa-17 {
+  .card-fifa-17-toty {
+    @include config-styles-typecard;
+    @include setColorText(var(--toty-fifa-17-color), var(--toty-fifa-17-color), var(--toty-fifa-17-color), var(--toty-fifa-17-color));
+    background-image: url("./../assets/images/fifa-17/toty.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-ones-to-watch {
+    @include config-styles-typecard;
+    @include setColorText(var(--white), var(--white), var(--white), var(--white)); /* Substitua as variáveis pelas cores desejadas */
+    background-image: url("./../assets/images/fifa-17/ones-to-watch.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-futties {
+    @include config-styles-typecard;
+    @include setColorText(var(--black-padrao), var(--futties-fifa-17-color), var(--black-padrao), var(--futties-fifa-17-color));
+    background-image: url("./../assets/images/fifa-17/futties.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-gold-rare {
+    @include config-styles-typecard;
+    @include setColorText(var(--gold-rare-color), var(--gold-rare-color), var(--gold-rare-color), var(--gold-rare-color)); /* Substitua as variáveis pelas cores desejadas */
+    background-image: url("./../assets/images/fifa-17/gold-rare.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-legend {
+    @include config-styles-typecard;
+    @include setColorText(var(--legend-color), var(--legend-color), var(--legend-color), var(--legend-color));
+    background-image: url("./../assets/images/fifa-17/legend.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-premium-sbc-reward {
+    @include config-styles-typecard;
+    @include setColorText(var(--white), var(--white), var(--white), var(--white));
+    background-image: url("./../assets/images/fifa-17/premium-sbc-reward.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-hero {
+    @include config-styles-typecard;
+    @include setColorText(var(--black-padrao), var(--hero-fifa-17-color), var(--black-padrao), var(--hero-fifa-17-color));
+    background-image: url("./../assets/images/fifa-17/hero.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-movember {
+    @include config-styles-typecard;
+    @include setColorText(var(--movember-fifa-17-color), var(--movember-fifa-17-color), var(--movember-fifa-17-color), #aea590);
+    background-image: url("./../assets/images/fifa-17/movember.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-record-breaker {
+    @include config-styles-typecard;
+    @include setColorText(var(--white), var(--white), var(--white), var(--white));
+    background-image: url("./../assets/images/fifa-17/record-breaker.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-tots {
+    @include config-styles-typecard;
+    @include setColorText(var(--tots-fifa-17-color), var(--black-padrao), var(--tots-fifa-17-color), var(--tots-fifa-17-color));
+    background-image: url("./../assets/images/fifa-17/tots.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-ultimate-scream {
+    @include config-styles-typecard;
+    @include setColorText(var(--halloween-fifa-17-color), var(--black-padrao), var(--halloween-fifa-17-color), var(--halloween-fifa-17-color));
+    background-image: url("./../assets/images/fifa-17/ultimate-scream.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-motm {
+    @include config-styles-typecard;
+    @include setColorText(var(--motm-fifa-17-color), var(--white), var(--motm-fifa-17-color), var(--white));
+    background-image: url("./../assets/images/fifa-17/motm.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-saint-patricks-day {
+    @include config-styles-typecard;
+    @include setColorText(var(--spd-fifa-17-color), var(--spd-fifa-17-color), var(--spd-fifa-17-color), var(--spd-fifa-17-color));
+    background-image: url("./../assets/images/fifa-17/saint-patricks-day.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-totw {
+    @include config-styles-typecard;
+    @include setColorText(var(--black-padrao), var(--totw-color), var(--black-padrao), var(--totw-color));
+    background-image: url("./../assets/images/fifa-17/totw.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-fut-champions-reward {
+    @include config-styles-typecard;
+    @include setColorText(var(--white), var(--fut-champions-reward-color), var(--white), var(--fut-champions-reward-color));
+    background-image: url("./../assets/images/fifa-17/fut-champions-reward.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-sbc-reward {
+    @include config-styles-typecard;
+    @include setColorText(var(--white), var(--white), var(--white), var(--white));
+    background-image: url("./../assets/images/fifa-17/sbc-reward.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-tots-bronze {
+    @include config-styles-typecard;
+    @include setColorText(var(--tots-bronze-fifa-17-color), var(tots-fifa-17-color-font-name), var(--tots-bronze-fifa-17-color), var(--tots-bronze-fifa-17-color));
+    background-image: url("./../assets/images/fifa-17/tots-bronze.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-tots-silver {
+    @include config-styles-typecard;
+    @include setColorText(var(--tots-silver-fifa-17-color), var(tots-fifa-17-color-font-name), var(--tots-silver-fifa-17-color), var(--tots-silver-fifa-17-color));
+    background-image: url("./../assets/images/fifa-17/tots-silver.png");
+    background-repeat: no-repeat;
+  }
+
+}
+
+@mixin type-cards-fifa-16 {
+  .card-fifa-16-toty {
+    @include config-styles-typecard;
+    @include setColorText(var(--toty-fifa-16-color), var(--toty-fifa-16-color), var(--toty-fifa-16-color), var(--toty-fifa-16-color));
+    background-image: url("./../assets/images/fifa-16/toty.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-16-futties {
+    @include config-styles-typecard;
+    @include setColorText(var(--black-padrao), var(--black-padrao), var(--black-padrao), var(--black-padrao));
+
+    background-image: url("./../assets/images/fifa-16/futties.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-16-gold-rare {
+    @include config-styles-typecard;
+    @include setColorText(var(--black-padrao), var(--black-padrao), var(--black-padrao), var(--black-padrao));
+    background-image: url("./../assets/images/fifa-16/gold-rare.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-16-legend {
+    @include config-styles-typecard;
+    @include setColorText(var(--legend-color), var(--legend-color), var(--legend-color), var(--legend-color));
+    background-image: url("./../assets/images/fifa-16/legend.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-16-hero {
+    @include config-styles-typecard;
+    @include setColorText(var(--black-padrao), var(--black-padrao), var(--black-padrao), var(--black-padrao));
+    background-image: url("./../assets/images/fifa-16/hero.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-16-record-breaker {
+    @include config-styles-typecard;
+    @include setColorText(var(--white), var(--white), var(--white), var(--white));
+    background-image: url("./../assets/images/fifa-16/record-breaker.png");
+    background-repeat: no-repeat;
+  }
+  .card-fifa-16-tots {
+
+    @include config-styles-typecard;
+    @include setColorText(var(--tots-fifa-16-color), var(--black-padrao), var(--tots-fifa-16-color), var(--tots-fifa-16-color));
+
+    background-image: url("./../assets/images/fifa-16/tots.png");
+    background-repeat: no-repeat;
+  }
+  .card-fifa-16-motm {
+    @include config-styles-typecard;
+    @include setColorText(var(--black-padrao), var(--black-padrao), var(--black-padrao), var(--black-padrao));
+
+    background-image: url("./../assets/images/fifa-16/motm.png");
+    background-repeat: no-repeat;
+  }
+  .card-fifa-16-saint-patricks-day {
+    @include config-styles-typecard;
+    @include setColorText(var(--black-padrao), var(--black-padrao), var(--black-padrao), var(--black-padrao));
+
+    background-image: url("./../assets/images/fifa-16/saint-patricks-day.png");
+    background-repeat: no-repeat;
+  }
+  .card-fifa-16-totw {
+    @include config-styles-typecard;
+    @include setColorText(var(--black-padrao), var(--totw-color), var(--black-padrao), var(--totw-color));
+    background-image: url("./../assets/images/fifa-16/totw.png");
+    background-repeat: no-repeat;
+  }
+  .card-fifa-16-silver-rare {
+    @include config-styles-typecard;
+    @include setColorText(var(--silver-fifa-16-color), var(--silver-fifa-16-color), var(--silver-fifa-16-color), var(--silver-fifa-16-color));
+    background-image: url("./../assets/images/fifa-16/silver-rare.png");
+    background-repeat: no-repeat;
+  }
+  .card-fifa-16-bronze-rare {
+    @include config-styles-typecard;
+    @include setColorText(var(--black-padrao), var(--black-padrao), var(--black-padrao), var(--black-padrao));
+    background-image: url("./../assets/images/fifa-16/bronze-rare.png");
+    background-repeat: no-repeat;
+  }
+}
