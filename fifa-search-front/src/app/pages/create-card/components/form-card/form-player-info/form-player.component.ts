@@ -46,7 +46,6 @@ export class FormPlayerComponent implements OnInit {
 
   @Input() attributeCard!: FormGroup;
   @Output() sendInfoCard = new EventEmitter<FormGroup>();
-  @Output() sendColorText = new EventEmitter<ColorText>();
 
   public versionInstanciado: ReadonlyArray<string> = [
     FIFA_16,
@@ -213,7 +212,6 @@ export class FormPlayerComponent implements OnInit {
 
   public executeBasedOnMockStatus(): void {
     if (environment.isMocked === true) {
-      this.getTypesColorMock();
       this.getAllTypeCardsMock(this.versionFifa!.value);
     }
     if (environment.isMocked === false) {
@@ -227,41 +225,8 @@ export class FormPlayerComponent implements OnInit {
     const typeCard = this.infoCardsForm.get('typeCard')!.value;
 
     if (version && typeCard) {
-      this.cardService.getSpecificType(version, typeCard).subscribe({
-        next: (card) => {
-          let obj: ColorText = {
-            colorAttributes: card.colorText.colorAttributes,
-            colorFontName: card.colorText.colorFontName,
-            colorPosition: card.colorText.colorPosition,
-            colorOverall: card.colorText.colorOverall,
-          };
-
-          this.colorTextCard = obj;
-          this.sendColorText.emit(this.colorTextCard);
-        },
-      });
+      this.cardService.getSpecificType(version, typeCard).subscribe();
     }
-  }
-
-  getTypesColorMock(): void {
-    const version = this.infoCardsForm.get('versionFifa')!.value;
-    const typeCard = this.infoCardsForm.get('typeCard')!.value;
-    this.cardService.getVersionCardsMock().subscribe({
-      next: (types) => {
-        types.forEach((res) => {
-          if (version === res.fifaVersion && typeCard === res.cardType) {
-            let obj: ColorText = {
-              colorAttributes: res.colorText.colorAttributes,
-              colorFontName: res.colorText.colorFontName,
-              colorPosition: res.colorText.colorPosition,
-              colorOverall: res.colorText.colorOverall,
-            };
-            this.colorTextCard = obj;
-            this.sendColorText.emit(this.colorTextCard);
-          }
-        });
-      },
-    });
   }
 
   public addItemsInSelectArray(arraySelect: string[], item: string): string[] {

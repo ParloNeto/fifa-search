@@ -1,4 +1,3 @@
-@import '../../../../../config-scss/variables.scss';
 
 :host {
     form {
@@ -7,13 +6,13 @@
         align-items: center;
         margin: 0px 25% ;
         padding: 15px 20px;
-        background-color: $bluish-gray;
+        background-color: var(--bluish-gray);
         border-radius: 10px;
         input{
             width: 95%;
             background: none;
             border: none;
-           
+
             font-size: 18px;
 
             color: var(--white);

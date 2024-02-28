@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ColorText } from 'src/app/core/models/colorText.interface';
 import { FutGoBackButtonComponent } from '../../shared/components/buttons/fut-go-back-button.component';
 import { FormAttributesComponent } from './components/form-card/form-attributes/form-attributes.component';
 import { AttributesDetailsAddCardComponent } from './components/card-fifa-model/attributes-details-add-card.component';
@@ -23,7 +22,6 @@ import { FutHeaderComponent } from '../../shared/components/fut-header/fut-heade
 export class AddCardComponent {
   public attributeCard: FormGroup;
   public infoCardsForm: FormGroup;
-  public colorText!: ColorText;
 
   constructor() {
     this.attributeCard = new FormGroup({});
@@ -35,10 +33,5 @@ export class AddCardComponent {
 
   public getInfoCardForm(event: FormGroup) {
     this.infoCardsForm = event;
-  }
-
-  public getColorText(event: ColorText) {
-    this.colorText = event;
-    console.log(event)
   }
 }

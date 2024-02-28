@@ -1,22 +1,45 @@
-@import '../../../../../config-scss/mixin.scss';
-@import '../../../../../config-scss/mixin-version-fifa.scss';
+@import "../../../../../scss/mixin.scss";
+@import "../../../../../scss/mixin-version-fifa.scss";
 
 :host {
-   @include fifa-17
+  // MUDAR PARA CARTA DE CONCEITO
+  .div-fifa-17 {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 110%;
+    background-image: url("../../../../../assets/images/fifa-17/gold-rare.png");
+    background-repeat: no-repeat;
   }
-    
+  .div-fifa-18 {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 110%;
+    background-image: url("../../../../../assets/images/fifa-18/gold-rare.png");
+    background-repeat: no-repeat;
+  }
+  .div-fifa-16 {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 110%;
+    background-image: url("../../../../../assets/images/fifa-16/gold-rare.png");
+    background-repeat: no-repeat;
+  }
+  @include fifa-17;
+}
+
 //different types of cards gold
 
 .card-fifa-16 {
   @include fifa-16;
 }
-    
+
 .card-fifa-18 {
   @include fifa-18;
 }
 
 .card-fifa-19 {
- @include fifa-19;
+  @include fifa-19;
 }
-
-

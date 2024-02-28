@@ -1,7 +1,7 @@
 <app-fut-header></app-fut-header>
 <div class="background">
-    <app-form-player [attributeCard]="attributeCard"  (sendInfoCard)="getInfoCardForm($event)" (sendColorText)="getColorText($event)"></app-form-player>
-    <app-attributes-details-add-card [attributeCard]="attributeCard" [infoCardsForm]="infoCardsForm" [cardColorText]="colorText"></app-attributes-details-add-card>
+    <app-form-player [attributeCard]="attributeCard"  (sendInfoCard)="getInfoCardForm($event)" ></app-form-player>
+    <app-attributes-details-add-card [attributeCard]="attributeCard" [infoCardsForm]="infoCardsForm" ></app-attributes-details-add-card>
     <app-form-attributes (sendForm)="getForm($event)"></app-form-attributes>
     <app-fut-go-back-button id="buttonBack"></app-fut-go-back-button>
 </div>

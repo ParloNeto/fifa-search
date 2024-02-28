@@ -1,5 +1,4 @@
-@import "../../../../../../config-scss/mixin.scss";
-@import "../../../../../../config-scss/variables.scss";
+@import "../../../../../../scss/mixin.scss";
 
 :host {
   .card {
@@ -12,7 +11,7 @@
       flex-direction: row;
       justify-content: center;
       align-items: center;
-      border-radius: $defaultBorderRadius;
+      border-radius: 30px;
       margin: 30px 50px;
       padding: 10px;
       color: var(--gray);
@@ -22,7 +21,7 @@
       max-width: 700px;
       width: 100%;
       padding: 25px 30px;
-      border-radius: $defaultBorderRadius;
+      border-radius: 30px;
     }
 
     .form-details {

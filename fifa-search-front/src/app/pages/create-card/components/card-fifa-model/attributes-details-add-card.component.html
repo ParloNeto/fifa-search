@@ -1,25 +1,13 @@
 <div [ngClass]="changeStyleByVersion()" class="card__header flipInY">
-  <img
-    class="type__card__image"
-    [src]="
-      imagePathCard(
-        infoCardsForm.value.versionFifa,
-        infoCardsForm.value.typeCard
-      )
-    "
-  />
-
+  <div [ngClass]="changeStyleByTypeCard()" class="div-{{infoCardsForm.value.versionFifa}}">
   <div class="playercard">
     <div class="playercard__top">
       <div class="playercard__details__icons">
-        <p [ngStyle]="{ color: cardColorText.colorOverall! }">
+        <p id="colorOverall">
           {{ attributeCard.get("overall")?.value }}
         </p>
         <p
-          [ngStyle]="{
-            'font-size': '15px',
-            color: cardColorText.colorPosition!
-          }"
+          id="colorPosition"
         >
           {{ infoCardsForm.get("position")!.value }}
         </p>
@@ -47,7 +35,6 @@
     </div>
 
     <p
-      [ngStyle]="{ color: cardColorText.colorFontName }"
       id="card__content__name"
     >
       {{
@@ -64,7 +51,6 @@
     <div class="card__body">
       <div
         class="card__attributes"
-        [ngStyle]="{ color: cardColorText.colorAttributes }"
       >
         <div class="attribute__left">
           <div>
@@ -109,4 +95,5 @@
       </div>
     </div>
   </div>
+</div>
 </div>

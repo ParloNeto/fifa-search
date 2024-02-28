@@ -14,20 +14,12 @@ import { NgClass, NgStyle } from '@angular/common';
 export class AttributesDetailsAddCardComponent implements OnInit, OnChanges {
   @Input() infoCardsForm!: FormGroup;
   @Input() attributeCard!: FormGroup;
-  @Input() cardColorText!: ColorText;
 
   constructor() {}
 
   ngOnChanges(): void {}
 
-  ngOnInit(): void {
-    this.cardColorText = {
-      colorOverall: '#000000e6',
-      colorFontName: '#000000e6',
-      colorPosition: '#000000e6',
-      colorAttributes: '#000000e6',
-    };
-  }
+  ngOnInit(): void {}
 
   public imagePath(nation?: string, club?: string): string {
     let srcPath: string;
@@ -43,15 +35,12 @@ export class AttributesDetailsAddCardComponent implements OnInit, OnChanges {
     return srcPath!;
   }
 
-  public imagePathCard(version?: string, typeCard?: string): string {
-    let srcPath: string;
-    if (version && typeCard) {
-      srcPath = `../../../../../assets/images/${version}/${typeCard}.png`;
-    }
-    return srcPath!;
-  }
-
   public changeStyleByVersion(): string {
     return this.infoCardsForm.value.versionFifa + ': card-' + this.infoCardsForm.value.versionFifa;
+  }
+
+  public changeStyleByTypeCard(): string {
+    console.log('card-'+ this.infoCardsForm.value.versionFifa + '-' + this.infoCardsForm.value.typeCard)
+    return 'card-'+ this.infoCardsForm.value.versionFifa + '-' + this.infoCardsForm.value.typeCard
   }
 }
