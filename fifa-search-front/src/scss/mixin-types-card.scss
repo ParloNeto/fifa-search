@@ -83,14 +83,15 @@
 
   .card-fifa-17-futties {
     @include config-styles-typecard;
-    @include setColorText(var(--black-padrao), var(--futties-fifa-17-color), var(--black-padrao), var(--futties-fifa-17-color));
+    @include setColorText(var(--black-fifa-17-color), var(--futties-fifa-17-color), var(--black-fifa-17-color), var(--futties-fifa-17-color));
     background-image: url("./../assets/images/fifa-17/futties.png");
     background-repeat: no-repeat;
   }
 
   .card-fifa-17-gold-rare {
+    text-shadow: -1px 1px 1px rgba(255,255,255, 0.4);
     @include config-styles-typecard;
-    @include setColorText(var(--gold-rare-color), var(--gold-rare-color), var(--gold-rare-color), var(--gold-rare-color)); /* Substitua as variáveis pelas cores desejadas */
+    @include setColorText(var(--black-fifa-17-color), var(--black-fifa-17-color), var(--black-fifa-17-color), var(--black-fifa-17-color)); /* Substitua as variáveis pelas cores desejadas */
     background-image: url("./../assets/images/fifa-17/gold-rare.png");
     background-repeat: no-repeat;
   }
@@ -111,7 +112,7 @@
 
   .card-fifa-17-hero {
     @include config-styles-typecard;
-    @include setColorText(var(--black-padrao), var(--hero-fifa-17-color), var(--black-padrao), var(--hero-fifa-17-color));
+    @include setColorText(var(--black-fifa-17-color), var(--hero-fifa-17-color), var(--black-fifa-17-color), var(--hero-fifa-17-color));
     background-image: url("./../assets/images/fifa-17/hero.png");
     background-repeat: no-repeat;
   }
@@ -132,14 +133,14 @@
 
   .card-fifa-17-tots {
     @include config-styles-typecard;
-    @include setColorText(var(--tots-fifa-17-color), var(--black-padrao), var(--tots-fifa-17-color), var(--tots-fifa-17-color));
+    @include setColorText(var(--tots-fifa-17-color), var(--black-fifa-17-color), var(--tots-fifa-17-color), var(--tots-fifa-17-color));
     background-image: url("./../assets/images/fifa-17/tots.png");
     background-repeat: no-repeat;
   }
 
   .card-fifa-17-ultimate-scream {
     @include config-styles-typecard;
-    @include setColorText(var(--halloween-fifa-17-color), var(--black-padrao), var(--halloween-fifa-17-color), var(--halloween-fifa-17-color));
+    @include setColorText(var(--halloween-fifa-17-color), var(--black-fifa-17-color), var(--halloween-fifa-17-color), var(--halloween-fifa-17-color));
     background-image: url("./../assets/images/fifa-17/ultimate-scream.png");
     background-repeat: no-repeat;
   }
@@ -160,7 +161,7 @@
 
   .card-fifa-17-totw {
     @include config-styles-typecard;
-    @include setColorText(var(--black-padrao), var(--totw-color), var(--black-padrao), var(--totw-color));
+    @include setColorText(var(--black-fifa-17-color), var(--totw-color), var(--black-fifa-17-color), var(--totw-color));
     background-image: url("./../assets/images/fifa-17/totw.png");
     background-repeat: no-repeat;
   }
@@ -193,6 +194,29 @@
     background-repeat: no-repeat;
   }
 
+  .card-fifa-17-player-of-the-month {
+    @include config-styles-typecard;
+    @include setColorText(var(--white), #591b82, var(--white), var(--white));
+    background-image: url("./../assets/images/fifa-17/player-of-the-month.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-fut-birthday {
+    @include config-styles-typecard;
+    @include setColorText(#003555,var(--white),#003555,var(--white));
+    background-image: url("./../assets/images/fifa-17/fut-birthday.png");
+    background-repeat: no-repeat;
+  }
+
+  .card-fifa-17-team-of-the-tournaments {
+    @include config-styles-typecard;
+    @include setColorText(#140385, var(--white), #140385, #140385);
+    background-image: url("./../assets/images/fifa-17/team-of-the-tournaments.png");
+    background-repeat: no-repeat;
+  }
+
+
+
 }
 
 @mixin type-cards-fifa-16 {
@@ -213,7 +237,7 @@
 
   .card-fifa-16-gold-rare {
     @include config-styles-typecard;
-    @include setColorText(var(--black-padrao), var(--black-padrao), var(--black-padrao), var(--black-padrao));
+    @include setColorText(var(--black-fifa-16-color), var(--black-fifa-16-color), var(--black-fifa-16-color), var(--black-fifa-16-color));
     background-image: url("./../assets/images/fifa-16/gold-rare.png");
     background-repeat: no-repeat;
   }

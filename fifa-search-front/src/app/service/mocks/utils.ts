@@ -25,4 +25,7 @@ export const TYPE = {
     MOVEMBER: 'movember',
     SBC_REWARD: 'sbc-reward',
     PREMIUM_SBC_REWARD: 'premium-sbc-reward',
+    PLAYER_OF_THE_MONTH: 'player-of-the-month',
+    FUT_BIRTHDAY: 'fut-birthday',
+    TEAM_OF_THE_TOURNAMENTS: 'team-of-the-tournaments',
 }

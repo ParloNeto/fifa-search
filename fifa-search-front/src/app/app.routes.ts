@@ -11,6 +11,9 @@ export const APP_ROUTES: Routes = [
   {
     path: '**',
     title: 'Página não encontrada - FUT SEARCH',
-    component: NotFoundComponent,
+    loadComponent: () =>
+      import('./pages/not-found/not-found.component').then(
+        (p) => p.NotFoundComponent
+      ),
   },
 ];

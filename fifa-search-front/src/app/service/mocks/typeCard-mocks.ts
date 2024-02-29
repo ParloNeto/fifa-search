@@ -140,6 +140,18 @@ export const typeCardsMockService: TypeCard[] = [
     colorText: COLOR_TEXT_TOTS_BRONZE_FIFA_17,
   },
   {
+    fifaVersion: FIFA_17,
+    cardType: TYPE.PLAYER_OF_THE_MONTH
+  },
+  {
+    fifaVersion: FIFA_17,
+    cardType: TYPE.FUT_BIRTHDAY
+  },
+  {
+    fifaVersion: FIFA_17,
+    cardType: TYPE.TEAM_OF_THE_TOURNAMENTS
+  },
+  {
     fifaVersion: FIFA_18,
     cardType: TYPE.GOLD_RARE,
     colorText: COLOR_TEXT_BLACK,
