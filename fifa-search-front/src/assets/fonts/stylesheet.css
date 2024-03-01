@@ -1,16 +1,3 @@
-
-@font-face {
-    font-family: 'DIN Pro Cond';
-    src: url('DINPro-CondensedBoldItalic.eot');
-    src: local('DIN Pro Condensed Bold Italic'), local('DINPro-CondensedBoldItalic'),
-        url('DINPro-CondensedBoldItalic.eot?#iefix') format('embedded-opentype'),
-        url('DINPro-CondensedBoldItalic.woff2') format('woff2'),
-        url('DINPro-CondensedBoldItalic.woff') format('woff'),
-        url('DINPro-CondensedBoldItalic.ttf') format('truetype');
-    font-weight: bold;
-    font-style: italic;
-}
-
 @font-face {
     font-family: 'DIN Pro Cond';
     src: url('DINPro-CondensedLight.eot');
@@ -24,27 +11,15 @@
 }
 
 @font-face {
-    font-family: 'DIN Pro Cond';
-    src: url('DINPro-CondensedLightItalic.eot');
-    src: local('DIN Pro Condensed Light Italic'), local('DINPro-CondensedLightItalic'),
-        url('DINPro-CondensedLightItalic.eot?#iefix') format('embedded-opentype'),
-        url('DINPro-CondensedLightItalic.woff2') format('woff2'),
-        url('DINPro-CondensedLightItalic.woff') format('woff'),
-        url('DINPro-CondensedLightItalic.ttf') format('truetype');
-    font-weight: 300;
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'DIN Pro Cond';
-    src: url('DINPro-CondensedBlackItalic.eot');
-    src: local('DIN Pro Condensed Black Italic'), local('DINPro-CondensedBlackItalic'),
-        url('DINPro-CondensedBlackItalic.eot?#iefix') format('embedded-opentype'),
-        url('DINPro-CondensedBlackItalic.woff2') format('woff2'),
-        url('DINPro-CondensedBlackItalic.woff') format('woff'),
-        url('DINPro-CondensedBlackItalic.ttf') format('truetype');
-    font-weight: 900;
-    font-style: italic;
+  font-family: 'DIN Pro Cond';
+  src: url('DINPro-CondensedMedium.eot');
+  src: local('DIN Pro Condensed Medium'), local('DINPro-CondensedMedium'),
+      url('DINPro-CondensedMedium.eot?#iefix') format('embedded-opentype'),
+      url('DINPro-CondensedMedium.woff2') format('woff2'),
+      url('DINPro-CondensedMedium.woff') format('woff'),
+      url('DINPro-CondensedMedium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
 }
 
 @font-face {
@@ -57,18 +32,6 @@
         url('DINPro-CondensedBold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
-}
-
-@font-face {
-    font-family: 'DIN Pro Cond';
-    src: url('DINPro-CondensedItalic.eot');
-    src: local('DIN Pro Condensed Italic'), local('DINPro-CondensedItalic'),
-        url('DINPro-CondensedItalic.eot?#iefix') format('embedded-opentype'),
-        url('DINPro-CondensedItalic.woff2') format('woff2'),
-        url('DINPro-CondensedItalic.woff') format('woff'),
-        url('DINPro-CondensedItalic.ttf') format('truetype');
-    font-weight: normal;
-    font-style: italic;
 }
 
 @font-face {
