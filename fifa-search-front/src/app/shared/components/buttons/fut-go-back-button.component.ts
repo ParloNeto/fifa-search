@@ -1,19 +1,18 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-fut-go-back-button',
   template: `
-    <div id="#buttonGoBack">
-      <button [routerLink]="['']" mat-fab extended color="warn">
+    <div >
+      <button class="btn__add__player go__back" [routerLink]="['']">
         <mat-icon>forward</mat-icon>
         Voltar
       </button>
     </div>
   `,
   standalone: true,
-  imports: [RouterModule, MatIconModule, MatButtonModule]
+  imports: [RouterModule, MatIconModule]
 })
 export class FutGoBackButtonComponent {}

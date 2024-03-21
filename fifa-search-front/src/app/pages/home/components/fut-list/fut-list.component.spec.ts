@@ -28,53 +28,38 @@ describe('FutListComponent', () => {
   });
 
 
-  // describe('getSearch', () => {
-  //   it('should filter cards based on search value', () => {
-  //     const mockCards: Card[] = cardsMock;
-  //     component['setCards'] = mockCards;
-      
-
-  //     const searchValue = 'Neymar';
-  
-  //     component.getSearch(searchValue);
-
-  //     expect(component.cards.length).toBe(1);
-  //     expect(component.cards[0].firstName).toContain(searchValue);
-  //   });
-
-  //   it('should filter cards correctly with uppercase search value', () => {
-  //     const mockCards: Card[] = cardsMock;
-  //     component['setCards'] = mockCards;
-
-  //     const searchValue = 'JR';
-
-  //     component.getSearch(searchValue);
-
-  //     expect(component.cards.length).toBe(1);
-  //     expect(component.cards[0].lastName.toUpperCase()).toContain(searchValue);
-  //   });
-  // });
-
-  // describe('getAllCards', () => {
-  //   it('should fetch and set cards correctly', fakeAsync(() => {
-  //     const mockCards = cardsMock;
-  //     spyOn(futApiService, 'httpListCards$').and.returnValue(of(mockCards));
-
-  //     component.OnInit();
-
-  //     tick();
-
-  //     expect(futApiService.getAllCards).toHaveBeenCalled();
-
-  //     expect(component['setCards']).toEqual(mockCards);
-  //     expect(component.cards).toEqual(mockCards);
-  //   }))});
-
-
   it('should expected "manchester-united" without hyphen', () => {
     const club = "manchester-united";
     component.formatWithoutHyphen(club);
     expect(component.formatWithoutHyphen(club)).toEqual("manchester united")
   })
+
+  it('should return the correct path for nation', () => {
+    const nation = 'brazil';
+    const expectedPath = '../../../../../assets/images/nation/brazil.png';
+
+    const result = component.imagePath(nation);
+
+    expect(result).toEqual(expectedPath);
+  });
+
+  it('should return the correct path for club', () => {
+    const club = 'manchester';
+    const expectedPath = '../../../../../assets/images/clubbadges/manchester.png';
+
+    const result = component.imagePath(undefined, club);
+
+    expect(result).toEqual(expectedPath);
+  });
+
+  it('should return the correct path for club when both nation and club are provided', () => {
+    const nation = 'brazil';
+    const club = 'manchester';
+    const expectedPath = '../../../../../assets/images/clubbadges/manchester.png';
+
+    const result = component.imagePath(nation, club);
+
+    expect(result).toEqual(expectedPath);
+  });
 
 });

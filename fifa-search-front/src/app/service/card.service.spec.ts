@@ -1,8 +1,14 @@
+import { typeCardsMockService } from './mocks/typeCard-mocks';
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
 import { CardService } from './card.service';
 import { TypeCard } from '../core/models/typeCard.interface';
 import { environment } from 'src/environments/environment.development';
+import { of } from 'rxjs';
+import { mockListTypeCard } from '../core/models/test/mock-models';
 
 describe('CardService', () => {
   let cardService: CardService;
@@ -70,7 +76,9 @@ describe('CardService', () => {
       expect(versionCards).toEqual(mockVersionCards);
     });
 
-    const req = httpMock.expectOne(`${environment.apiUrl}/types/version/${fifaVersion}`);
+    const req = httpMock.expectOne(
+      `${environment.apiUrl}/types/version/${fifaVersion}`
+    );
     expect(req.request.method).toBe('GET');
     req.flush(mockVersionCards);
   });
@@ -94,8 +102,39 @@ describe('CardService', () => {
       expect(typeCard).toEqual(mockTypeCard);
     });
 
-    const req = httpMock.expectOne(`${environment.apiUrl}/types/version/${fifaVersion}/${cardType}`);
+    const req = httpMock.expectOne(
+      `${environment.apiUrl}/types/version/${fifaVersion}/${cardType}`
+    );
     expect(req.request.method).toBe('GET');
     req.flush(mockTypeCard);
   });
+
+  it('should retrieve type cards list for a specific FIFA version', () => {
+    const fifaVersion = 'fifa-20';
+    const mockTypeCards: TypeCard[] = [
+      {
+        fifaVersion: fifaVersion,
+        cardType: 'Rare Gold',
+        photoUrl: 'https://example.com/fifa20/rare-gold.jpg',
+        colorText: {
+          colorOverall: 'red',
+          colorFontName: 'blue',
+          colorPosition: 'green',
+          colorAttributes: 'orange',
+        },
+      },
+      // Add more mock data as needed
+    ];
+
+    cardService.httpTypeCardsList$(fifaVersion).subscribe((typeCards) => {
+      expect(typeCards).toEqual(mockTypeCards);
+    });
+
+    const req = httpMock.expectOne(
+      `${environment.apiUrl}/types/version/${fifaVersion}`
+    );
+    expect(req.request.method).toBe('GET');
+    req.flush(mockTypeCards);
+  });
+
 });

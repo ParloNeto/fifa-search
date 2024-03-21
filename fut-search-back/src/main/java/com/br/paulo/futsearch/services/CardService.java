@@ -4,7 +4,7 @@ import com.br.paulo.futsearch.data.v1.CardVO;
 import com.br.paulo.futsearch.domain.Card;
 import com.br.paulo.futsearch.mapper.ModelMapper;
 import com.br.paulo.futsearch.repository.CardRepository;
-import com.br.paulo.futsearch.resources.CardResource;
+import com.br.paulo.futsearch.controller.CardController;
 import com.br.paulo.futsearch.services.exception.RequiredObjectIsNullException;
 import com.br.paulo.futsearch.services.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ public class CardService {
         var cards = ModelMapper.parseListObjects(repository.findAll(), CardVO.class);
         cards
                 .stream()
-                .forEach(p -> p.add(linkTo(methodOn(CardResource.class).findById(p.getId())).withSelfRel()));
+                .forEach(p -> p.add(linkTo(methodOn(CardController.class).findById(p.getId())).withSelfRel()));
         return cards;
     }
 
@@ -38,10 +38,10 @@ public class CardService {
         logger.info("Finding one card!");
 
         var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(
-                "No records found for this ID!"));
+                "Nenhuma carta encontrada com esse ID"));
 
         var vo = ModelMapper.parseObject(entity, CardVO.class);
-        vo.add(linkTo(methodOn(CardResource.class).findById(id)).withSelfRel());
+        vo.add(linkTo(methodOn(CardController.class).findById(id)).withSelfRel());
         return vo;
     }
 
@@ -51,7 +51,7 @@ public class CardService {
         logger.info("Creating one card!");
         var entity = ModelMapper.parseObject(card, Card.class);
         var vo = ModelMapper.parseObject(repository.save(entity), CardVO.class);
-        vo.add(linkTo(methodOn(CardResource.class).findById(vo.getId())).withSelfRel());
+        vo.add(linkTo(methodOn(CardController.class).findById(vo.getId())).withSelfRel());
         return vo;
     }
 
@@ -59,7 +59,7 @@ public class CardService {
         logger.info("Deleting one card!");
 
         var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(
-                "No records found for this ID!"));
+                "Nenhuma carta encontrada com esse ID"));
         repository.delete(entity);
     }
 
@@ -70,7 +70,7 @@ public class CardService {
         logger.info("Updating one card!");
 
         var newObj = repository.findById(card.getId()).orElseThrow(() -> new ResourceNotFoundException(
-                "No records found for this ID!"));
+                "Nenhuma carta encontrada com esse ID"));
 
         newObj.setVersionFifa(card.getVersionFifa());
         newObj.setTypeCard(card.getTypeCard());
@@ -84,7 +84,7 @@ public class CardService {
         newObj.setAttributeCard(card.getAttributeCard());
 
         var vo = ModelMapper.parseObject(repository.save(newObj), CardVO.class);
-        vo.add(linkTo(methodOn(CardResource.class).findById(vo.getId())).withSelfRel());
+        vo.add(linkTo(methodOn(CardController.class).findById(vo.getId())).withSelfRel());
         return vo;
     }
 }

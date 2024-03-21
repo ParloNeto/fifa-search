@@ -1,8 +1,11 @@
+@import "../../../../../scss/mixin-version-fifa.scss";
+
 $padding: 45px;
 :host {
   p {
     color: var(--secundary-color);
   }
+
   .list {
     display: flex;
     justify-content: space-between;

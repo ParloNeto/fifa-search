@@ -56,27 +56,50 @@ describe('InformationButtonsComponent', () => {
     expect(dialog.open).toHaveBeenCalledWith(ConfirmDialogComponent, { data: { message: 'Tem certeza que deseja deletar este jogador?' } });
     expect(component.deletePlayer).toHaveBeenCalledWith(playerId);
   });
+// Corrija a função abaixo para que ela chame o método futApiService.httpDeleteCardById, o método router.navigateByUrl e o método snackBar.open com os valores esperados
+it('should call futApiService.deleteCardById, navigate and show snackbar when deletePlayer is called', () => {
+  const playerId = '1111';
 
-  it('should call futApiService.deleteCardById, navigate and show snackbar when deletePlayer is called', () => {
-    const playerId = '1111';
+  const mockPlayer = cardsMock[0];
 
-    const mockPlayer = cardsMock[0];
-  
-    // Crie um spy para o futApiService.deleteCardById e retorne um Observable válido
-    spyOn(futApiService, 'deleteCardById').and.returnValue(of(mockPlayer));
-  
-    spyOn(router, 'navigateByUrl');
-    spyOn(snackBar, 'open');
-  
-    component.deletePlayer(playerId);
-  
-    // Verifique se o método futApiService.deleteCardById foi chamado corretamente
-    expect(futApiService.deleteCardById).toHaveBeenCalledWith(playerId);
-  
-    // Verifique se o método router.navigateByUrl foi chamado com o valor esperado
-    expect(router.navigateByUrl).toHaveBeenCalledWith('');
-  
-    // Verifique se o método snackBar.open foi chamado com os valores esperados
-    expect(snackBar.open).toHaveBeenCalledWith('Jogador deletado com sucesso!', 'Fechar', { duration: 3000 });
-  });
+  // Crie um spy para o futApiService.deleteCardById e retorne um Observable válido
+  // na verdade ele precisa retornar um Observable<void>, mas como não temos um valor de retorno, podemos usar o of(void)
+  spyOn(futApiService, 'httpDeleteCardById').and.returnValue(of(void 0));
+  spyOn(router, 'navigateByUrl');
+  spyOn(snackBar, 'open');
+
+  component.deletePlayer(playerId);
+
+   // Verifique se o método futApiService.deleteCardById foi chamado corretamente
+   expect(futApiService.httpDeleteCardById).toHaveBeenCalledWith(playerId);
+
+   // Verifique se o método router.navigateByUrl foi chamado com o valor esperado
+   expect(router.navigateByUrl).toHaveBeenCalledWith('');
+
+   // Verifique se o método snackBar.open foi chamado com os valores esperados
+   expect(snackBar.open).toHaveBeenCalledWith('Jogador deletado com sucesso!', 'Fechar', { duration: 3000 });
+});
+  // it('should call futApiService.deleteCardById, navigate and show snackbar when deletePlayer is called', () => {
+  //   const playerId = '1111';
+
+  //   const mockPlayer = cardsMock[0];
+
+  //   // Crie um spy para o futApiService.deleteCardById e retorne um Observable válido
+  //   // na verdade ele precisa retornar um Observable<void>, mas como não temos um valor de retorno, podemos usar o of(void)
+  //   spyOn(futApiService, 'httpDeleteCardById').and.returnValue(of<void>());
+
+  //   spyOn(router, 'navigateByUrl');
+  //   spyOn(snackBar, 'open');
+
+  //   component.deletePlayer(playerId);
+
+  //   // Verifique se o método futApiService.deleteCardById foi chamado corretamente
+  //   expect(futApiService.httpDeleteCardById).toHaveBeenCalledWith(playerId);
+
+  //   // Verifique se o método router.navigateByUrl foi chamado com o valor esperado
+  //   expect(router.navigateByUrl).toHaveBeenCalledWith('');
+
+  //   // Verifique se o método snackBar.open foi chamado com os valores esperados
+  //   expect(snackBar.open).toHaveBeenCalledWith('Jogador deletado com sucesso!', 'Fechar', { duration: 3000 });
+  // });
 });

@@ -8,11 +8,23 @@ import { MatButtonModule } from '@angular/material/button';
   selector: 'app-fut-add-card-button',
   standalone: true,
   template: `
-    <button color="primary" mat-flat-button [routerLink]="['create-card']">
+  <div class="position__btn__add__player">
+  <button class="btn__add__player" [routerLink]="['create-card']">
       <mat-icon>add_box</mat-icon>
       Adicionar Jogador
     </button>
+  </div>
+
   `,
-  imports: [RouterModule, MatIconModule, MatButtonModule],
+  styles:
+  `
+  .position__btn__add__player {
+    position: fixed;
+    left: 61px;
+    top: 61px;
+  }
+
+  `,
+  imports: [RouterModule, MatIconModule],
 })
 export class FutAddCardComponent {}

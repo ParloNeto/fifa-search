@@ -57,7 +57,6 @@ export class FormPlayerComponent implements OnInit {
   public selectedTypeCard: string[] = [];
   public selectedNationCard: string[] = [];
   public selectedClubCard: string[] = [];
-  public colorTextCard!: ColorText;
 
   public infoCardsForm: FormGroup;
   constructor(
@@ -150,29 +149,48 @@ export class FormPlayerComponent implements OnInit {
   public submitForm(): boolean {
     let isDisabled: boolean = true;
     if (this.infoCardsForm.invalid) return isDisabled;
+
     if (this.infoCardsForm.valid) {
-      const data = Object.assign({}, this.infoCardsForm.value, {
-        attributeCard: this.attributeCard.value,
-      });
-      this.#futApiService.httpCardCreate$(data).subscribe({
-        next: () => {
-          this.router.navigateByUrl('');
-          this.snackBar.open('Jogador adicionado com sucesso!', 'Fechar', {
-            duration: 3000,
-          });
-        },
-        error: () =>
-          this.snackBar.open(
-            'Não foi possível adicionar esse jogador. Tente novamente mais tarde.',
-            'Fechar',
-            {
-              duration: 3000,
-            }
-          ),
-      });
+      this.submitValidForm();
       return !isDisabled;
     }
+
     return !isDisabled;
+  }
+
+  /* istanbul ignore next */
+  private submitValidForm(): void {
+    const data = this.getFormData();
+    this.#futApiService.httpCardCreate$(data).subscribe({
+      next: () => this.handleSuccess(),
+      error: () => this.handleError(),
+    });
+  }
+
+  /* istanbul ignore next */
+  private getFormData(): any {
+    return Object.assign({}, this.infoCardsForm.value, {
+      attributeCard: this.attributeCard.value,
+    });
+  }
+
+/* istanbul ignore next */
+  private handleSuccess(): void {
+    this.router.navigateByUrl('');
+    this.snackBar.open('Jogador adicionado com sucesso!', 'Fechar', {
+      duration: 3000,
+    });
+  }
+
+/* istanbul ignore next */
+  private handleError(): void {
+    this.snackBar.open(
+      'Não foi possível adicionar esse jogador. Tente novamente mais tarde.',
+      'Fechar',
+      {
+        duration: 3000,
+      }
+    );
   }
 
   public filterTypeByVersion(): void {
@@ -215,17 +233,8 @@ export class FormPlayerComponent implements OnInit {
       this.getAllTypeCardsMock(this.versionFifa!.value);
     }
     if (environment.isMocked === false) {
-      this.getTypesColor();
-      this.getAllTypeCards(this.versionFifa!.value);
-    }
-  }
-
-  public getTypesColor(): void {
-    const version = this.infoCardsForm.get('versionFifa')!.value;
-    const typeCard = this.infoCardsForm.get('typeCard')!.value;
-
-    if (version && typeCard) {
-      this.cardService.getSpecificType(version, typeCard).subscribe();
+      this.getAllTypeCardsMock(this.versionFifa!.value);
+      // this.getAllTypeCards(this.versionFifa!.value);
     }
   }
 

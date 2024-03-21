@@ -1,4 +1,4 @@
-package com.br.paulo.futsearch.resources.exceptions;
+package com.br.paulo.futsearch.controller.exceptions;
 
 import java.io.Serializable;
 

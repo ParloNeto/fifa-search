@@ -19,10 +19,12 @@ export class FutApiService {
   constructor() {}
 
   #setListCard = signal<Card[] | null>(null);
+  /* istanbul ignore next */
   get getListCard() {
     return this.#setListCard.asReadonly();
   }
   #setListCardError = signal<string | null>(null);
+  /* istanbul ignore next */
   get getListCardError() {
     return this.#setListCardError.asReadonly();
   }

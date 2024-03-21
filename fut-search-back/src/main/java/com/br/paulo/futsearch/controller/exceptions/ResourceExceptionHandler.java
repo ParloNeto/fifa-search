@@ -1,4 +1,4 @@
-package com.br.paulo.futsearch.resources.exceptions;
+package com.br.paulo.futsearch.controller.exceptions;
 
 import com.br.paulo.futsearch.services.exception.ObjectNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;

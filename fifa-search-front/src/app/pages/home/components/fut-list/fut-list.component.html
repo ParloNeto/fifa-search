@@ -1,11 +1,11 @@
 <app-fut-search (emmitSearch)="getSearch($event)"></app-fut-search>
 
 <section class="list">
-  @if (cards(); as data) { 
+  @if (cards(); as data) {
     @for (card of data; track card) {
 
   <a [routerLink]="['details', card.id]" class="card fadeIn">
-    <section class="card__info">
+    <section [ngClass]="changeStyleByTypeCard(card.versionFifa, card.typeCard)" class="card__info">
       <p>{{ card.position }}</p>
       <h2>{{ card.firstName }} {{ card.lastName }}</h2>
 
@@ -32,9 +32,14 @@
   } @empty {
     <p>Nenhum jogador encontrado.</p>
   }
+
+
  } @else {
-  <img src="assets/images/error.png" alt="Erro ao carregar Cards" loading="lazy"/>
-  
-  
-  } 
+  <!-- <img src="assets/images/error.png" alt="Erro ao carregar Cards" loading="lazy"/> -->
+<div style="margin: 0 auto;">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+
+</div>
+
+  }
 </section>

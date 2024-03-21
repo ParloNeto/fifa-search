@@ -5,12 +5,14 @@
     <div class="background">
 
       <app-card-details (InformLoading)="getInfoLoading($event)" (informId)="getId($event)" (dataCard)="getDescriptionCard($event)" id="card-details"></app-card-details>
-    
-      <div class="descriptionAndInformations">
+
+      <div class="description">
         <app-description-player id="textInfo" [cardInformation]="description"></app-description-player>
+      </div>
+      <div class="information">
         <app-information-buttons id="buttonsInfo" [getId]="id"></app-information-buttons>
       </div>
-    
+
     </div>
   } @else {
     <img src="assets/images/error.png" alt="Erro ao carregar Cards" width="100%" *ngIf="!loading">

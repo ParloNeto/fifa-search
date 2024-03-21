@@ -6,7 +6,7 @@
     justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
-    height: 25rem;
+    height: 340px;
     padding: 50px;
     @media screen and (max-width: 450px) {
       flex-direction: column;
@@ -17,7 +17,16 @@
     }
   }
 
-  .descriptionAndInformations {
+  #buttonsInfo {
+
+  }
+
+  .description {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .description {
     @media screen and (max-width: 450px) {
       margin-top: 50px;
     }

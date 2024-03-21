@@ -15,6 +15,9 @@
       margin: 30px 50px;
       padding: 10px;
       color: var(--gray);
+      @media screen and (max-width: 500px) {
+        padding: 0px;
+      }
     }
 
     .container {
@@ -70,12 +73,58 @@
             }
           }
         }
+        @media screen and (max-width: 500px) {
+          width: 100%;
+        }
+      }
+      @media screen and (max-width: 500px) {
+        margin: 0 auto;
+        justify-content: center;
       }
     }
 
     #buttonForm {
-      @include buttonDefault;
+      cursor: pointer;
+      border-radius: 15px;
+      font-size: 20px;
+      text-transform: uppercase;
+      font-weight: bold;
+      color: var(--primary-color);
       padding: 25px 35px 25px 35px;
+      transition: 0.25s ease-in-out;
+      border: 2px solid white;
+
+      &:disabled {
+        transition: 0.25s ease-in-out;
+        border-color: var(--medium-dark-red);
+        border-bottom-width: 2px;
+      }
+
+      &:hover {
+        &:hover {
+          transition: 0.25s ease-in-out;
+          color: #ffffffa6;
+          background-color: #cccccc2f;
+        }
+      }
+
+      @media screen and (max-width: 500px) {
+
+      }
+    }
+
+    @media screen and (max-width: 1007px) {
+
+
+
+        margin: 0 auto;
+        .input-box {
+          width: 100%;
+        }
+      .container {
+        text-align: center;
+        padding: 0;
+      }
     }
   }
 

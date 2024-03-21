@@ -1,20 +1,31 @@
- .menuButton {
+.menuButton {
   display: flex;
-  justify-content: space-evenly;
-  flex-direction: column;
-      button {
-        cursor: pointer;
-        padding: 35px;
-        margin-top: 25px;
-      
-      }
-    }
+    height: 340px;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 auto;
+  button {
+    cursor: pointer;
+    padding: 20px;
+    width: auto;
+    border-radius: 40px;
+  }
 
-    @media screen and (max-width: 450px) {
-      .menuButton {
-        display: flex;
-        flex-direction: column-reverse;
-      }
-    }
+  &__delete {
+    background-color: #df2020;
+    color: var(--white);
+  }
 
-    
+  &__goBack {
+    background-color: var(--primary-color);
+    color: var(--white);
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .menuButton {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+}

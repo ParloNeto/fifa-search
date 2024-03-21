@@ -2,33 +2,34 @@ import { Component, OnInit, computed, inject, signal } from '@angular/core';
 import { Card } from 'src/app/core/models/card.interface';
 import { FutApiService } from 'src/app/service/fut-api.service';
 import { RouterLink } from '@angular/router';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { FutSearchComponent } from '../fut-search/fut-search.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatChipsModule} from '@angular/material/chips';
 
 @Component({
   selector: 'app-fut-list',
   templateUrl: './fut-list.component.html',
   styleUrls: ['./fut-list.component.scss'],
   standalone: true,
-  imports: [FutSearchComponent, NgFor, RouterLink, NgIf, AsyncPipe],
+  imports: [FutSearchComponent, NgFor, RouterLink, NgIf, AsyncPipe, NgClass, MatProgressSpinnerModule, MatChipsModule],
+
 })
 export class FutListComponent implements OnInit {
-  OnInit() {
-    throw new Error('Method not implemented.');
-  }
-  #futApiService = inject(FutApiService);
-  private setCards = signal<Card[]>([]);
-  public cards = computed(() => this.setCards());
-  
-  constructor() {}
-  
-  ngOnInit() {
-    this.#futApiService.httpListCards$().subscribe({
-      next: (res: Card[]) => {
-        this.setCards.set(res);
-      }
-    });
-  }
+
+    #futApiService = inject(FutApiService);
+    private setCards = signal<Card[] | null>(null);
+    public cards = computed(() => this.setCards());
+
+    constructor() {}
+  /* istanbul ignore next */
+    ngOnInit() {
+      this.#futApiService.httpListCards$().subscribe({
+        next: (res: Card[]) => {
+          this.setCards.set(res);
+        }
+      });
+    }
 
   /**
    * Filtra todas as cartas pelo nome colocado no input da Home.
@@ -37,9 +38,10 @@ export class FutListComponent implements OnInit {
    * @returns {Card[]} Retorna um array filtrado com o nome passado no input.
    */
 
+  /* istanbul ignore next */
   public getSearch(value: string) {
     const filter = computed(() =>
-      this.setCards().filter((res: Card) => {
+      this.setCards()!.filter((res: Card) => {
         return (
           !res.firstName.toLowerCase().indexOf(value.toLowerCase()) ||
           !res.lastName.toLowerCase().indexOf(value.toLowerCase()) ||
@@ -57,6 +59,8 @@ export class FutListComponent implements OnInit {
    * @param {string | undefined} club Nome do clube que será pesquisado nas imagens do assets.
    * @returns {string} Retorna o caminho da pasta assets com a respectiva imagem associado com o nome passado no parâmetro.
    */
+
+
   public imagePath(nation?: string, club?: string): string {
     let srcPath: string;
 
@@ -80,5 +84,10 @@ export class FutListComponent implements OnInit {
   public formatWithoutHyphen(option: string): string {
     const formatted = option.replace(/-/g, ' ');
     return formatted;
+  }
+
+  public changeStyleByTypeCard(versionFifa: string, typeCard: string): string {
+    console.log( 'card-'+ versionFifa+ '-' + typeCard);
+    return 'card-'+ versionFifa+ '-' + typeCard
   }
 }

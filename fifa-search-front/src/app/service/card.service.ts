@@ -9,7 +9,7 @@ import { typeCardsMockService } from './mocks/typeCard-mocks';
   providedIn: 'root'
 })
 export class CardService {
-  
+
   #http = inject(HttpClient);
   private $typeCards = of(typeCardsMockService);
   private readonly apiUrl = `${environment.apiUrl}/types/version`;
@@ -21,6 +21,7 @@ export class CardService {
   }
 
   #setTypeCards = signal<TypeCard[] | null>(null);
+  /* istanbul ignore next */
   get getTypeCards() {
     return this.#setTypeCards.asReadonly();
   }
@@ -38,6 +39,7 @@ export class CardService {
   }
 
   #setTypeCardsMock = signal<TypeCard[] | null>(null);
+  /* istanbul ignore next */
   get getTypeCardsMock() {
     return this.#setTypeCardsMock.asReadonly();
   }

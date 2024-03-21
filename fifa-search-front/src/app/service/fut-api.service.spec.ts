@@ -69,7 +69,7 @@ describe('FutApiService', () => {
   it('should delete a card by id', () => {
     const cardId = '1';
 
-    futApiService.deleteCardById(cardId).subscribe((deletedCard) => {
+    futApiService.httpDeleteCardById(cardId).subscribe((deletedCard) => {
       expect(deletedCard).toBeNull();
     });
 
@@ -77,4 +77,6 @@ describe('FutApiService', () => {
     expect(req.request.method).toBe('DELETE');
     req.flush(null); // O servidor retorna um objeto nulo após a exclusão
   });
+
+  
 });
